@@ -1,0 +1,28 @@
+{
+  "name": "hydroid-client",
+  "version": "0.0.1",
+  "description": "Web client for the Hydroid search application",
+  "main": "app.js",
+  "scripts": {
+    "test": "karma start --single-run --browsers PhantomJS"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeoscienceAustralia/hydroid-client.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeoscienceAustralia/hydroid-client/issues"
+  },
+  "homepage": "https://github.com/GeoscienceAustralia/hydroid-client#readme",
+  "devDependencies": {
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.19",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.6",
+    "karma-junit-reporter": "^0.3.8",
+    "karma-phantomjs-launcher": "^0.2.3",
+    "phantomjs": "^1.9.19"
+  }
+}
