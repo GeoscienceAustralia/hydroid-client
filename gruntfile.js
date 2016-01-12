@@ -31,6 +31,4 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-gulp');
     grunt.registerTask('build', ['gulp:bundle', 'gulp:copy-bootstrap-fonts', 'gulp:copy-images']);
     grunt.registerTask('default',['build']);
-    //Required graphviz installed and dot.exe on the PATH -> http://www.graphviz.org/
-    grunt.registerTask('depgraph', ['modules-graph','graphviz']);
 };
