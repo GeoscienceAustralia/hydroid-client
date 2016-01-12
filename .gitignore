@@ -35,3 +35,6 @@ node_modules
 
 # WebStorm/IDEA
 .idea/
+
+# Bower
+bower_components/
