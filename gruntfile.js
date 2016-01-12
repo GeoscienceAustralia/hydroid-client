@@ -24,15 +24,23 @@ module.exports = function (grunt) {
             'copy-images': function () {
                 return gulp.src('app/img/**/*')
                     .pipe(gulp.dest(outputPath + 'img'));
-            },
-            'copy-templates': function () {
-                return gulp.src('app/components/**/*.html')
-                    .pipe(gulp.dest(outputPath + 'components'))
+            }
+        },
+        ngtemplates: {
+            app: {
+                cwd: 'app',
+                options: {
+                    append: true,
+                    module: 'hydroidApp'
+                },
+                src: 'components/**/*.html',
+                dest: outputPath + 'js/app.min.js'
             }
         }
     });
 
     grunt.loadNpmTasks('grunt-gulp');
-    grunt.registerTask('build', ['gulp:bundle', 'gulp:copy-bootstrap-fonts', 'gulp:copy-images']);
-    grunt.registerTask('default',['build']);
+    grunt.loadNpmTasks('grunt-angular-templates');
+    grunt.registerTask('build', ['gulp:bundle', 'gulp:copy-bootstrap-fonts', 'gulp:copy-images','ngtemplates']);
+    grunt.registerTask('default', ['build']);
 };

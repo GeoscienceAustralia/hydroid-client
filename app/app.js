@@ -7,7 +7,7 @@
     ]);
 
     mod.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-        $routeProvider.when('/', {templateUrl: 'js/home/home.html', controller: 'homeCtrl'});
+        $routeProvider.when('/', {templateUrl: 'components/home/home.html', controller: 'homeCtrl'});
         $routeProvider.otherwise({ redirectTo: '/' });
         $locationProvider.html5Mode(false);
         $.material.init();
