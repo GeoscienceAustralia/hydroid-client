@@ -38,3 +38,6 @@ node_modules
 
 # Bower
 bower_components/
+
+#Output
+/build

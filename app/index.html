@@ -7,11 +7,16 @@
     <title>Hydroid</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="../bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
+    <!-- build:css lib/css/bootstrap.min.css -->
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!-- endbuild -->
+    <!-- build:css lib/css/bootstrap-material-design.min.css-->
+    <link rel="stylesheet" href="../bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.css">
+    <!-- endbuild -->
+    <!-- build:css css/app.min.css -->
     <link rel="stylesheet" href="css/app.header.footer.css">
     <link rel="stylesheet" href="css/app.css">
+    <!-- endbuild -->
 </head>
 <body>
 
@@ -60,12 +65,24 @@
 <div class="container" style="margin-top:40px;" ng-view>
 
 </div><!-- /.container -->
-<script src="../node_modules/jquery/dist/jquery.min.js"></script>
-<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="../bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+<!-- build:js lib/js/jquery.min.js -->
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<!-- endbuild -->
+<!-- build:js lib/js/bootstrap.min.js -->
+<script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<!-- endbuild -->
+<!-- build:js lib/js/material.min.js -->
+<script src="../bower_components/bootstrap-material-design/dist/js/material.js"></script>
+<!-- endbuild -->
+<!-- build:js lib/js/angular.min.js -->
 <script src="../node_modules/angular/angular.js"></script>
+<!-- endbuild -->
+<!-- build:js lib/js/angular-route.min.js -->
 <script src="../node_modules/angular-route/angular-route.js"></script>
+<!-- endbuild -->
+<!-- build:js js/app.min.js-->
 <script src="js/home/home.js"></script>
 <script src="js/app.js"></script>
+<!-- endbuild-->
 </body>
 </html>
