@@ -7,7 +7,7 @@
     ]);
 
     mod.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-        $routeProvider.when('/', {templateUrl: 'components/home/home.html', controller: 'homeCtrl'});
+        $routeProvider.when('/', {template: '<hydroid-home></hydroid-home>'});
         $routeProvider.otherwise({ redirectTo: '/' });
         $locationProvider.html5Mode(false);
         $.material.init();

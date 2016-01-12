@@ -1,11 +1,18 @@
 (function () {
     "use strict";
 
-    var mod = angular.module('home', [
+    var module = angular.module('home', [
 
     ]);
 
-    mod.controller('homeCtrl', ['$scope', function($scope) {
+    module.directive('hydroidHome', [function() {
+        return {
+            restrict: 'E',
+            scope: { },
+            templateUrl: 'components/home/home.html',
+            controller: ['$scope', function($scope) {
 
+            }]
+        };
     }]);
 })();
