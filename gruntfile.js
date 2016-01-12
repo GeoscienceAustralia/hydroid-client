@@ -24,6 +24,10 @@ module.exports = function (grunt) {
             'copy-images': function () {
                 return gulp.src('app/img/**/*')
                     .pipe(gulp.dest(outputPath + 'img'));
+            },
+            'copy-templates': function () {
+                return gulp.src('app/components/**/*.html')
+                    .pipe(gulp.dest(outputPath + 'components'))
             }
         }
     });
