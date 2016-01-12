@@ -1,32 +1,27 @@
-<div class="row">
-    <div class="col-sm-3">
-        <div class="panel">
-            <div class="panel-body">
-                <h3>Hydroid Search</h3>
-                <div class="form-group is-empty">
-                    <input type="text" class="form-control col-sm-8" placeholder="Search">
-                    <span class="material-input"></span>
-                </div>
-                <div class="list-group">
-                    <div class="list-group-item">
-                        <!--<div class="row-action-primary">-->
-                            <!--<i class="material-icons">folder</i>-->
-                        <!--</div>-->
-                        <!--<div class="row-content">-->
-                            <!--<div class="least-content">15m</div>-->
-                            <!--<h4 class="list-group-item-heading">Tile with a label</h4>-->
-
-                            <!--<p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>-->
-                        <!--</div>-->
-                    </div>
-                </div>
-            </div>
+<div layout="column">
+    <section layout="row">
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+            <md-toolbar class="md-theme-light-blue">
+                <h1 class="md-toolbar-tools">Search</h1>
+            </md-toolbar>
+            <md-content layout-padding>
+                <md-button ng-click="close()" class="md-primary" hide-gt-md>
+                    Close Search
+                </md-button>
+                <form>
+                    <md-input-container>
+                        <label for="testInput">Search</label>
+                        <input type="text" id="testInput"
+                               ng-model="data" md-autofocus>
+                    </md-input-container>
+                </form>
+            </md-content>
+        </md-sidenav>
+    <md-content flex layout-padding>
+        <div layout="column" layout-fill layout-align="top center">
+            Home body...
         </div>
-    </div>
-    <div class="col-sm-9">
-        <div class="panel">
-            <div class="panel-heading">Home Heading</div>
-            <div class="panel-body">Home body...</div>
-        </div>
-    </div>
+        <div flex></div>
+    </md-content>
+    </section>
 </div>
