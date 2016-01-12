@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/GeoscienceAustralia/hydroid-client#readme",
   "devDependencies": {
+    "express": "^4.13.3",
+    "gulp": "^3.9.0",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.19",
     "karma-chrome-launcher": "^0.2.2",
@@ -24,5 +26,12 @@
     "karma-junit-reporter": "^0.3.8",
     "karma-phantomjs-launcher": "^0.2.3",
     "phantomjs": "^1.9.19"
+  },
+  "dependencies": {
+    "angular": "^1.4.8",
+    "angular-route": "^1.4.8",
+    "angular-ui-bootstrap": "^1.0.0",
+    "bootstrap": "^3.3.6",
+    "jquery": "^1.11.3"
   }
 }
