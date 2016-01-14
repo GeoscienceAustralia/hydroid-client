@@ -9,14 +9,14 @@ before_deploy:
 
 deploy:
       - provider: s3
-        access_key_id: AKIAJNHTDS73HIP2LHAA
-        secret_access_key: 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
+        access_key_id: AKIAITTNVFBKCZRF7VTA
+        secret_access_key: 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
         local_dir: release
         skip_cleanup: true
         bucket: "hydroid"
       - provider: codedeploy
-        access_key_id: AKIAJNHTDS73HIP2LHAA
-        secret_access_key: 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
+        access_key_id: AKIAITTNVFBKCZRF7VTA
+        secret_access_key: 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
         bucket: "hydroid/releases"
         key: hydroid.zip
         bundle_type: zip
