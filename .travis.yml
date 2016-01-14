@@ -9,10 +9,12 @@ before_deploy:
 
 deploy:
       - provider: s3
+        region: ap-southeast-2
         access_key_id: AKIAITTNVFBKCZRF7VTA
         secret_access_key: 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
-        local_dir: release
         bucket: hydroid
+        local_dir: release
+        upload_dir: releases
         skip_cleanup: true
         on:
           branch: travis-codedeploy
