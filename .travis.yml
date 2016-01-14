@@ -12,13 +12,12 @@ deploy:
         access_key_id: AKIAITTNVFBKCZRF7VTA
         secret_access_key: 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
         local_dir: release
-        skip_cleanup: true
         bucket: "hydroid"
+        upload-dir: releases
+        skip_cleanup: true
       - provider: codedeploy
         access_key_id: AKIAITTNVFBKCZRF7VTA
         secret_access_key: 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
-        bucket: "hydroid"
-        key: hydroid/releases/hydroid.zip
         bundle_type: zip
         application: hydroid
         deployment_group: Hydroid-Client-Dev-Deployment
