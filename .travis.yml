@@ -23,4 +23,4 @@ deploy:
         application: hydroid
         deployment_group: Hydroid-Client-Dev-Deployment
         on:
-          branch: grunt-build-step
+          branch: travis-codedeploy
