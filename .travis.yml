@@ -22,5 +22,6 @@ deploy:
         bundle_type: zip
         application: hydroid
         deployment_group: Hydroid-Client-Dev-Deployment
+        region: ap-southeast-2
         on:
           branch: travis-codedeploy
