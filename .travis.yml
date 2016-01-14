@@ -1,3 +1,25 @@
 language: node_js
 node_js:
       - "stable"
+
+before_deploy:
+      - echo "building hydroid"
+      - ./build.sh
+
+deploy:
+      - provider: s3
+        access_key_id: "AKIAJNHTDS73HIP2LHAA"
+        secret_access_key: "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"
+        local_dir: release
+        skip_cleanup: true
+        bucket: "hydroid"
+      - provider: codedeploy
+        access_key_id: "AKIAJNHTDS73HIP2LHAA"
+        secret_access_key: "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"
+        bucket: "hydroid/releases"
+        key: hydroid.zip
+        bundle_type: zip
+        application: hydroid
+        deployment_group: Hydroid-Client-Dev-Deployment
+        on:
+          branch: grunt-build-step
