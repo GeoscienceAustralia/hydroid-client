@@ -4,7 +4,8 @@ node_js:
 
 before_deploy:
       - echo "building hydroid"
-      - sh ./build.sh
+      - chmod +x ./travis/build.sh
+      - ./travis/build.sh
 
 deploy:
       - provider: s3
