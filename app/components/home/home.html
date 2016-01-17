@@ -1,0 +1,27 @@
+<div layout="column">
+    <section layout="row">
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+            <md-toolbar class="md-theme-light-blue">
+                <h1 class="md-toolbar-tools">Search</h1>
+            </md-toolbar>
+            <md-content layout-padding>
+                <md-button ng-click="close()" class="md-primary" hide-gt-md>
+                    Close Search
+                </md-button>
+                <form>
+                    <md-input-container>
+                        <label for="testInput">Search</label>
+                        <input type="text" id="testInput"
+                               ng-model="data" md-autofocus>
+                    </md-input-container>
+                </form>
+            </md-content>
+        </md-sidenav>
+    <md-content flex layout-padding>
+        <div layout="column" layout-fill layout-align="top center">
+            Home body... Testing.
+        </div>
+        <div flex></div>
+    </md-content>
+    </section>
+</div>

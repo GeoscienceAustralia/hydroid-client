@@ -35,6 +35,11 @@ node_modules
 
 # WebStorm/IDEA
 .idea/
+*.iml
 
 # Bower
 bower_components/
+
+#Output
+/build
+/release
