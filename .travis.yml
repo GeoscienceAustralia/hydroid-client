@@ -19,7 +19,7 @@ deploy:
     upload_dir: releases
     skip_cleanup: true
     on:
-      branch: travis-codedeploy
+      branch: master
   - provider: codedeploy
     access_key_id: AKIAITTNVFBKCZRF7VTA
     secret_access_key:
@@ -31,4 +31,4 @@ deploy:
     deployment_group: Hydroid-Client-Dev-Deployment
     region: ap-southeast-2
     on:
-      branch: travis-codedeploy
+      branch: master
