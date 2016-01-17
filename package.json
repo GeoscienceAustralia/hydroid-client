@@ -45,6 +45,6 @@
     "angular-ui-bootstrap": "^1.0.0",
     "bootstrap": "^3.3.6",
     "jquery": "^1.11.3",
-    "angular-material": "^1.4.7"
+    "angular-material": "^1.0.2"
   }
 }
