@@ -19,6 +19,7 @@
   "devDependencies": {
     "express": "^4.13.3",
     "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
     "grunt-angular-templates": "~0.5.9",
     "grunt-gulp": "~0.1.0",
     "gulp": "^3.9.0",
@@ -43,6 +44,7 @@
     "angular-aria":"^1.4.7",
     "angular-ui-bootstrap": "^1.0.0",
     "bootstrap": "^3.3.6",
-    "jquery": "^1.11.3"
+    "jquery": "^1.11.3",
+    "angular-material": "^1.0.2"
   }
 }
