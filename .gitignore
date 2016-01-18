@@ -43,3 +43,6 @@ bower_components/
 #Output
 /build
 /release
+
+# Custom config
+local-config.json

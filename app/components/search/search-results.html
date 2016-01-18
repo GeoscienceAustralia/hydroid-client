@@ -1,3 +1,14 @@
 <div>
-
+    <ul>
+        <li ng-repeat="result in results.data" ng-bind="result.title"></li>
+    </ul>
+    <h5>Related</h5>
+    <ul>
+        <li ng-repeat="category in results.categories | limitTo : results.categories.length - 1">
+            <a href="">{{category.facet.alias}}</a>({{category.facet.values.length}})
+            <ul>
+                <li ng-repeat="item in category.facet.values" ng-bind="item.name"></li>
+            </ul>
+        </li>
+    </ul>
 </div>
