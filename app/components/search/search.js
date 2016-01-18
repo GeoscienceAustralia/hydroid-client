@@ -11,12 +11,15 @@
             restrict: 'E',
             scope: {
                 results:'=',
-                queryUrl:'@'
+                queryUrl:'@',
+                contentHubName: '@'
             },
             templateUrl: 'components/search/search.html',
             controller: ['$scope', function($scope) {
                 $scope.search = function (query) {
-                    $http.get($scope.queryUrl + '/contenthub/marine/search/featured?queryTerm=' + query)
+                    $http.get($scope.queryUrl + '/contenthub/' +
+                        $scope.contentHubName +
+                        '/search/featured?queryTerm=' + query)
                         .then(function (response) {
                             console.log(response.data);
                         },

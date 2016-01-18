@@ -2,27 +2,25 @@ var express = require('express');
 var app = express();
 
 var http = require('http');
-var request = require('request');
 
 app.use('/', express.static(__dirname + '/app'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
-app.use('/api', function (req, response) {
+app.use('/api', function (request, response) {
 
-    var stanbolUrl = req.originalUrl.replace('/api/','http://admin:admin@localhost:8080/');
-    var proxy = http.request({
-        headers: {
-
-        },
-        uri: stanbolUrl,
-        method: 'GET'
-    },function (res) {
+    var stanbolUrl = request.originalUrl.replace('/api/','http://localhost:8080/');
+    var proxy = http.request(stanbolUrl, function (res) {
         res.pipe(response, {
             end: true
         })
     }).on('error', function (err) {
         return(err);
     });
+
+    // Use default auth for using local instance of stanbol
+    proxy.setHeader('Authorization', 'Basic YWRtaW46YWRtaW4=');
+    proxy.setHeader('Content-Type', 'application/json');
+    proxy.setHeader('Accept', 'application/json');
 
     proxy.setTimeout(10000);
 
@@ -31,7 +29,7 @@ app.use('/api', function (req, response) {
         response.end();
     });
 
-    req.pipe(proxy, {
+    request.pipe(proxy, {
         end: true
     });
 });
