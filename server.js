@@ -2,16 +2,21 @@ var express = require('express');
 var app = express();
 
 var http = require('http');
-var url = require('url');
+var request = require('request');
 
 app.use('/', express.static(__dirname + '/app'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
-app.use('/api', function (request, response) {
+app.use('/api', function (req, response) {
 
-    var endPoint = url.parse(request.query.endpoint);
+    var stanbolUrl = req.originalUrl.replace('/api/','http://admin:admin@localhost:8080/');
+    var proxy = http.request({
+        headers: {
 
-    var proxy = http.request(endPoint, function (res) {
+        },
+        uri: stanbolUrl,
+        method: 'GET'
+    },function (res) {
         res.pipe(response, {
             end: true
         })
@@ -26,7 +31,7 @@ app.use('/api', function (request, response) {
         response.end();
     });
 
-    request.pipe(proxy, {
+    req.pipe(proxy, {
         end: true
     });
 });

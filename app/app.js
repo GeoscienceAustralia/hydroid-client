@@ -3,7 +3,9 @@
     "use strict";
     var mod = angular.module('hydroidApp', [
         'ngRoute',
-        'home'
+        'home',
+        'search',
+        'search-results'
     ]);
 
     mod.config(['$routeProvider', '$locationProvider',

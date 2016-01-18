@@ -11,7 +11,11 @@
             scope: { },
             templateUrl: 'components/home/home.html',
             controller: ['$scope', function($scope) {
+                $scope.searchResults = []; // Initialise empty results
 
+                $scope.$watch('searchResults', function () {
+                    console.log($scope.searchResults);
+                })
             }]
         };
     }]);

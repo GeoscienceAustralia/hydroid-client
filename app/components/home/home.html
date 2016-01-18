@@ -3,23 +3,8 @@
         <div class="panel">
             <div class="panel-body">
                 <h3>Hydroid Search</h3>
-                <div class="form-group is-empty">
-                    <input type="text" class="form-control col-sm-8" placeholder="Search">
-                    <span class="material-input"></span>
-                </div>
-                <div class="list-group">
-                    <div class="list-group-item">
-                        <!--<div class="row-action-primary">-->
-                        <!--<i class="material-icons">folder</i>-->
-                        <!--</div>-->
-                        <!--<div class="row-content">-->
-                        <!--<div class="least-content">15m</div>-->
-                        <!--<h4 class="list-group-item-heading">Tile with a label</h4>-->
-
-                        <!--<p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus.</p>-->
-                        <!--</div>-->
-                    </div>
-                </div>
+                <hydroid-search query-url="/api" results="searchResults"></hydroid-search>
+                <hydroid-search-results></hydroid-search-results>
             </div>
         </div>
     </div>
