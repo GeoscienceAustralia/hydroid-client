@@ -4,15 +4,16 @@ var app = express();
 var http = require('http');
 var fs = require('fs');
 var config = null;
-if(fs.existsSync('local-config.json')) {
-    config = require('local-config.json');
+if(fs.existsSync('./local-config.json')) {
+    config = require('./local-config.json');
 } else {
     config = {
         useProxy: false,
-        stanbolPath: 'http://hydroid-dev-web-lb-1763223935.ap-southeast-2.elb.amazonaws.com/stanbol'
         //stanbolPath: 'http://localhost:8080/'
     }
 }
+
+config.stanbolPath = config.stanbolPath || 'http://hydroid-dev-web-lb-1763223935.ap-southeast-2.elb.amazonaws.com/stanbol/';
 
 app.use('/', express.static(__dirname + '/app'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
