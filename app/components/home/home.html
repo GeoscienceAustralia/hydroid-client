@@ -1,17 +1,19 @@
 <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-3" ng-show="hasSearchRelated()">
         <div class="panel">
             <div class="panel-body">
-                <h3>Hydroid Search</h3>
-                <hydroid-search query-url="/api" content-hub-name="contenthub" results="searchResults"></hydroid-search>
-                <hydroid-search-results results="searchResults"></hydroid-search-results>
+                <hydroid-search-related results="searchResults"></hydroid-search-related>
             </div>
         </div>
     </div>
-    <div class="col-sm-9">
-        <div class="panel">
-            <div class="panel-heading">Home Heading</div>
-            <div class="panel-body">Home body...</div>
+    <div ng-class="{'col-sm-9': hasSearchResults(), 'col-sm-12': !hasSearchResults()}">
+        <h3 class="text-center">Hydroid Search</h3>
+        <hydroid-search query-url="/api" content-hub-name="contenthub" results="searchResults"></hydroid-search>
+        <div class="panel" ng-show="hasSearchResults()">
+            <div class="panel-heading">Search Results</div>
+            <div class="panel-body">
+                <hydroid-search-results results="searchResults"></hydroid-search-results>
+            </div>
         </div>
     </div>
 </div>

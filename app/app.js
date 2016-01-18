@@ -5,7 +5,8 @@
         'ngRoute',
         'home',
         'search',
-        'search-results'
+        'search-results',
+        'search-related'
     ]);
 
     mod.config(['$routeProvider', '$locationProvider',
