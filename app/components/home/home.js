@@ -16,6 +16,15 @@
                 $scope.$watch('searchResults', function () {
                     console.log($scope.searchResults);
                 })
+
+                $scope.hasSearchResults = function() {
+                    return $scope.searchResults && $scope.searchResults.data && $scope.searchResults.data.length > 0;
+                }
+
+                $scope.hasSearchRelated = function() {
+                    return $scope.searchResults && $scope.searchResults.categories && $scope.searchResults.categories.length > 0;
+                }
+
             }]
         };
     }]);
