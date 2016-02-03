@@ -10,17 +10,20 @@ if(fs.existsSync('./local-config.json')) {
     config = {
         useProxy: false,
         //stanbolPath: 'http://localhost:8080/'
+        solrUrl: 'http://localhost:8983/solr/'
     }
 }
 
 config.stanbolPath = config.stanbolPath || 'http://hydroid-dev-web-lb-1763223935.ap-southeast-2.elb.amazonaws.com/stanbol/';
+config.solrUrl = config.solrUrl || 'http://localhost:8983/solr/';
 
 app.use('/', express.static(__dirname + '/app'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
-app.use('/api', function (request, response) {
+//app.use('/api', function (request, response) {
+app.use('/solr', function (request, response) {
 
-    var stanbolUrl = request.originalUrl.replace('/api/',config.stanbolPath);
+    var stanbolUrl = request.originalUrl.replace('/solr/',config.solrUrl);
     var proxy;
     if(config.useProxy) {
         var options = {

@@ -1,5 +1,8 @@
 <div>
-    <ul>
-        <li ng-repeat="result in results.data" ng-bind="result.title"></li>
-    </ul>
+    <div ng-repeat="result in results.docs">
+        <a class="pull-right" href="downloadUrl/{{result.extracted-from}}">Download</a>
+        <h4 ng-bind="result.title"></h4>
+        <p ng-bind="result.content"></p>
+        <hr ng-hide="$last"/>
+    </div>
 </div>

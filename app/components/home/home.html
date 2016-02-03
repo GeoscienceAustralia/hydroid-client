@@ -2,13 +2,13 @@
     <div class="col-sm-3" ng-show="hasSearchRelated()">
         <div class="panel">
             <div class="panel-body">
-                <hydroid-search-related results="searchResults"></hydroid-search-related>
+                <hydroid-search-related query-url="/data/menu.json" menu-items="menuItems"></hydroid-search-related>
             </div>
         </div>
     </div>
-    <div ng-class="{'col-sm-9': hasSearchResults(), 'col-sm-12': !hasSearchResults()}">
+    <div ng-class="{'col-sm-9': hasSearchRelated(), 'col-sm-12': !hasSearchResults()}">
         <h3 class="text-center">Hydroid Search</h3>
-        <hydroid-search query-url="/api" content-hub-name="contenthub" results="searchResults"></hydroid-search>
+        <hydroid-search query-url="/solr" solr-collection="hydroid" results="searchResults" menu-items="menuItems"></hydroid-search>
         <div class="panel" ng-show="hasSearchResults()">
             <div class="panel-heading">Search Results</div>
             <div class="panel-body">
