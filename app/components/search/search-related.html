@@ -4,7 +4,7 @@
     </ul>
 </div>
 <script type="text/ng-template" id="menuTemplate">
-    <a href="" ng-click="">
+    <a href="" ng-click="filterByFacet(menuItem.nodeLabel)">
         {{ menuItem.nodeLabel }}&nbsp;
         <span class="badge" ng-show="menuItem.count">{{ menuItem.count }}</span>
     </a>

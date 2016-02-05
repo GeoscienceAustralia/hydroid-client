@@ -1,7 +1,7 @@
 <div>
     <div ng-repeat="result in results.docs">
         <a class="pull-right" href="{{getDownloadUrl(result.about)}}">Download</a>
-        <h4 ng-bind="result.title"></h4>
+        <h4 ng-bind="result.title || 'Untitled Document'"></h4>
         <p ng-bind="result.content"></p>
         <hr ng-hide="$last"/>
     </div>

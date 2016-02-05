@@ -2,7 +2,8 @@
     <div class="col-sm-3" ng-show="hasSearchRelated()">
         <div class="panel">
             <div class="panel-body">
-                <hydroid-search-related query-url="/data/menu.json" menu-items="menuItems"></hydroid-search-related>
+                <hydroid-search-related query-url="/solr" solr-collection="hydroid" results="searchResults"
+                                        menu-items="menuItems" menu-url="/data/menu.json"></hydroid-search-related>
             </div>
         </div>
     </div>
