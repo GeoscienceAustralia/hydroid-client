@@ -13,7 +13,9 @@
             },
             templateUrl: 'components/search/search-results.html',
             controller: ['$scope', function($scope) {
-
+                $scope.getDownloadUrl = function(urn) {
+                    return 'http://localhost:8080/document/' + urn + '/download';
+                }
             }]
         };
     }]);

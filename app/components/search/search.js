@@ -2,35 +2,29 @@
 (function () {
     "use strict";
 
-    var module = angular.module('search', []);
+    var module = angular.module('search', ['search-services']);
 
-    module.directive('hydroidSearch', ['$http', '$timeout', function ($http, $timeout) {
+    module.directive('hydroidSearch', ['$http', '$timeout', 'SearchServices', function ($http, $timeout, SearchServices) {
         return {
             restrict: 'E',
             scope: {
                 results: '=',
+                menuItems: '=',
                 queryUrl: '@',
-                contentHubName: '@'
+                solrCollection: '@'
             },
             templateUrl: 'components/search/search.html',
             controller: ['$scope', function ($scope) {
-                $scope.factAliases = {
-                    'organizations_t':'Organisations',
-                    'people_t': 'People',
-                    'places_t': 'Places'
-                };
+
                 $scope.search = function (query) {
-                    $http.get($scope.queryUrl + '/contenthub/' +
-                            $scope.contentHubName +
-                            '/search/featured?queryTerm=' + query)
+                    $http.get($scope.queryUrl + '/' + $scope.solrCollection +
+                            '/select?q=' + query + '*&facet=true&facet.field=label&wt=json')
                         .then(function (response) {
                                 console.log(response.data);
                                 $timeout(function () {
-                                    $scope.results = {data: response.data.documents, categories: response.data.facets};
-                                    for(var i = 0; i < $scope.results.categories.length - 1; i++) {
-                                        var cat = $scope.results.categories[i];
-                                        cat.facet.alias = getFacetAlias(cat.facet.name);
-                                    }
+                                    $scope.results = {docs: response.data.response.docs, facets: response.data.facet_counts};
+                                    var facetStats = SearchServices.getFacetStats($scope.results.facets);
+                                    SearchServices.updateCounters(facetStats, $scope.menuItems);
                                 });
                             },
                             function (response) {
@@ -38,9 +32,6 @@
                             });
                 };
 
-                function getFacetAlias(facetName) {
-                    return $scope.factAliases[facetName];
-                }
             }],
             link: function (scope, element, attrs) {
 
