@@ -1,7 +1,7 @@
 /* global angular */
 (function () {
     "use strict";
-    var module = angular.module('search-related', [
+    var module = angular.module('search-related', ['search-services'
 
     ]);
 

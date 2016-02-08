@@ -6,8 +6,7 @@
         'home',
         'search',
         'search-results',
-        'search-related',
-        'search-services'
+        'search-related'
     ]);
 
     mod.config(['$routeProvider', '$locationProvider',
