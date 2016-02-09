@@ -180,12 +180,10 @@ img.logo-stacked {
 }
 
 .appTitle {
-	font-weight: bold;
 	position: absolute;
 	top: 0;
-	margin-top: 30px;
 	margin-left: 120px;
-	font-size: medium;
+	color:black;
 }
 
 .appTitle h1 {
