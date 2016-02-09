@@ -10,14 +10,14 @@
             scope: {
                 results: '=',
                 menuItems: '=',
-                queryUrl: '@',
+                solrUrl: '@',
                 solrCollection: '@'
             },
             templateUrl: 'components/search/search.html',
             controller: ['$scope', function ($scope) {
 
                 $scope.search = function (query) {
-                    $http.get($scope.queryUrl + '/' + $scope.solrCollection +
+                    $http.get($scope.solrUrl + '/' + $scope.solrCollection +
                             '/select?q=' + query + '*&facet=true&facet.field=label&wt=json')
                         .then(function (response) {
                                 console.log(response.data);
