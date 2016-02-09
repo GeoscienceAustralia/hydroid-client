@@ -24,6 +24,10 @@ module.exports = function (grunt) {
             'copy-images': function () {
                 return gulp.src('app/img/**/*')
                     .pipe(gulp.dest(outputPath + 'img'));
+            },
+            'copy-data': function () {
+                return gulp.src('app/data/**/*')
+                    .pipe(gulp.dest(outputPath + 'data'));
             }
         },
         ngtemplates: {
@@ -41,6 +45,6 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-gulp');
     grunt.loadNpmTasks('grunt-angular-templates');
-    grunt.registerTask('build', ['gulp:bundle', 'gulp:copy-bootstrap-fonts', 'gulp:copy-images','ngtemplates']);
+    grunt.registerTask('build', ['gulp:bundle', 'gulp:copy-bootstrap-fonts', 'gulp:copy-images', 'gulp:copy-data','ngtemplates']);
     grunt.registerTask('default', ['build']);
 };

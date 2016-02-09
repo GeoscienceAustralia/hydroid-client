@@ -34,7 +34,8 @@
     "karma-junit-reporter": "^0.3.8",
     "karma-ng-html2js-preprocessor": "^0.2.0",
     "karma-phantomjs-launcher": "^0.2.3",
-    "phantomjs": "^1.9.19"
+    "phantomjs": "^1.9.19",
+    "phantomjs-function-bind-polyfill": "1.0.0"
   },
   "dependencies": {
     "angular": "^1.4.7",
