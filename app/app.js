@@ -14,7 +14,7 @@
         function ($routeProvider, $locationProvider) {
             $routeProvider.when('/', {template: '<hydroid-home></hydroid-home>'});
             $routeProvider.when('/enhancer', {template: '<hydroid-enhancer></hydroid-enhancer>'});
-            $routeProvider..otherwise({redirectTo: '/'});
+            $routeProvider.otherwise({redirectTo: '/'});
             $locationProvider.html5Mode(false);
             $.material.init();
         }]);
