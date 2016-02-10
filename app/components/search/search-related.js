@@ -11,7 +11,7 @@
             scope: {
                 results: '=',
                 menuItems:'=',
-                queryUrl: '@',
+                solrUrl: '@',
                 solrCollection: '@',
                 menuUrl: '@'
             },
@@ -34,7 +34,7 @@
                 $scope.buildMenu();
 
                 $scope.filterByFacet = function(facet) {
-                    $http.get($scope.queryUrl + '/' + $scope.solrCollection +
+                    $http.get($scope.solrUrl + '/' + $scope.solrCollection +
                         '/select?q=*&facet=true&facet.field=label&fq=' + facet + '&wt=json')
                         .then(function (response) {
                             console.log(response.data);
