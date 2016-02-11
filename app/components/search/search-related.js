@@ -41,12 +41,19 @@
                             $timeout(function () {
                                 $scope.results = {docs: response.data.response.docs, facets: response.data.facet_counts};
                                 var facetStats = SearchServices.getFacetStats($scope.results.facets);
-                                SearchServices.updateCounters(facetStats, $scope.menuItems);
+                                SearchServices.resetMenuCounters($scope.menuItems);
+                                SearchServices.setMenuCounters(facetStats, $scope.menuItems);
+                                SearchServices.setMenuTotalCounters($scope.menuItems);
                             });
                         },
                         function (response) {
                             console.log('error in api request');
                         });
+                };
+
+                $scope.doChildrenHaveDocs = function(menuItem) {
+                    var haveDocs = SearchServices.doChildrenHaveDocs(menuItem);
+                    return haveDocs;
                 };
 
             }]

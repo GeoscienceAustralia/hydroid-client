@@ -1,11 +1,11 @@
 (function () {
     "use strict";
 
-    var module = angular.module('home', [
+    var module = angular.module('home', ['search-services'
 
     ]);
 
-    module.directive('hydroidHome', [function() {
+    module.directive('hydroidHome', ['SearchServices', function(SearchServices) {
         return {
             restrict: 'E',
             scope: { },
@@ -24,6 +24,11 @@
 
                 $scope.hasSearchRelated = function() {
                     return $scope.menuItems && $scope.menuItems.length > 0;
+                }
+
+                $scope.resetSearch = function() {
+                    $scope.searchResults = [];
+                    SearchServices.resetMenuCounters($scope.menuItems);
                 }
 
             }]

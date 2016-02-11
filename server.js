@@ -13,7 +13,7 @@ if(fs.existsSync('./local-config.json')) {
 }
 
 config.solrUrl = config.solrUrl || 'http://localhost:8983/solr/';
-config.apiUrl = config.apiUrl || 'http://localhost:8080/api/';
+config.apiUrl = config.apiUrl || 'http://localhost:9090/api/';
 
 app.use('/', express.static(__dirname + '/app'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
