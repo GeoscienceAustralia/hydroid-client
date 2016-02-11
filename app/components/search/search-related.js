@@ -35,7 +35,7 @@
 
                 $scope.filterByFacet = function(facet) {
                     $http.get($scope.solrUrl + '/' + $scope.solrCollection +
-                        '/select?q=*&facet=true&facet.field=label&fq=' + facet + '&wt=json')
+                        '/select?q=*&facet=true&facet.field=label&fq=' + getRelatedFacets(facet) + '&wt=json')
                         .then(function (response) {
                             console.log(response.data);
                             $timeout(function () {
@@ -55,6 +55,10 @@
                     var haveDocs = SearchServices.doChildrenHaveDocs(menuItem);
                     return haveDocs;
                 };
+
+                var getRelatedFacets = function(facet) {
+                    return facet;
+                }
 
             }]
         };
