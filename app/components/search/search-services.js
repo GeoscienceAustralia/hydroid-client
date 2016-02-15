@@ -8,10 +8,25 @@
 
         var getFacetStats = function(facets) {
             var facetStats = [];
-            for (var i=0; i < facets.facet_fields.label.length; i=i+2) {
-                facetStats.push({ facet: facets.facet_fields.label[i], count: facets.facet_fields.label[i+1]});
+            for (var i=0; i < facets.facet_fields.label_s.length; i=i+2) {
+                facetStats.push({ facet: facets.facet_fields.label_s[i], count: facets.facet_fields.label_s[i+1]});
             }
             return facetStats;
+        };
+
+        var findMenuItemByLabel = function(label, menuItems) {
+            for (var i=0; i < menuItems.length; i++) {
+                if (menuItems[i].nodeLabel === label) {
+                    return menuItems[i];
+                }
+                if (menuItems[i].children) {
+                    var menuItem = findMenuItemByLabel(label, menuItems[i].children);
+                    if (menuItem != null) {
+                        return menuItem;
+                    }
+                }
+            }
+            return null;
         };
 
         var resetMenuCounters = function(menuItems) {
@@ -25,12 +40,11 @@
 
         var setMenuCounters = function(facetStats, menuItems) {
             for (var i=0; i < facetStats.length; i++) {
-                for (var j=0; j < menuItems.length; j++) {
-                    if (menuItems[j].nodeLabel === facetStats[i].facet) {
-                        menuItems[j].count = facetStats[i].count;
-                    }
-                    if (menuItems[j].children) {
-                        setMenuCounters(facetStats, menuItems[j].children);
+                var menuItem = findMenuItemByLabel(facetStats[i].facet, menuItems);
+                if (menuItem) {
+                    menuItem.count = facetStats[i].count;
+                    if (menuItem.children) {
+                        setMenuCounters(facetStats, menuItem.children);
                     }
                 }
             }
@@ -60,6 +74,7 @@
 
         return {
             getFacetStats: getFacetStats,
+            findMenuItemByLabel: findMenuItemByLabel,
             resetMenuCounters: resetMenuCounters,
             setMenuCounters: setMenuCounters,
             setMenuTotalCounters: setMenuTotalCounters

@@ -35,7 +35,7 @@
 
                 $scope.filterByFacet = function(facet) {
                     $http.get($scope.solrUrl + '/' + $scope.solrCollection +
-                        '/select?q=*&facet=true&facet.field=label&fq=' + getRelatedFacets(facet) + '&wt=json')
+                        '/select?q=*&facet=true&facet.field=label_s&facet.mincount=1&fq=' + getChildrenFacets(facet) + '&wt=json')
                         .then(function (response) {
                             console.log(response.data);
                             $timeout(function () {
@@ -56,9 +56,27 @@
                     return haveDocs;
                 };
 
-                var getRelatedFacets = function(facet) {
-                    return facet;
-                }
+                var getAllChildrenFacets = function(menuItem, facets) {
+                    if (facets != '') {
+                        facets = facets + ' OR ';
+                    }
+                    facets = facets + 'label:' + menuItem.nodeLabel;
+                    if (menuItem.children) {
+                        for (var i=0; i < menuItem.children.length; i++) {
+                            facets = getAllChildrenFacets(menuItem.children[i], facets);
+                        }
+                    }
+                    return facets;
+                };
+
+                var getChildrenFacets = function(facet) {
+                    // find menuItem for this facet
+                    var menuItem = SearchServices.findMenuItemByLabel(facet, $scope.menuItems);
+                    if (menuItem) {
+                        return getAllChildrenFacets(menuItem, '');
+                    }
+                    return 'label:' + facet;
+                };
 
             }]
         };
