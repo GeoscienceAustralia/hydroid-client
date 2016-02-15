@@ -4,7 +4,10 @@
             <div class="panel-body">
                 <hydroid-search-related solr-url="/solr" solr-collection="hydroid" results="searchResults"
                                         menu-items="menuItems" menu-url="/data/menu.json"></hydroid-search-related>
-    </div>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-default btn-group-justified" ng-click="resetSearch();">Reset Search</button>
         </div>
     </div>
     <div ng-class="{'col-sm-9': hasSearchRelated(), 'col-sm-12': !hasSearchResults()}">

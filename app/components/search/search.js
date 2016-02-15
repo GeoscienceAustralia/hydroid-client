@@ -18,13 +18,15 @@
 
                 $scope.search = function (query) {
                     $http.get($scope.solrUrl + '/' + $scope.solrCollection +
-                            '/select?q=' + query + '*&facet=true&facet.field=label&wt=json')
+                            '/select?q=*' + query + '*&facet=true&facet.field=label&wt=json')
                         .then(function (response) {
                                 console.log(response.data);
                                 $timeout(function () {
                                     $scope.results = {docs: response.data.response.docs, facets: response.data.facet_counts};
                                     var facetStats = SearchServices.getFacetStats($scope.results.facets);
-                                    SearchServices.updateCounters(facetStats, $scope.menuItems);
+                                    SearchServices.resetMenuCounters($scope.menuItems);
+                                    SearchServices.setMenuCounters(facetStats, $scope.menuItems);
+                                    SearchServices.setMenuTotalCounters($scope.menuItems);
                                 });
                             },
                             function (response) {

@@ -14,22 +14,55 @@
             return facetStats;
         };
 
-        var updateCounters = function(facetStats, menuItems) {
+        var resetMenuCounters = function(menuItems) {
+            for (var i=0; i < menuItems.length; i++) {
+                menuItems[i].count = 0;
+                if (menuItems[i].children) {
+                    resetMenuCounters(menuItems[i].children);
+                }
+            }
+        };
+
+        var setMenuCounters = function(facetStats, menuItems) {
             for (var i=0; i < facetStats.length; i++) {
                 for (var j=0; j < menuItems.length; j++) {
                     if (menuItems[j].nodeLabel === facetStats[i].facet) {
                         menuItems[j].count = facetStats[i].count;
                     }
                     if (menuItems[j].children) {
-                        updateCounters(facetStats, menuItems[j].children);
+                        setMenuCounters(facetStats, menuItems[j].children);
                     }
                 }
             }
         };
 
+        var setMenuTotalCounters = function(menuItems) {
+            var menuItem = null;
+            var totalDocs = 0;
+            var childrenDocs = 0;
+            for (var i=0; i < menuItems.length; i++) {
+                menuItem = menuItems[i];
+                if (menuItem.count > totalDocs) {
+                    totalDocs = menuItem.count;
+                }
+                //totalDocs = totalDocs + menuItem.count;
+                if (menuItem.children) {
+                    childrenDocs = setMenuTotalCounters(menuItem.children);
+                    //menuItem.count = menuItem.count + childrenDocs;
+                    menuItem.count = childrenDocs;
+                    if (childrenDocs > totalDocs) {
+                        totalDocs = childrenDocs;
+                    }
+                }
+            }
+            return totalDocs;
+        };
+
         return {
             getFacetStats: getFacetStats,
-            updateCounters: updateCounters
+            resetMenuCounters: resetMenuCounters,
+            setMenuCounters: setMenuCounters,
+            setMenuTotalCounters: setMenuTotalCounters
         };
 
     }]);
