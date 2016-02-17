@@ -1,8 +1,49 @@
 <div>
-    <div ng-repeat="result in results.docs">
-        <a class="pull-right" href="{{getDownloadUrl(result.about)}}">Download</a>
-        <h4 ng-bind="result.title || 'Untitled Document'"></h4>
-        <p ng-bind="result.content"></p>
-        <hr ng-hide="$last"/>
+    <div ng-repeat="result in results.docs | filter: { docType: 'DOCUMENT' } ">
+        <h4 ng-show="$first">Reports and articles</h4>
+        <div class="row">
+            <div class="col-sm-9">
+                <p ng-bind="result.content"></p>
+            </div>
+            <div class="col-sm-3">
+                <a class="pull-right" href="{{getDownloadUrl(result.about)}}">Download</a>
+            </div>
+        </div>
+        </div>
+    <div ng-repeat="result in results.docs | filter: { docType: 'DATASET' } ">
+        <hr ng-show="$first"/>
+        <h4 ng-show="$first">Data sets</h4>
+        <div class="row">
+            <div class="col-sm-9">
+                <p ng-bind="result.content"></p>
+            </div>
+            <div class="col-sm-3">
+                <a class="pull-right" href="{{getDownloadUrl(result.about)}}">Download</a>
+            </div>
+        </div>
+    </div>
+    <div ng-repeat="result in results.docs | filter: { docType: 'MODEL' } ">
+        <hr ng-show="$first"/>
+        <h4 ng-show="$first">Models</h4>
+        <div class="row">
+            <div class="col-sm-9">
+                <p ng-bind="result.content"></p>
+            </div>
+            <div class="col-sm-3">
+                <a class="pull-right" href="{{getDownloadUrl(result.about)}}">Download</a>
+            </div>
+        </div>
+    </div>
+    <div ng-repeat="result in results.docs | filter: { docType: '' } ">
+        <hr ng-show="$first"/>
+        <h4 ng-show="$first">Others</h4>
+        <div class="row">
+            <div class="col-sm-9">
+                <p ng-bind="result.content"></p>
+            </div>
+            <div class="col-sm-3">
+                <a class="pull-right" href="{{getDownloadUrl(result.about)}}">Download</a>
+            </div>
+        </div>
     </div>
 </div>

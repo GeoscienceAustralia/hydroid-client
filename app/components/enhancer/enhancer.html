@@ -8,6 +8,21 @@
             <div class="alert {{alertCss}}" ng-show="responseMessage">
                 {{ responseMessage }}
             </div>
+            <div>
+                <label class="radio-inline">
+                    <input type="radio" id="typeDocument" ng-model="document.docType" value="DOCUMENT"/>
+                    Document
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" id="typeDataset" ng-model="document.docType" value="DATASET"/>
+                    Dataset
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" id="typeModel" ng-model="document.docType" value="MODEL"/>
+                    Model
+                </label>
+            </div>
+            <hr/>
             <label for="title">Document Title</label>
             <input ng-model="document.title" type="text" id="title" class="form-control" maxlength="100"/>
             <label for="content">Document Content</label>
