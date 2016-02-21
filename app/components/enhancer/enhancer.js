@@ -12,7 +12,7 @@
             templateUrl: 'components/enhancer/enhancer.html',
             controller: ['$scope', function($scope) {
 
-                $scope.document = {};
+                $scope.document = {docType: 'DOCUMENT'};
 
                 $scope.enhance = function() {
                     $scope.responseMessage = null;
