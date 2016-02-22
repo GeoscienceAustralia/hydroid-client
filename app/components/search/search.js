@@ -15,7 +15,12 @@
             },
             templateUrl: 'components/search/search.html',
             controller: ['$scope', function ($scope) {
-
+                $scope.query = '';
+                $scope.$watch('query', function (newVal, oldVal) {
+                   if(newVal && newVal != oldVal) {
+                       $scope.search(newVal);
+                   }
+                });
                 $scope.search = function (query) {
                     $http.get($scope.solrUrl + '/' + $scope.solrCollection +
                             '/select?q=*' + query + '*&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
