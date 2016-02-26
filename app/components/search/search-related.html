@@ -1,25 +1,35 @@
 <div ng-if="results.docs.length > 0">
-    <ul>
-        <li ng-repeat="menuItem in menuItems" ng-include="'menuTemplate'" ng-show="!results.docs || results.docs.length == 0 || menuItem.count > 0"></li>
+    <ul class="noLeftPadding">
+        <li ng-repeat="menuItem in menuItems" ng-include="'menuTemplate'" ng-if="!results.docs || results.docs.length == 0 || menuItem.count > 0"></li>
     </ul>
 </div>
 <div ng-if="results.docs.length == 0 || !results.docs">
-    <ul>
+    <ul class="noLeftPadding">
         <li ng-repeat="menuItem in menuItems" ng-include="'menuTemplateInit'"></li>
     </ul>
 </div>
 <script type="text/ng-template" id="menuTemplate">
-    <a href="" ng-click="filterByFacet(menuItem.nodeLabel)" ng-show="!results.docs || results.docs.length == 0 || menuItem.count > 0">
-        {{ menuItem.nodeLabel }}&nbsp;
-        <span class="badge" ng-show="menuItem.count">{{ menuItem.count }}</span>
-    </a>
+    <div class="row facet">
+        <div class="col-xs-9">
+            <a href="" ng-click="filterByFacet(menuItem.nodeLabel)" ng-if="!results.docs || results.docs.length == 0 || menuItem.count > 0">
+                {{ menuItem.nodeLabel }}&nbsp;
+            </a>
+        </div>
+        <div class="col-xs-3 text-right">
+            <span class="badge" ng-if="menuItem.count">{{ menuItem.count }}</span>
+        </div>
+    </div>
     <ul ng-if="menuItem.children" >
-        <li ng-repeat="menuItem in menuItem.children" ng-include="'menuTemplate'" ng-show="!results.docs || results.docs.length == 0 || menuItem.count > 0">
+        <li ng-repeat="menuItem in menuItem.children" ng-include="'menuTemplate'" ng-if="!results.docs || results.docs.length == 0 || menuItem.count > 0">
         </li>
     </ul>
 </script>
 <script type="text/ng-template" id="menuTemplateInit">
-    <a href="">
-        {{ menuItem.nodeLabel }}&nbsp;
-    </a>
+    <div class="row facet">
+        <div class="col-xs-12">
+            <a href="">
+                {{ menuItem.nodeLabel }}&nbsp;
+            </a>
+        </div>
+    </div>
 </script>

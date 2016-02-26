@@ -40,3 +40,17 @@ body {
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 }
+
+ul.noLeftPadding {
+    -webkit-padding-start: 0px;
+}
+
+.facet {
+    border-bottom: 1px dotted #cacaca;
+    margin: 0 15px 0 15px;
+}
+
+li {
+    list-style: none;
+    line-height: 35px;
+}
