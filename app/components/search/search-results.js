@@ -13,9 +13,15 @@
             },
             templateUrl: 'components/search/search-results.html',
             controller: ['$scope', function($scope) {
+
                 $scope.getDownloadUrl = function(urn) {
-                    return '/api/document/' + urn + '/download';
-                }
+                    return '/api/download/single/' + urn;
+                };
+
+                $scope.getDownloadImageUrl = function(urn) {
+                    return '/api/download/image/' + urn;
+                };
+
             }]
         };
     }]);
