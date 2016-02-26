@@ -1,6 +1,11 @@
-<div>
+<div ng-if="results.docs.length > 0">
     <ul>
         <li ng-repeat="menuItem in menuItems" ng-include="'menuTemplate'" ng-show="!results.docs || results.docs.length == 0 || menuItem.count > 0"></li>
+    </ul>
+</div>
+<div ng-if="results.docs.length == 0 || !results.docs">
+    <ul>
+        <li ng-repeat="menuItem in menuItems" ng-include="'menuTemplateInit'"></li>
     </ul>
 </div>
 <script type="text/ng-template" id="menuTemplate">
@@ -12,4 +17,9 @@
         <li ng-repeat="menuItem in menuItem.children" ng-include="'menuTemplate'" ng-show="!results.docs || results.docs.length == 0 || menuItem.count > 0">
         </li>
     </ul>
+</script>
+<script type="text/ng-template" id="menuTemplateInit">
+    <a href="">
+        {{ menuItem.nodeLabel }}&nbsp;
+    </a>
 </script>
