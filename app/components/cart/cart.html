@@ -1,0 +1,35 @@
+<div>
+    <div class="container pull-left">
+        <div class="col-xs-7 col-md-8 col-sm-8 col-lg-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Cart Items</h2>
+                </div>
+                <div class="panel-body">
+                    <ul style="list-style: none;">
+                        <li ng-repeat="item in cartItems">
+                            <h4>{{ item.name }} {{ item.type }} {{ item.bytes }} bytes
+                                <button type="button" class="btn btn-warning btn-sm">Remove</button>
+                            </h4>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xs-7 col-md-8 col-sm-8 col-lg-8">
+            <div class="panel panel-primary">
+                <div id="divTotal" class="panel-heading">
+                    <h2 class="panel-title">Total Bytes</h2>
+                </div>
+                <div class="panel-body">
+                    <h3>{{ getTotalBytes() }}</h3>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="">Download</a>
+            </div>
+        </div>
+    </div>
+</div>
