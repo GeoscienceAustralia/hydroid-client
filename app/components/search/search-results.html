@@ -46,4 +46,24 @@
             </div>
         </div>
     </div>
+
+    <div ng-hide="true">
+        <hr/>
+        <h4>Images</h4>
+        <div class="row">
+            <div class="col-sm-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Tubularia-indivisa.jpg/800px-Tubularia-indivisa.jpg" alt="Title" class="img-thumbnail">
+            </div>
+            <div class="col-sm-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Tubularia-indivisa.jpg/800px-Tubularia-indivisa.jpg" alt="Title" class="img-thumbnail">
+            </div>
+        </div>
+    </div>
+
+    <div ng-repeat="result in results.docs | filter: { docType: 'IMAGE' } ">
+        <hr ng-show="$first"/>
+        <h4 ng-show="$first">Images</h4>
+        <img src="{{getDownloadImageUrl(result.about)}}" alt="{{ result.title }}" class="img-thumbnail pull-left" style="margin-right: 10px;">
+    </div>
+
 </div>
