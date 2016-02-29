@@ -16,6 +16,29 @@ body {
     margin-top: 20px;
 }
 
+.searchBoxFullContainer {
+    padding:25px;
+}
+
+.searchBoxInputContainer {
+    display: inherit;line-height: 2em;
+}
+.searchBoxInputContainer > input {
+    height:55px;
+    font-size: 18px;
+    font-weight:500;
+}
+
+.searchBoxFullContainer .btn-primary {
+    background-color: #72C7E7;
+    border-color: #72C7E7;
+    color:#006983;
+}
+
+.searchBoxBtnContainer > button {
+    height: 55px;
+}
+
 /* Material Design fonts from -> https://fonts.googleapis.com/icon?family=Material+Icons*/
 
 @font-face {

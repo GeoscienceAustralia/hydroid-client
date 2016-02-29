@@ -16,6 +16,5 @@
             $routeProvider.when('/enhancer', {template: '<hydroid-enhancer></hydroid-enhancer>'});
             $routeProvider.otherwise({redirectTo: '/'});
             $locationProvider.html5Mode(false);
-            $.material.init();
         }]);
 })();
