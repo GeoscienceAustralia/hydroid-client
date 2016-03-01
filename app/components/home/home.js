@@ -18,6 +18,8 @@
                     console.log($scope.searchResults);
                 })
 
+
+
                 $scope.hasSearchResults = function() {
                     return $scope.searchResults && $scope.searchResults.docs && $scope.searchResults.docs.length > 0;
                 }
