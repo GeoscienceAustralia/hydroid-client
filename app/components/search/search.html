@@ -1,8 +1,11 @@
-<div>
-    <form ng-submit="search(query)">
-        <div class="form-group is-empty">
-            <input type="text" class="form-control col-sm-8" placeholder="Search" ng-model="query">
-            <span class="material-input"></span>
+<div class="row searchBoxFullContainer">
+    <div>
+        <div class="input-group col-lg-6 col-sm-12 searchBoxInputContainer col-lg-offset-2">
+            <input type="text" class="form-control" placeholder="Search" ng-model="query">
         </div>
-    </form>
-</div>
+        <div class="col-lg-2 visible-lg searchBoxBtnContainer">
+            <button type="button" class="btn btn-lg btn-primary" style="width:100%">Search</button>
+        </div>
+        <!-- /input-group -->
+    </div><!-- /.col-lg-4 -->
+</div><!-- /.row -->

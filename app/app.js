@@ -18,6 +18,5 @@
             $routeProvider.when('/cart', {template: '<shopping-cart></shopping-cart>'});
             $routeProvider.otherwise({redirectTo: '/'});
             $locationProvider.html5Mode(false);
-            $.material.init();
         }]);
 })();
