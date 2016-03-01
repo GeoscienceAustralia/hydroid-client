@@ -3,10 +3,6 @@ language: node_js
 node_js:
   - stable
 
-before_script:
-  - npm install -g bower
-  - bower install
-
 before_deploy:
   - echo "building hydroid"
   - chmod +x ./travis/build.sh
