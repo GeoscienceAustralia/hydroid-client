@@ -6,47 +6,29 @@
     module.directive('shoppingCart', function() {
         return {
             restrict: 'E',
-            scope: { },
+            scope: { cartList: "="
+            },
             templateUrl: 'components/cart/cart.html',
             controller: ['$scope', function($scope) {
 
-                //Dummy items
-                $scope.cartItems =
-                [
-                    {
-                        name: "Marine 1",
-                        type: "DOC",
-                        bytes: 192938
-                    },
-                    {
-                        name: "Marine 2",
-                        type: "PDF",
-                        bytes: 247112
-                    },
-                    {
-                        name: "Marine 3",
-                        type: "RTF",
-                        bytes: 250445
-                    }
-                ]
-
                 $scope.getTotalBytes = function() {
+                    //Implement total (MB, GB) download size??
                     var totalBytes = 0;
-                    for(var i = 0; i < $scope.cartItems.length; i++) {
-                        totalBytes += $scope.cartItems[i].bytes;
-                    }
+//                    for(var i = 0; i < $scope.cartList.length; i++) {
+//                        totalBytes += $scope.cartList[i].bytes;
+//                    }
                     return totalBytes;
                 }
-                $scope.removeItemFromList = function(item) {
-                    var index = $scope.cartItems.indexOf(item);
-                    $scope.cartItems.splice(index, 1);
+                $scope.removeItemFromCart = function(item) {
+                    var index = $scope.cartList.indexOf(item);
+                    $scope.cartList.splice(index, 1);
                 }
                 $scope.downloadCartItems = function() {
-                    //Zip array of items here and download
+                    //Send $http request to server here
 
-                    //Dummy download test
-                    for(var item in $scope.cartItems) {
-                        console.log("Downloading item .. " + $scope.cartItems[item].name);
+                    //Dummy id (SHA) iteration test
+                    for(var item in $scope.cartList) {
+                        console.log("Downloading item .. " + $scope.cartList[item].about);
                     }
                 }
             }]
