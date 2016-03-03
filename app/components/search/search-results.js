@@ -16,11 +16,11 @@
             controller: ['$scope', function($scope) {
 
                 $scope.getDownloadUrl = function(urn) {
-                    return '/api/download/single/' + urn;
+                    return '//hydroid-output.s3-website-ap-southeast-2.amazonaws.com/rdfs/' + urn;
                 };
 
                 $scope.getDownloadImageUrl = function(urn) {
-                    return '/api/download/image/' + urn;
+                    return '//hydroid-output.s3-website-ap-southeast-2.amazonaws.com/images/' + urn;
                 };
 
                 $scope.addToCart = function(item) {
