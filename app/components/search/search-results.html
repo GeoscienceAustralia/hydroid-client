@@ -8,6 +8,11 @@
             <div class="col-sm-3">
                 <a class="pull-right" href="{{getDownloadUrl(result.about)}}">Download</a>
             </div>
+            <div class="col-sm-3">
+                <button type="button"
+                       class="btn btn-primary btn-sm pull-right"
+                       ng-click="addToCart(result)">Add to cart</button>
+            </div>
         </div>
         </div>
     <div ng-repeat="result in results.docs | filter: { docType: 'DATASET' } ">
@@ -19,6 +24,11 @@
             </div>
             <div class="col-sm-3">
                 <a class="pull-right" href="{{getDownloadUrl(result.about)}}">Download</a>
+            </div>
+            <div class="col-sm-3">
+                <button type="button"
+                        class="btn btn-primary btn-sm pull-right"
+                        ng-click="addToCart(result)">Add to cart</button>
             </div>
         </div>
     </div>
@@ -32,6 +42,11 @@
             <div class="col-sm-3">
                 <a class="pull-right" href="{{getDownloadUrl(result.about)}}">Download</a>
             </div>
+            <div class="col-sm-3">
+                <button type="button"
+                        class="btn btn-primary btn-sm pull-right"
+                        ng-click="addToCart(result)">Add to cart</button>
+            </div>
         </div>
     </div>
     <div ng-repeat="result in results.docs | filter: { docType: '' } ">
@@ -43,6 +58,11 @@
             </div>
             <div class="col-sm-3">
                 <a class="pull-right" href="{{getDownloadUrl(result.about)}}">Download</a>
+            </div>
+            <div class="col-sm-3">
+                <button type="button"
+                        class="btn btn-primary btn-sm pull-right"
+                        ng-click="addToCart(result)">Add to cart</button>
             </div>
         </div>
     </div>

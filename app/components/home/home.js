@@ -13,12 +13,11 @@
             controller: ['$scope', function($scope) {
                 $scope.searchResults = []; // Initialise empty results
                 $scope.menuItems = [];
+                $scope.cartItems = [];
 
                 $scope.$watch('searchResults', function () {
                     console.log($scope.searchResults);
                 })
-
-
 
                 $scope.hasSearchResults = function() {
                     return $scope.searchResults && $scope.searchResults.docs && $scope.searchResults.docs.length > 0;
@@ -33,6 +32,9 @@
                     SearchServices.resetMenuCounters($scope.menuItems);
                 }
 
+                $scope.hasCartItems = function() {
+                    return $scope.cartItems.length > 0;
+                }
             }]
         };
     }]);

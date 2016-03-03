@@ -13,12 +13,15 @@
                 <button class="btn btn-default" ng-click="resetSearch();">Reset Search</button>
             </div>
         </div>
+        <div ng-show="hasCartItems()">
+            <shopping-cart cart-list="cartItems"></shopping-cart>
+        </div>
     </div>
     <div ng-class="{'col-sm-9': hasSearchRelated(), 'col-sm-12': !hasSearchResults()}">
         <div class="panel" ng-show="hasSearchResults()">
             <div class="panel-heading">Search Results</div>
             <div class="panel-body">
-                <hydroid-search-results results="searchResults"></hydroid-search-results>
+                <hydroid-search-results results="searchResults" cart-list="cartItems"></hydroid-search-results>
             </div>
         </div>
     </div>
