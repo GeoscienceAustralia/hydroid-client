@@ -17,7 +17,10 @@
         -->
         <br/>
         <div ng-show="hasCartItems()">
-            <shopping-cart cart-list="cartItems"></shopping-cart>
+            <div>
+                <p></p>
+                <shopping-cart cart-list="cartItems"></shopping-cart>
+            </div>
         </div>
     </div>
     <div ng-class="{'col-sm-9': hasSearchRelated(), 'col-sm-12': !hasSearchResults()}">
