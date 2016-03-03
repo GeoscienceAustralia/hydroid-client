@@ -32,6 +32,9 @@
                     SearchServices.resetMenuCounters($scope.menuItems);
                 }
 
+                $scope.hasCartItems = function() {
+                    return $scope.cartItems.length > 0;
+                }
             }]
         };
     }]);

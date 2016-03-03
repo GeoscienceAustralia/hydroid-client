@@ -14,7 +14,7 @@
                 <button class="btn btn-default" ng-click="resetSearch();">Reset Search</button>
             </div>
         </div>
-        <div ng-show="cartItems.length > 0">
+        <div ng-show="hasCartItems()">
             <shopping-cart cart-list="cartItems"></shopping-cart>
         </div>
     </div>
