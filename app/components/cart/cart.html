@@ -14,35 +14,11 @@
             <tr ng-repeat="item in cartList">
                 <td>{{ item.title }}</td>
                 <td>{{ item.docType }}</td>
-                <td><button type="button"
-                            class="btn btn-warning btn-sm pull-right"
-                            ng-click="removeItemFromCart(item)">Remove</button></td>
+                <td><a ng-click="removeItemFromCart(item)">Remove</a></td>
             </tr>
         </table>
     </div>
-        <!--<ul>-->
-            <!--<li ng-repeat="item in cartList">-->
-                <!--<div class="row">-->
-                    <!--{{ item.title }} {{ item.docType }}-->
-                    <!--<button type="button"-->
-                            <!--class="btn btn-warning btn-sm pull-right"-->
-                            <!--ng-click="removeItemFromCart(item)">Remove</button>-->
-                <!--</div>-->
-            <!--</li>-->
-        <!--</ul>-->
-    </div>
 </div>
-<!--<div class="panel panel-primary">-->
-    <!--<div id="divTotal" class="panel-heading">-->
-        <!--<h2 class="panel-title">Total Bytes</h2>-->
-    <!--</div>-->
-    <!--<div class="panel-body">-->
-        <!--<h3>{{ getTotalBytes() }}</h3>-->
-    <!--</div>-->
-<!--</div>-->
-<div class="text-center">
-    <button type="button"
-            class="btn btn-pimary btn-lg"
-            ng-click="downloadCartItems()">Download
-    </button>
+ <div class="text-center">
+     <button class="btn btn-primary" ng-click="downloadCartItems()">Download</button>
 </div>
