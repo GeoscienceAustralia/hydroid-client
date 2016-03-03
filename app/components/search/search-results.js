@@ -9,7 +9,8 @@
         return {
             restrict: 'E',
             scope: {
-                results:'='
+                results:'=',
+                cartList: "="
             },
             templateUrl: 'components/search/search-results.html',
             controller: ['$scope', function($scope) {
@@ -22,6 +23,11 @@
                     return '/api/download/image/' + urn;
                 };
 
+                $scope.addToCart = function(item) {
+                    if ($scope.cartList.indexOf(item) == -1) {
+                        $scope.cartList.push(item);
+                    }
+                }
             }]
         };
     }]);
