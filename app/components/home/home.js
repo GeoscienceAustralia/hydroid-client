@@ -30,6 +30,7 @@
                 $scope.hasCartItems = function() {
                     return $scope.cartItems.length > 0;
                 }
+
             }]
         };
     }]);

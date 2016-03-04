@@ -26,7 +26,10 @@
                 $scope.addToCart = function(item) {
                     if ($scope.cartList.indexOf(item) == -1) {
                         $scope.cartList.push(item);
+                    } else {
+                        alert("Duplicate item in cart " + $scope.cartList[$scope.cartList.indexOf(item)].title);
                     }
+
                 }
             }]
         };
