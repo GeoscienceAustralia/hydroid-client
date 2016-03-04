@@ -27,11 +27,6 @@
                     return $scope.menuItems && $scope.menuItems.length > 0;
                 }
 
-                $scope.resetSearch = function() {
-                    $scope.searchResults = [];
-                    SearchServices.resetMenuCounters($scope.menuItems);
-                }
-
                 $scope.hasCartItems = function() {
                     return $scope.cartItems.length > 0;
                 }
