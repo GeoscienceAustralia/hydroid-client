@@ -18,7 +18,7 @@ module.exports = function (grunt) {
                     .pipe(gulp.dest(outputPath));
             },
             'copy-bootstrap-fonts': function () {
-                return gulp.src('bower_components/bootstrap/dist/fonts/**/*')
+                return gulp.src('node_modules/bootstrap/dist/fonts/**/*')
                     .pipe(gulp.dest(outputPath + 'lib/fonts'));
             },
             'copy-images': function () {

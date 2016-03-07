@@ -15,6 +15,68 @@ body {
 .strap-container {
     margin-top: 20px;
 }
+/* Search box and button - START */
+.searchBoxFullContainer {
+    padding:25px;
+    margin-bottom: 20px;
+}
+
+.searchBoxInputContainer {
+    display: inherit;line-height: 2em;
+}
+.searchBoxInputContainer > input {
+    height:55px;
+    font-size: 18px;
+    font-weight:500;
+}
+
+.searchBoxFullContainer .btn-primary {
+    background-color: #72C7E7;
+    border-color: #72C7E7;
+    color:#006983;
+}
+
+.searchBoxFullContainer .btn-primary:focus,
+.searchBoxFullContainer .btn-primary.focus {
+    color: #006983;
+    background-color: #72C7E7;
+    border-color: #72C7E7;
+}
+.searchBoxFullContainer .btn-primary:hover {
+    background-color: #72C7E7;
+    border-color: #72C7E7;
+    color:#006983;
+}
+.searchBoxFullContainer .btn-primary:active,
+.searchBoxFullContainer .btn-primary.active,
+.searchBoxFullContainer .open > .dropdown-toggle.btn-primary {
+    background-color: #72C7E7;
+    border-color: #72C7E7;
+    color:#006983;
+}
+.searchBoxFullContainer .btn-primary:active:hover,
+.searchBoxFullContainer .btn-primary.active:hover,
+.searchBoxFullContainer .open > .dropdown-toggle.btn-primary:hover,
+.searchBoxFullContainer .btn-primary:active:focus,
+.searchBoxFullContainer .btn-primary.active:focus,
+.searchBoxFullContainer .open > .dropdown-toggle.btn-primary:focus,
+.searchBoxFullContainer .btn-primary:active.focus,
+.searchBoxFullContainer .btn-primary.active.focus,
+.searchBoxFullContainer .open > .dropdown-toggle.btn-primary.focus {
+    background-color: #72C7E7;
+    border-color: #72C7E7;
+    color:#006983;
+}
+.searchBoxFullContainer .btn-primary:active,
+.searchBoxFullContainer .btn-primary.active,
+.searchBoxFullContainer .open > .dropdown-toggle.btn-primary {
+    background-image: none;
+}
+
+.searchBoxBtnContainer > button {
+    height: 55px;
+}
+/* Search box and button - END*/
 
 /* Material Design fonts from -> https://fonts.googleapis.com/icon?family=Material+Icons*/
 
@@ -53,4 +115,16 @@ ul.noLeftPadding {
 li {
     list-style: none;
     line-height: 35px;
+}
+
+.mainView {
+    margin-top: 20px;
+}
+
+.searchResults {
+    color: #006983;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #006983;
+    margin-left: 15px;
+    margin-right: 15px;
 }

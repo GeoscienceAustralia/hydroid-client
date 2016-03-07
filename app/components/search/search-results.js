@@ -16,15 +16,22 @@
             controller: ['$scope', function($scope) {
 
                 $scope.getDownloadUrl = function(urn) {
-                    return '/api/download/single/' + urn;
+                    return '//hydroid-output.s3-website-ap-southeast-2.amazonaws.com/rdfs/' + urn;
                 };
 
                 $scope.getDownloadImageUrl = function(urn) {
-                    return '/api/download/image/' + urn;
+                    return '//hydroid-output.s3-website-ap-southeast-2.amazonaws.com/images/' + urn;
                 };
 
+                $scope.isItemInCart = function(urn) {
+                    for(var i = 0; i < $scope.cartList.length; i++) {
+                        if (urn == $scope.cartList[i].about) return true;
+                    }
+                    return false;
+                }
+
                 $scope.addToCart = function(item) {
-                    if ($scope.cartList.indexOf(item) == -1) {
+                    if (!$scope.isItemInCart(item.about)){
                         $scope.cartList.push(item);
                     }
                 }
