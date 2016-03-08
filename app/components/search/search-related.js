@@ -42,8 +42,7 @@
                                 $scope.results = {docs: response.data.response.docs, facets: response.data.facet_counts};
                                 var facetStats = SearchServices.getFacetStats($scope.results.facets);
                                 var menuItem = SearchServices.findMenuItemByLabel(facet,$scope.menuItems);
-                                var facetArray = [];
-                                SearchServices.populateFacetArray(menuItem,facetArray)
+                                var facetArray = SearchServices.getAllFacetsForMenuItem(menuItem);
                                 SearchServices.resetMenuCounters($scope.menuItems);
                                 SearchServices.setMenuCounters(facetStats, $scope.menuItems, facetArray);
                                 SearchServices.setMenuTotalCounters($scope.menuItems);

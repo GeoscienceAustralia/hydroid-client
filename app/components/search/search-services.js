@@ -108,13 +108,19 @@
             }
         };
 
+        var getAllFacetsForMenuItem = function(menuItem) {
+            var facetArray = [];
+            populateFacetArray(menuItem, facetArray);
+            return facetArray;
+        };
+
         return {
             getFacetStats: getFacetStats,
             findMenuItemByLabel: findMenuItemByLabel,
             resetMenuCounters: resetMenuCounters,
             setMenuCounters: setMenuCounters,
             setMenuTotalCounters: setMenuTotalCounters,
-            populateFacetArray: populateFacetArray
+            getAllFacetsForMenuItem: getAllFacetsForMenuItem
         };
 
     }]);
