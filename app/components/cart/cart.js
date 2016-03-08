@@ -19,8 +19,8 @@
                 }
 
                 $scope.getAwsRdfsUrl = function(item) {
-                    if (item.docType == "IMAGE") return hydroidConfig.awsImagesUrl + item.about;
-                    return hydroidConfig.awsRdfsUrl + item.about;
+                    if (item.docType == "IMAGE") return hydroidConfig.s3ImagesUrl + item.about;
+                    return hydroidConfig.s3RdfsUrl + item.about;
                 }
 
                 $scope.buildItemsArray = function() {

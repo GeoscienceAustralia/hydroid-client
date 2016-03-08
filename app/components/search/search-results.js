@@ -16,11 +16,11 @@
             controller: ['$scope', function($scope) {
 
                 $scope.getDownloadUrl = function(urn) {
-                    return hydroidConfig.awsRdfsUrl + urn;
+                    return hydroidConfig.s3RdfsUrl + urn;
                 };
 
                 $scope.getDownloadImageUrl = function(urn) {
-                    return hydroidConfig.awsImagesUrl + urn;
+                    return hydroidConfig.s3ImagesUrl + urn;
                 };
 
                 $scope.isItemInCart = function(urn) {
