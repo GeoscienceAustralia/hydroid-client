@@ -14,13 +14,12 @@
 
                 $scope.removeItemFromCart = function(item) {
                     var index = $scope.cartList.indexOf(item);
-                    console.log($scope.getAwsRdfsUrl(item.about));
                     $scope.cartList.splice(index, 1);
                 }
 
-                $scope.getAwsRdfsUrl = function(item) {
-                    if (item.docType == "IMAGE") return hydroidConfig.awsImagesUrl + item.about;
-                    return hydroidConfig.awsRdfsUrl + item.about;
+                $scope.getDownloadUrl = function(item) {
+                    if (item.docType == "IMAGE") return hydroidConfig.s3ImagesUrl + item.about;
+                    return hydroidConfig.s3RdfsUrl + item.about;
                 }
 
                 $scope.buildItemsArray = function() {
@@ -32,7 +31,7 @@
                 }
 
                 $scope.downloadCartItems = function() {
-                    location.href = "/api/download/bundle/" + $scope.buildItemsArray($scope.cartList);
+                    location.href = hydroidConfig.s3BundlesUrl + $scope.buildItemsArray($scope.cartList);
                 }
             }]
         }

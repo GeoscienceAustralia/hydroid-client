@@ -8,11 +8,17 @@
                     {{ result.content }}
                 </p>
             </div>
-            <div class="col-sm-3 text-right">
-                <a class="btn btn-default btn-sm" href="{{getDownloadUrl(result.about)}}">Download</a>
-                <button type="button"
-                       class="btn btn-default btn-sm"
-                       ng-click="addToCart(result)">Add to cart</button>
+            <div class="col-sm-3 text-right cartBtnColors">
+                <button class="btn btn-primary btn-sm" ng-click="goToDownloadUrl(result.about)">Download</button>
+                <button class="btn btn-primary btn-sm"
+                        ng-click="addToCart(result)">
+                    <div ng-if="!isItemInCart(result.about)">
+                        Add to cart
+                    </div>
+                    <div ng-if="isItemInCart(result.about)">
+                        Added <span class="glyphicon glyphicon-ok" ng-show="isItemInCart(result.about)"></span>
+                    </div>
+                </button>
             </div>
         </div>
         <hr/>
@@ -26,11 +32,17 @@
                     {{ result.content }}
                 </p>
             </div>
-            <div class="col-sm-3 text-right">
-                <a class="btn btn-default btn-sm" href="{{getDownloadUrl(result.about)}}">Download</a>
-                <button type="button"
-                        class="btn btn-default btn-sm"
-                        ng-click="addToCart(result)">Add to cart</button>
+            <div class="col-sm-3 text-right cartBtnColors">
+                <button class="btn btn-primary btn-sm" ng-click="goToDownloadUrl(result.about)">Download</button>
+                <button class="btn btn-primary btn-sm"
+                        ng-click="addToCart(result)">
+                    <div ng-if="!isItemInCart(result.about)">
+                        Add to cart
+                    </div>
+                    <div ng-if="isItemInCart(result.about)">
+                        Added <span class="glyphicon glyphicon-ok" ng-show="isItemInCart(result.about)"></span>
+                    </div>
+                </button>
             </div>
         </div>
         <hr/>
@@ -44,11 +56,17 @@
                     {{ result.content }}
                 </p>
             </div>
-            <div class="col-sm-3 text-right">
-                <a class="btn btn-default btn-sm" href="{{getDownloadUrl(result.about)}}">Download</a>
-                <button type="button"
-                        class="btn btn-default btn-sm"
-                        ng-click="addToCart(result)">Add to cart</button>
+            <div class="col-sm-3 text-right cartBtnColors">
+                <button class="btn btn-primary btn-sm" ng-click="goToDownloadUrl(result.about)">Download</button>
+                <button class="btn btn-primary btn-sm"
+                        ng-click="addToCart(result)">
+                    <div ng-if="!isItemInCart(result.about)">
+                        Add to cart
+                    </div>
+                    <div ng-if="isItemInCart(result.about)">
+                        Added <span class="glyphicon glyphicon-ok" ng-show="isItemInCart(result.about)"></span>
+                    </div>
+                </button>
             </div>
         </div>
         <hr/>
@@ -64,11 +82,17 @@
                     {{ result.docType }}
                 </p>
             </div>
-            <div class="col-sm-3 text-right">
-                <a class="btn btn-default btn-sm" href="{{getDownloadUrl(result.about)}}">Download</a>
-                <button type="button"
-                        class="btn btn-default btn-sm"
-                        ng-click="addToCart(result)">Add to cart</button>
+            <div class="col-sm-3 text-right cartBtnColors">
+                <button class="btn btn-primary btn-sm" ng-click="goToDownloadUrl(result.about)">Download</button>
+                <button class="btn btn-primary btn-sm"
+                        ng-click="addToCart(result)">
+                    <div ng-if="!isItemInCart(result.about)">
+                        Add to cart
+                    </div>
+                    <div ng-if="isItemInCart(result.about)">
+                        Added <span class="glyphicon glyphicon-ok" ng-show="isItemInCart(result.about)"></span>
+                    </div>
+                </button>
             </div>
         </div>
         <hr/>
@@ -76,8 +100,13 @@
     <div ng-show="(results.docs | filter: { docType: 'IMAGE' }).length > 0">
         <h4>Images</h4>
         <div class="row">
+<<<<<<< HEAD
+            <div class="col-xs-6 col-sm-4 col-lg-2 cartBtnColors" ng-repeat="result in results.docs | filter: { docType: 'IMAGE' }">
+                <img src="{{getDownloadImageUrl(result.about)}}" alt="{{ result.title }}" class="img-thumbnail img-responsive">
+=======
             <div class="col-xs-6 col-sm-4 col-lg-2" ng-repeat="result in results.docs | filter: { docType: 'IMAGE' }">
                 <img ng-src="{{getDownloadImageUrl(result.about)}}" alt="{{ result.title }}" class="img-thumbnail img-responsive">
+>>>>>>> refs/remotes/origin/master
             </div>
         </div>
     </div>
