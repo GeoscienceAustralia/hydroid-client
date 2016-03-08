@@ -15,8 +15,8 @@
             templateUrl: 'components/search/search-results.html',
             controller: ['$scope', function($scope) {
 
-                $scope.getDownloadUrl = function(urn) {
-                    return hydroidConfig.s3RdfsUrl + urn;
+                $scope.goToDownloadUrl = function(urn) {
+                    location.href = hydroidConfig.s3RdfsUrl + urn;
                 };
 
                 $scope.getDownloadImageUrl = function(urn) {

@@ -128,3 +128,14 @@ li {
     margin-left: 15px;
     margin-right: 15px;
 }
+
+.cartBtnColors > button {
+    background-color: #006983;
+    border-radius: 0px;
+}
+.cartBtnColors .btn-primary:active,
+.cartBtnColors .btn-primary:hover {
+    background-color: #A33F1F;
+    border-color: #A33F1F;
+    color:white;
+}

@@ -1,30 +1,34 @@
 <head>
     <style>
-        table {border-collapse:collapse; table-layout:fixed; width:400px;}
+        table {border-collapse:collapse; table-layout:fixed;}
         table td {word-wrap:break-word;}
     </style>
 </head>
 <div class="panel panel-primary">
-    <div class="panel-heading">
+    <div class="panel-heading" style="background-color: #006983;">
         <h2 class="panel-title">Cart Items <span class="glyphicon glyphicon-shopping-cart pull-right"></span></h2>
     </div>
     <div class="panel-body">
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>File Name</th>
+                <th style="width: 250px;">File Name</th>
                 <th>File Type</th>
-                <th></th>
+                <th style="width: 50px;"></th>
             </tr>
             </thead>
             <tr ng-repeat="item in cartList">
-                <td><a href="{{getAwsRdfsUrl(item)}}">{{ item.title }}</a></td>
+                <td><a href="{{getDownloadUrl(item)}}">{{ item.title }}</a></td>
                 <td>{{ item.docType }}</td>
-                <td><a ng-click="removeItemFromCart(item)">Remove</a></td>
+                <td>
+                    <button class="btn btn-danger btn-sm" style="border-radius: 0px;" ng-click="removeItemFromCart(item)">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
+                </td>
             </tr>
         </table>
     </div>
 </div>
- <div class="text-center">
-     <button class="btn btn-primary" ng-click="downloadCartItems()">Download</button>
+ <div class="text-center cartBtnColors">
+     <button class="btn btn-primary btn-xl" ng-click="downloadCartItems()">Download All <span class="glyphicon glyphicon-download-alt"></span></button>
 </div>
