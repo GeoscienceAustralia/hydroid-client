@@ -5,7 +5,7 @@
 
     ]);
 
-    module .directive('hydroidSearchResults', [function() {
+    module .directive('hydroidSearchResults', ['hydroidConfig', function(hydroidConfig) {
         return {
             restrict: 'E',
             scope: {
@@ -16,20 +16,24 @@
             controller: ['$scope', function($scope) {
 
                 $scope.getDownloadUrl = function(urn) {
-                    return '//hydroid-output.s3-website-ap-southeast-2.amazonaws.com/rdfs/' + urn;
+                    return hydroidConfig.awsRdfsUrl + urn;
                 };
 
                 $scope.getDownloadImageUrl = function(urn) {
-                    return '//hydroid-output.s3-website-ap-southeast-2.amazonaws.com/images/' + urn;
+                    return hydroidConfig.awsImagesUrl + urn;
                 };
 
-                $scope.addToCart = function(item) {
-                    if ($scope.cartList.indexOf(item) == -1) {
-                        $scope.cartList.push(item);
-                    } else {
-                        alert("Duplicate item in cart " + $scope.cartList[$scope.cartList.indexOf(item)].title);
+                $scope.isItemInCart = function(urn) {
+                    for(var i = 0; i < $scope.cartList.length; i++) {
+                        if (urn == $scope.cartList[i].about) return true;
                     }
+                    return false;
+                }
 
+                $scope.addToCart = function(item) {
+                    if (!$scope.isItemInCart(item.about)){
+                        $scope.cartList.push(item);
+                    }
                 }
             }]
         };

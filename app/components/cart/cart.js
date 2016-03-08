@@ -1,27 +1,26 @@
 (function () {
     "use strict";
 
-    var module = angular.module('cart', []);
+    var module = angular.module('cart', ['config']);
 
-    module.directive('shoppingCart', ['$http', function($http) {
+    module.directive('shoppingCart', ['hydroidConfig', function(hydroidConfig) {
         return {
             restrict: 'E',
-            scope: { cartList: "="
+            scope: {
+                cartList: "="
             },
             templateUrl: 'components/cart/cart.html',
             controller: ['$scope', function($scope) {
 
-//                $scope.getTotalBytes = function() {
-//                    //Implement total (MB, GB) download size??
-//                    var totalBytes = 0;
-//                    for(var i = 0; i < $scope.cartList.length; i++) {
-//                        totalBytes += $scope.cartList[i].bytes;
-//                    }
-//                    return totalBytes;
-//                }
                 $scope.removeItemFromCart = function(item) {
                     var index = $scope.cartList.indexOf(item);
+                    console.log($scope.getAwsRdfsUrl(item.about));
                     $scope.cartList.splice(index, 1);
+                }
+
+                $scope.getAwsRdfsUrl = function(item) {
+                    if (item.docType == "IMAGE") return hydroidConfig.awsImagesUrl + item.about;
+                    return hydroidConfig.awsRdfsUrl + item.about;
                 }
 
                 $scope.buildItemsArray = function() {
