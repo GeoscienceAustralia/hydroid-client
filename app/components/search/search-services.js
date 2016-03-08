@@ -38,16 +38,38 @@
             }
         };
 
-        var setMenuCounters = function(facetStats, menuItems) {
+        var setMenuCounters = function(facetStats, menuItems, filterFacet) {
             for (var i=0; i < facetStats.length; i++) {
                 var menuItem = findMenuItemByLabel(facetStats[i].facet, menuItems);
-                if (menuItem) {
+                if (menuItem && isChildFacetOfMenuItem(menuItem,filterFacet)) {
                     menuItem.count = facetStats[i].count;
                     if (menuItem.children) {
                         setMenuCounters(facetStats, menuItem.children);
                     }
                 }
             }
+        };
+
+        var isChildFacetOfMenuItem = function (menuItem, facetArray) {
+            if(!facetArray) {
+                return true;
+            }
+            for(var j = 0; j < facetArray.length; j++) {
+                var facet = facetArray[j];
+                if(menuItem.nodeLabel == facet) {
+                    return true;
+                }
+                if(menuItem.children) {
+                    for(var i = 0; i < menuItem.children.length; i++) {
+                        var childMenu = menuItem.children[i];
+                        if(isChildFacetOfMenuItem(childMenu,facet)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
         };
 
         var setMenuTotalCounters = function(menuItems) {
@@ -72,12 +94,27 @@
             return totalDocs;
         };
 
+        var populateFacetArray = function(menuItem, facetArray) {
+            if(!menuItem)
+                return;
+            if(!facetArray)
+                facetArray = [];
+
+            facetArray.push(menuItem.nodeLabel);
+            if(menuItem.children) {
+                for(var i = 0; i < menuItem.children.length; i++) {
+                    populateFacetArray(menuItem.children[i],facetArray);
+                }
+            }
+        };
+
         return {
             getFacetStats: getFacetStats,
             findMenuItemByLabel: findMenuItemByLabel,
             resetMenuCounters: resetMenuCounters,
             setMenuCounters: setMenuCounters,
-            setMenuTotalCounters: setMenuTotalCounters
+            setMenuTotalCounters: setMenuTotalCounters,
+            populateFacetArray: populateFacetArray
         };
 
     }]);
