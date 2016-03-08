@@ -77,7 +77,7 @@
         <h4>Images</h4>
         <div class="row">
             <div class="col-xs-6 col-sm-4 col-lg-2" ng-repeat="result in results.docs | filter: { docType: 'IMAGE' }">
-                <img src="{{getDownloadImageUrl(result.about)}}" alt="{{ result.title }}" class="img-thumbnail img-responsive">
+                <img ng-src="{{getDownloadImageUrl(result.about)}}" alt="{{ result.title }}" class="img-thumbnail img-responsive">
             </div>
         </div>
     </div>
