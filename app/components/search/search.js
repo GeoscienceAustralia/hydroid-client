@@ -17,11 +17,16 @@
             controller: ['$scope', function ($scope) {
 
                 $scope.query = '';
-
+                var searchTimeout;
                 $scope.$watch('query', function (newVal, oldVal) {
                     if (newVal) {
                         if (newVal != oldVal) {
-                            $scope.search(newVal);
+                            if(searchTimeout != null) {
+                                $timeout.cancel(searchTimeout);
+                            }
+                            searchTimeout = $timeout(function () {
+                                $scope.search(newVal);
+                            },200)
                         }
                     } else if (oldVal) {
                         resetSearch();
