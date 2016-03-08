@@ -12,7 +12,7 @@
             </tr>
             </thead>
             <tr ng-repeat="item in cartList">
-                <td>{{ item.title }}</td>
+                <td><a href="{{getAwsRdfsUrl(item)}}">{{ item.title }}</a></td>
                 <td>{{ item.docType }}</td>
                 <td><a ng-click="removeItemFromCart(item)">Remove</a></td>
             </tr>

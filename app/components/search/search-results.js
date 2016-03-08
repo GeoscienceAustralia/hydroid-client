@@ -5,7 +5,7 @@
 
     ]);
 
-    module .directive('hydroidSearchResults', [function() {
+    module .directive('hydroidSearchResults', ['hydroidConfig', function(hydroidConfig) {
         return {
             restrict: 'E',
             scope: {
@@ -16,11 +16,11 @@
             controller: ['$scope', function($scope) {
 
                 $scope.getDownloadUrl = function(urn) {
-                    return '//hydroid-output.s3-website-ap-southeast-2.amazonaws.com/rdfs/' + urn;
+                    return hydroidConfig.awsRdfsUrl + urn;
                 };
 
                 $scope.getDownloadImageUrl = function(urn) {
-                    return '//hydroid-output.s3-website-ap-southeast-2.amazonaws.com/images/' + urn;
+                    return hydroidConfig.awsImagesUrl + urn;
                 };
 
                 $scope.isItemInCart = function(urn) {
