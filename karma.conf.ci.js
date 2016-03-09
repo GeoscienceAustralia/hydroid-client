@@ -8,12 +8,11 @@ module.exports = function (config) {
     config.set({
         singleRun: true,
         autoWatch: false,
-        reporters: ['progress', 'junit','coverage', 'coveralls'],
+        reporters: ['progress','coverage', 'coveralls'],
         browsers: ['PhantomJS'],
         plugins: [
             'karma-jasmine',
             'karma-chrome-launcher',
-            'karma-junit-reporter',
             'karma-phantomjs-launcher',
             'karma-ng-html2js-preprocessor',
             'karma-coverage',
