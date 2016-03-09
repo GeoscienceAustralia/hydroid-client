@@ -30,10 +30,6 @@ module.exports = function (config) {
 
         reporters: [ 'progress', 'coverage'],
 
-        htmlReporter: {
-            outputDir: 'target/karma-reports'
-        },
-
         // web server port
         port: 9876,
 
