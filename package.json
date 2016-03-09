@@ -29,6 +29,7 @@
     "gulp-useref": "~3.0.4",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.19",
+    "karma-read-json": "^1.1.0",
     "karma-chrome-launcher": "^0.2.2",
     "karma-coverage": "^0.5.5",
     "karma-coveralls": "^1.1.2",
