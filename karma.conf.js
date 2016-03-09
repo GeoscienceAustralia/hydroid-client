@@ -24,8 +24,9 @@ module.exports = function (config) {
         exclude: [],
 
         coverageReporter: {
-            type: 'lcov', // lcov or lcovonly are required for generating lcov.info files
-            dir: 'coverage/'
+            type: 'lcovonly', // lcov or lcovonly are required for generating lcov.info files
+            dir: 'coverage/',
+            file: 'lcov.info'
         },
 
         reporters: [ 'progress', 'coverage'],
