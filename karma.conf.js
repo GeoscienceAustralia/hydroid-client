@@ -28,7 +28,7 @@ module.exports = function (config) {
             dir: 'coverage/'
         },
 
-        reporters: [ 'progress', 'coverage','coveralls'],
+        reporters: [ 'progress', 'coverage'],
 
         htmlReporter: {
             outputDir: 'target/karma-reports'
@@ -70,8 +70,7 @@ module.exports = function (config) {
             'karma-junit-reporter',
             'karma-phantomjs-launcher',
             'karma-ng-html2js-preprocessor',
-            'karma-coverage',
-            'karma-coveralls'
+            'karma-coverage'
         ]
     });
 };

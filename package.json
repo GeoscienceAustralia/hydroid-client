@@ -4,7 +4,7 @@
   "description": "Web client for the Hydroid search application",
   "main": "app.js",
   "scripts": {
-    "test": "karma start --single-run --browsers PhantomJS"
+    "test": "karma start ./karma.conf.ci.js --single-run"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "grunt-angular-templates": "~0.5.9",
     "grunt-cli": "~0.1.13",
     "grunt-gulp": "~0.1.0",
+    "grunt-karma": "^0.12.1",
     "gulp": "^3.9.0",
     "gulp-if": "~2.0.0",
     "gulp-minify-css": "~1.2.3",
@@ -29,7 +30,6 @@
     "gulp-useref": "~3.0.4",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.19",
-    "karma-read-json": "^1.1.0",
     "karma-chrome-launcher": "^0.2.2",
     "karma-coverage": "^0.5.5",
     "karma-coveralls": "^1.1.2",
@@ -37,6 +37,7 @@
     "karma-junit-reporter": "^0.3.8",
     "karma-ng-html2js-preprocessor": "^0.2.0",
     "karma-phantomjs-launcher": "^0.2.3",
+    "karma-read-json": "^1.1.0",
     "phantomjs": "^1.9.19",
     "phantomjs-function-bind-polyfill": "1.0.0"
   },
