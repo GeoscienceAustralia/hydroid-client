@@ -29,7 +29,7 @@
                             },200)
                         }
                     } else if (oldVal) {
-                        resetSearch();
+                        $scope.resetSearch();
                     }
                 });
 
@@ -51,7 +51,10 @@
                             });
                 };
 
-                var resetSearch = function() {
+                $scope.resetSearch = function() {
+                    if ($scope.query) {
+                        $scope.query = null;
+                    }
                     $scope.results = [];
                     SearchServices.resetMenuCounters($scope.menuItems);
                 };
