@@ -28,7 +28,7 @@ module.exports = function (config) {
             dir: 'coverage/'
         },
 
-        reporters: [ 'progress', 'coverage'],
+        reporters: [ 'progress', 'coverage','coveralls'],
 
         htmlReporter: {
             outputDir: 'target/karma-reports'
