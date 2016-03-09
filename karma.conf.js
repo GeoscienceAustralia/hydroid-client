@@ -21,10 +21,15 @@ module.exports = function (config) {
         // list of files to exclude
         exclude: [],
 
-        reporters: ['progress'],
+        coverageReporter: {
+            type: 'lcov', // lcov or lcovonly are required for generating lcov.info files
+            dir: 'coverage/'
+        },
+
+        reporters: [ 'progress', 'coverage'],
 
         htmlReporter: {
-            outputDir: 'karma-reports'
+            outputDir: 'target/karma-reports'
         },
 
         // web server port
@@ -38,7 +43,8 @@ module.exports = function (config) {
         logLevel: config.LOG_DEBUG || config.LOG_INFO,
 
         preprocessors: {
-            'app/**/*.html': ['ng-html2js']
+            'app/**/*.html': ['ng-html2js'],
+            'app/**/!(*.spec).js': [ 'coverage' ]
         },
         ngHtml2JsPreprocessor: {
             // strip this from the file path
@@ -56,6 +62,6 @@ module.exports = function (config) {
         // if true, Karma captures browsers, runs the tests and exits
         singleRun: false,
 
-        plugins: ['karma-jasmine', 'karma-chrome-launcher', 'karma-junit-reporter', 'karma-phantomjs-launcher','karma-ng-html2js-preprocessor']
+        plugins: ['karma-jasmine', 'karma-chrome-launcher', 'karma-junit-reporter', 'karma-phantomjs-launcher','karma-ng-html2js-preprocessor','karma-coverage']
     });
 };
