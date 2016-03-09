@@ -35,7 +35,7 @@
 
                 $scope.filterByFacet = function(facet) {
                     $http.get($scope.solrUrl + '/' + $scope.solrCollection +
-                        '/select?q=*&facet=true&facet.field=label_s&facet.mincount=1&fq=' + getChildrenFacets(facet) + '&wt=json')
+                        '/select?q=' + getChildrenFacets(facet) + '&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
                         .then(function (response) {
                             console.log(response.data);
                             $timeout(function () {
@@ -62,7 +62,7 @@
                     if (facets != '') {
                         facets = facets + ' OR ';
                     }
-                    facets = facets + 'label:' + menuItem.nodeLabel;
+                    facets = facets + 'label:"' + menuItem.nodeLabel + '"';
                     if (menuItem.children) {
                         for (var i=0; i < menuItem.children.length; i++) {
                             facets = getAllChildrenFacets(menuItem.children[i], facets);
@@ -77,7 +77,7 @@
                     if (menuItem) {
                         return getAllChildrenFacets(menuItem, '');
                     }
-                    return 'label:' + facet;
+                    return 'label:"' + facet + '"';
                 };
 
             }]
