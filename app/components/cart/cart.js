@@ -22,16 +22,16 @@
                     return hydroidConfig.s3RdfsUrl + item.about;
                 }
 
-                $scope.buildItemsArray = function() {
-                    var items = "";
+                $scope.buildDownloadString = function() {
+                    var downloadString = "";
                     for(var item in $scope.cartList) {
-                        items += $scope.cartList[item].about + ",";
+                        downloadString += $scope.cartList[item].about + ",";
                     }
-                    return items.slice(0, -1);
+                    return downloadString.slice(0, -1);
                 }
 
                 $scope.downloadCartItems = function() {
-                    location.href = hydroidConfig.s3BundlesUrl + $scope.buildItemsArray($scope.cartList);
+                    location.href = hydroidConfig.s3BundlesUrl + $scope.buildDownloadString($scope.cartList);
                 }
             }]
         }
