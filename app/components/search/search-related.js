@@ -35,14 +35,16 @@
 
                 $scope.filterByFacet = function(facet) {
                     $http.get($scope.solrUrl + '/' + $scope.solrCollection +
-                        '/select?q=*&facet=true&facet.field=label_s&facet.mincount=1&fq=' + getChildrenFacets(facet) + '&wt=json')
+                        '/select?q=' + getChildrenFacets(facet) + '&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
                         .then(function (response) {
                             console.log(response.data);
                             $timeout(function () {
                                 $scope.results = {docs: response.data.response.docs, facets: response.data.facet_counts};
                                 var facetStats = SearchServices.getFacetStats($scope.results.facets);
+                                var menuItem = SearchServices.findMenuItemByLabel(facet,$scope.menuItems);
+                                var facetArray = SearchServices.getAllFacetsForMenuItem(menuItem);
                                 SearchServices.resetMenuCounters($scope.menuItems);
-                                SearchServices.setMenuCounters(facetStats, $scope.menuItems);
+                                SearchServices.setMenuCounters(facetStats, $scope.menuItems, facetArray);
                                 SearchServices.setMenuTotalCounters($scope.menuItems);
                             });
                         },
@@ -60,7 +62,7 @@
                     if (facets != '') {
                         facets = facets + ' OR ';
                     }
-                    facets = facets + 'label:' + menuItem.nodeLabel;
+                    facets = facets + 'label:"' + menuItem.nodeLabel + '"';
                     if (menuItem.children) {
                         for (var i=0; i < menuItem.children.length; i++) {
                             facets = getAllChildrenFacets(menuItem.children[i], facets);
@@ -75,7 +77,7 @@
                     if (menuItem) {
                         return getAllChildrenFacets(menuItem, '');
                     }
-                    return 'label:' + facet;
+                    return 'label:"' + facet + '"';
                 };
 
             }]

@@ -100,13 +100,8 @@
     <div ng-show="(results.docs | filter: { docType: 'IMAGE' }).length > 0">
         <h4>Images</h4>
         <div class="row">
-<<<<<<< HEAD
             <div class="col-xs-6 col-sm-4 col-lg-2 cartBtnColors" ng-repeat="result in results.docs | filter: { docType: 'IMAGE' }">
-                <img src="{{getDownloadImageUrl(result.about)}}" alt="{{ result.title }}" class="img-thumbnail img-responsive">
-=======
-            <div class="col-xs-6 col-sm-4 col-lg-2" ng-repeat="result in results.docs | filter: { docType: 'IMAGE' }">
                 <img ng-src="{{getDownloadImageUrl(result.about)}}" alt="{{ result.title }}" class="img-thumbnail img-responsive">
->>>>>>> refs/remotes/origin/master
             </div>
         </div>
     </div>
