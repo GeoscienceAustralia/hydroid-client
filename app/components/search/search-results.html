@@ -8,7 +8,7 @@
                     {{ result.content }}
                 </p>
             </div>
-            <div class="col-sm-3 text-right cartBtnColors">
+            <div class="col-sm-3 text-right cartBtnStyles">
                 <button class="btn btn-primary btn-sm" ng-click="goToDownloadUrl(result.about)">Download</button>
                 <button class="btn btn-primary btn-sm"
                         ng-click="addToCart(result)">
@@ -32,7 +32,7 @@
                     {{ result.content }}
                 </p>
             </div>
-            <div class="col-sm-3 text-right cartBtnColors">
+            <div class="col-sm-3 text-right cartBtnStyles">
                 <button class="btn btn-primary btn-sm" ng-click="goToDownloadUrl(result.about)">Download</button>
                 <button class="btn btn-primary btn-sm"
                         ng-click="addToCart(result)">
@@ -56,7 +56,7 @@
                     {{ result.content }}
                 </p>
             </div>
-            <div class="col-sm-3 text-right cartBtnColors">
+            <div class="col-sm-3 text-right cartBtnStyles">
                 <button class="btn btn-primary btn-sm" ng-click="goToDownloadUrl(result.about)">Download</button>
                 <button class="btn btn-primary btn-sm"
                         ng-click="addToCart(result)">
@@ -82,7 +82,7 @@
                     {{ result.docType }}
                 </p>
             </div>
-            <div class="col-sm-3 text-right cartBtnColors">
+            <div class="col-sm-3 text-right cartBtnStyles">
                 <button class="btn btn-primary btn-sm" ng-click="goToDownloadUrl(result.about)">Download</button>
                 <button class="btn btn-primary btn-sm"
                         ng-click="addToCart(result)">
@@ -100,7 +100,7 @@
     <div ng-show="(results.docs | filter: { docType: 'IMAGE' }).length > 0">
         <h4>Images</h4>
         <div class="row">
-            <div class="col-xs-6 col-sm-4 col-lg-2 cartBtnColors" ng-repeat="result in results.docs | filter: { docType: 'IMAGE' }">
+            <div class="col-xs-6 col-sm-4 col-lg-2 cartBtnStyles" ng-repeat="result in results.docs | filter: { docType: 'IMAGE' }">
                 <img ng-src="{{getDownloadImageUrl(result.about)}}" alt="{{ result.title }}" class="img-thumbnail img-responsive">
             </div>
         </div>
