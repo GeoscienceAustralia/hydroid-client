@@ -46,3 +46,4 @@ bower_components/
 
 # Custom config
 local-config.json
+coverage/

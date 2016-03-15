@@ -129,13 +129,19 @@ li {
     margin-right: 15px;
 }
 
-.cartBtnColors > button {
+.cartBtnStyles > button {
     background-color: #006983;
     border-radius: 0px;
 }
-.cartBtnColors .btn-primary:active,
-.cartBtnColors .btn-primary:hover {
+.cartBtnStyles .btn-primary:active,
+.cartBtnStyles .btn-primary:hover {
     background-color: #A33F1F;
     border-color: #A33F1F;
     color:white;
+}
+@media only screen and (max-width: 1090px) {
+    .cartBtnStyles > button {
+        margin-bottom: 10px;
+        width: 100px;
+    }
 }
