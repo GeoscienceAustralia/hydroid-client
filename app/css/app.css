@@ -144,6 +144,7 @@ li {
         margin-bottom: 10px;
         width: 100px;
     }
+
 }
 
 .searchRelatedButton {
@@ -154,7 +155,6 @@ li {
     color: white;
 }
 .searchRelatedButton:hover {
-    border-top-color: #28597a;
     background: #A33F1F;
     cursor: pointer;
 }
