@@ -29,8 +29,12 @@
         </table>
     </div>
     <div class="panel-footer">
-        <div class="text-center cartBtnStyles">
-            <button class="btn btn-primary btn-xl" ng-click="downloadCartItems()">Download All <span class="glyphicon glyphicon-download-alt"></span></button>
+        <div class="text-left">
+            <button class="btn btn-success btn-xl" style="border-radius: 0px;" ng-click="downloadCartItems()">Download All <span class="glyphicon glyphicon-download-alt"></span></button>
+            <button class="btn btn-danger btn-xl pull-right" style="border-radius: 0px;" ng-click="clearCartItems()">Remove All <span class="glyphicon glyphicon-trash"></span></button>
+        </div>
+        <div class="text-right cartBtnStyles">
+
         </div>
     </div>
 </div>
