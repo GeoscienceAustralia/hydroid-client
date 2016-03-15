@@ -13,7 +13,7 @@
 
     mod.config(['$routeProvider', '$locationProvider',
         function ($routeProvider, $locationProvider) {
-            $routeProvider.when('/', {template: '<hydroid-home></hydroid-home>'});
+            $routeProvider.when('/', {template: '<hydroid-home></hydroid-home>',reloadOnSearch:false});
             $routeProvider.when('/enhancer', {template: '<hydroid-enhancer></hydroid-enhancer>'});
             $routeProvider.when('/cart', {template: '<shopping-cart></shopping-cart>'});
             $routeProvider.otherwise({redirectTo: '/'});
