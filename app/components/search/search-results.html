@@ -71,32 +71,6 @@
         </div>
         <hr/>
     </div>
-    <div ng-repeat="result in results.docs | filter: { docType: '!DOCUMENT'}
-     | filter: { docType: '!DATASET'} | filter: { docType: '!MODEL'} | filter: { docType: '!IMAGE'}">
-        <h4 ng-show="$first">Others</h4>
-        <div class="row">
-            <div class="col-sm-9">
-                <p>
-                    <b ng-show="result.title">{{ result.title }}: </b>
-                    {{ result.content }}
-                    {{ result.docType }}
-                </p>
-            </div>
-            <div class="col-sm-3 text-right cartBtnColors">
-                <button class="btn btn-primary btn-sm" ng-click="goToDownloadUrl(result.docUrl)">Download</button>
-                <button class="btn btn-primary btn-sm"
-                        ng-click="addToCart(result)">
-                    <div ng-if="!isItemInCart(result.about)">
-                        Add to cart
-                    </div>
-                    <div ng-if="isItemInCart(result.about)">
-                        Added <span class="glyphicon glyphicon-ok" ng-show="isItemInCart(result.about)"></span>
-                    </div>
-                </button>
-            </div>
-        </div>
-        <hr/>
-    </div>
     <div ng-show="(results.docs | filter: { docType: 'IMAGE' }).length > 0">
         <h4>Images</h4>
         <div class="row">
