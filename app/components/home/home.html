@@ -1,34 +1,23 @@
-<div style="width: 100%; background-color: #006983;">
+<div class="search-wrapper">
     <hydroid-search solr-url="/solr" solr-collection="hydroid" results="searchResults" menu-items="menuItems"></hydroid-search>
 </div>
 <div class="row">
     <div class="col-sm-3" ng-show="hasSearchRelated()">
         <hydroid-search-related solr-url="/solr" solr-collection="hydroid" results="searchResults"
                                 menu-items="menuItems" menu-url="/data/menu.json"></hydroid-search-related>
-        <!--
-        <div class="btn-group btn-group-justified">
-            <div class="btn-group">
-                <a class="btn btn-default" href="#enhancer">Enhancer</a>
-            </div>
-            <div class="btn-group">
-                <button class="btn btn-default" ng-click="resetSearch();">Reset Search</button>
-            </div>
-        </div>
-        -->
-        <br/>
-        <div ng-show="hasCartItems()">
-            <div>
-                <p></p>
-                <shopping-cart cart-list="cartItems"></shopping-cart>
-            </div>
+        <div class="hidden-xs hidden-sm" ng-show="hasCartItems()">
+            <br/>
+            <shopping-cart cart-list="cartItems"></shopping-cart>
         </div>
     </div>
     <div ng-class="{'col-sm-9': hasSearchRelated(), 'col-sm-12': !hasSearchResults()}">
-        <div class="panel" ng-show="hasSearchResults()">
+        <div ng-show="hasSearchResults()">
             <h4 class="searchResults">Search Results</h4>
-            <div class="panel-body">
-                <hydroid-search-results results="searchResults" cart-list="cartItems"></hydroid-search-results>
-            </div>
+            <hydroid-search-results results="searchResults" cart-list="cartItems"></hydroid-search-results>
         </div>
     </div>
+</div>
+<div class="visible-xs visible-sm" ng-show="hasCartItems()">
+    <br/>
+    <shopping-cart cart-list="cartItems"></shopping-cart>
 </div>
