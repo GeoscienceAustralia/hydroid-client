@@ -9,23 +9,37 @@
     </ul>
 </div>
 <script type="text/ng-template" id="menuTemplate">
+<<<<<<< HEAD
     <div class="row searchRelatedButton" ng-click="filterByFacet(menuItem.nodeLabel)" ng-if="!results.docs || results.docs.length == 0 || menuItem.count > 0">
         <div class="col-xs-9">
             <a href="">{{ menuItem.nodeLabel }}&nbsp;</a>
         </div>
+=======
+    <div class="row facet" ng-if="!results.docs || results.docs.length == 0 || menuItem.count > 0" ng-class="{searchRelatedButton: menuItem.nodeType == null}">
+        <a href="#/?facet={{menuItem.nodeLabel.split(' ').join('_')}}" class="col-xs-9">
+            <h5>{{ menuItem.nodeLabel }}&nbsp;</h5>
+        </a>
+>>>>>>> refs/remotes/origin/master
         <div class="col-xs-3 text-right">
             <span class="badge" ng-if="menuItem.count">{{ menuItem.count }}</span>
         </div>
     </div>
-    <ul ng-if="menuItem.children" >
-        <li ng-repeat="menuItem in menuItem.children" ng-include="'menuTemplate'" ng-if="!results.docs || results.docs.length == 0 || menuItem.count > 0">
+    <ul ng-if="menuItem.children">
+        <li ng-repeat="menuItem in menuItem.children" ng-include="'menuTemplate'" ng-if="!results.docs || results.docs.length == 0 || menuItem.count > 0" style="background-color: white">
         </li>
     </ul>
 </script>
 <script type="text/ng-template" id="menuTemplateInit">
+<<<<<<< HEAD
     <div class="row" ng-click="filterByFacet(menuItem.nodeLabel)">
         <div class="col-xs-10 searchRelatedButton" ng-click="filterByFacet(menuItem.nodeLabel)">
             <a href="">{{ menuItem.nodeLabel }}&nbsp;<span class="glyphicon glyphicon-menu-right pull-right"></span></a>
         </div>
+=======
+    <div class="row facet">
+        <a href="#/?facet={{menuItem.nodeLabel.split(' ').join('_')}}" class="col-xs-12 searchRelatedButton">
+            <h5>{{ menuItem.nodeLabel }}&nbsp; <span class="glyphicon glyphicon-menu-right pull-right"></span></h5>
+        </a>
+>>>>>>> refs/remotes/origin/master
     </div>
 </script>
