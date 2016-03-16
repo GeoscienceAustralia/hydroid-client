@@ -1,11 +1,11 @@
 /* global angular */
 (function () {
     "use strict";
-    var module = angular.module('search-results', ['modal'
+    var module = angular.module('search-results', ['hydroid.modal'
 
     ]);
 
-    module.directive('hydroidSearchResults', ['modalService', function(modalService) {
+    module.directive('hydroidSearchResults', ['hydroidModalService', function(modalService) {
         return {
             restrict: 'E',
             scope: {
@@ -35,6 +35,7 @@
                 $scope.popupImage = function(imageTitle, imageUrl, imageContent) {
                     var labels = '';
                     var imageContent = imageContent.slice(imageContent.indexOf('\n') + 1);
+                    // sanitise HTML as this could be source of XSS
                     var labelArrays = imageContent.split(',');
                     for (var i=0; i < labelArrays.length; i++) {
                         labels = labels + labelArrays[i] + ', ';

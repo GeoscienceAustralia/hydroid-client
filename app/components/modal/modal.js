@@ -1,9 +1,9 @@
 (function () {
     "use strict";
 
-    var module = angular.module('modal', ['ui.bootstrap']);
+    var module = angular.module('hydroid.modal', ['ui.bootstrap']);
 
-    module.service('modalService', ['$uibModal', '$sce', function($uibModal, $sce) {
+    module.service('hydroidModalService', ['$uibModal', '$sce', function($uibModal, $sce) {
 
         var modalDefaults = {
             animation: false,
@@ -18,7 +18,8 @@
             imageSrc: null
         };
 
-        this.confirm = function(headerText, bodyText) {
+        var service = {};
+        service.confirm = function(headerText, bodyText) {
 
             modalDefaults.controller = function($scope, $uibModalInstance) {
                 $scope.modalOptions = {};
@@ -39,12 +40,12 @@
                 $scope.modalOptions.close = function() {
                     $uibModalInstance.dismiss('cancel');
                 };
-            }
+            };
 
             return $uibModal.open(modalDefaults).result;
         };
 
-        this.show = function(headerText, bodyText, imageSrc) {
+        service.show = function(headerText, bodyText, imageSrc) {
 
             modalDefaults.controller = function($scope, $uibModalInstance) {
                 $scope.modalOptions = {};
@@ -69,11 +70,11 @@
                 $scope.modalOptions.close = function() {
                     $uibModalInstance.dismiss('cancel');
                 };
-            }
+            };
 
             $uibModal.open(modalDefaults);
         };
-
+        return service;
     }]);
 
 })();
