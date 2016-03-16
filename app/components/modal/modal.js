@@ -3,7 +3,7 @@
 
     var module = angular.module('modal', ['ui.bootstrap']);
 
-    module.service('modalService', ['$uibModal', function($uibModal) {
+    module.service('modalService', ['$uibModal', '$sce', function($uibModal, $sce) {
 
         var modalDefaults = {
             animation: false,
@@ -11,28 +11,32 @@
             size: 'lg'
         };
 
-        var modalOptions = {
+        var modalOptionsDefault = {
             closeButtonText: 'Cancel',
             actionButtonText: 'OK',
-            bodyText: 'Are you sure ?'
+            bodyText: $sce.trustAsHtml('Are you sure ?'),
+            imageSrc: null
         };
 
-        this.confirm = function (headerText, bodyText) {
+        this.confirm = function(headerText, bodyText) {
 
-            if (headerText != null) {
-                modalOptions.headerText = headerText;
-            }
+            modalDefaults.controller = function($scope, $uibModalInstance) {
+                $scope.modalOptions = {};
+                angular.extend($scope.modalOptions, modalOptionsDefault);
 
-            if (bodyText != null) {
-                modalOptions.bodyText = bodyText;
-            }
+                if (headerText != null) {
+                    $scope.modalOptions.headerText = headerText;
+                }
 
-            modalDefaults.controller = function ($scope, $uibModalInstance ) {
-                $scope.modalOptions = modalOptions;
-                $scope.modalOptions.ok = function (result) {
-                    $uibModalInstance.close(result);
+                if (bodyText != null) {
+                    $scope.modalOptions.bodyText = $sce.trustAsHtml(bodyText);
+                }
+
+                $scope.modalOptions.ok = function() {
+                    $uibModalInstance.close('ok');
                 };
-                $scope.modalOptions.close = function (result) {
+
+                $scope.modalOptions.close = function() {
                     $uibModalInstance.dismiss('cancel');
                 };
             }
@@ -40,16 +44,29 @@
             return $uibModal.open(modalDefaults).result;
         };
 
-        this.show = function (headerText, bodyText, imageSrc) {
+        this.show = function(headerText, bodyText, imageSrc) {
 
-            modalOptions.actionButtonText = null;
-            modalOptions.headerText = headerText;
-            modalOptions.bodyText = bodyText;
-            modalOptions.imageSrc = imageSrc;
+            modalDefaults.controller = function($scope, $uibModalInstance) {
+                $scope.modalOptions = {};
+                angular.extend($scope.modalOptions, modalOptionsDefault);
 
-            modalDefaults.controller = function ($scope, $uibModalInstance ) {
-                $scope.modalOptions = modalOptions;
-                $scope.modalOptions.close = function (result) {
+                // Do not display footer and buttons
+                $scope.modalOptions.actionButtonText = null;
+                $scope.modalOptions.closeButtonText = null;
+
+                if (headerText != null) {
+                    $scope.modalOptions.headerText = headerText;
+                }
+
+                if (bodyText != null) {
+                    $scope.modalOptions.bodyText = $sce.trustAsHtml(bodyText);
+                }
+
+                if (imageSrc != null) {
+                    $scope.modalOptions.imageSrc = imageSrc;
+                }
+
+                $scope.modalOptions.close = function() {
                     $uibModalInstance.dismiss('cancel');
                 };
             }

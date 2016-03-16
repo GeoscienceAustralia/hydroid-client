@@ -5,7 +5,7 @@
 
     ]);
 
-    module.directive('hydroidSearchResults', ['modalService', '$sce', function(modalService, $sce) {
+    module.directive('hydroidSearchResults', ['modalService', function(modalService) {
         return {
             restrict: 'E',
             scope: {
@@ -40,7 +40,7 @@
                         labels = labels + labelArrays[i] + ', ';
                     }
                     labels = labels.substring(0, labels.length - 2);
-                    imageContent = $sce.trustAsHtml('<br/><b>Labels: </b>' + labels);
+                    imageContent = '<br/><b>Labels: </b>' + labels;
                     modalService.show(imageTitle, imageContent, imageUrl);
                 };
 
