@@ -107,11 +107,6 @@ ul.noLeftPadding {
     -webkit-padding-start: 0px;
 }
 
-.facet {
-    /*border-bottom: 1px dotted #cacaca;*/
-    margin: 0 15px 0 15px;
-}
-
 li {
     list-style: none;
     line-height: 35px;
@@ -144,15 +139,19 @@ li {
         margin-bottom: 10px;
         width: 100px;
     }
-
 }
 
 .searchRelatedButton {
+    margin: 0 15px 0 15px;
     border-top: 1px solid #96d1f8;
     background: #006983;
     padding: 10px 40px;
     border-radius: 0px;
     color: white;
+}
+.searchRelatedButton .badge {
+    background-color: #ffffff;
+    color: #006983;
 }
 .searchRelatedButton:hover {
     background: #A33F1F;

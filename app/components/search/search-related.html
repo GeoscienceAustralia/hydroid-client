@@ -9,16 +9,12 @@
     </ul>
 </div>
 <script type="text/ng-template" id="menuTemplate">
-    <div class="row facet searchRelatedButton" ng-click="filterByFacet(menuItem.nodeLabel)" ng-if="!results.docs || results.docs.length == 0 || menuItem.count > 0">
+    <div class="row searchRelatedButton" ng-click="filterByFacet(menuItem.nodeLabel)" ng-if="!results.docs || results.docs.length == 0 || menuItem.count > 0">
         <div class="col-xs-9">
-            <h5>
-                <a href="">
-                    {{ menuItem.nodeLabel }}&nbsp;
-                </a>
-            </h5>
+            <a href="">{{ menuItem.nodeLabel }}&nbsp;</a>
         </div>
         <div class="col-xs-3 text-right">
-            <span class="badge" style="background-color: white; color: #006983;" ng-if="menuItem.count">{{ menuItem.count }}</span>
+            <span class="badge" ng-if="menuItem.count">{{ menuItem.count }}</span>
         </div>
     </div>
     <ul ng-if="menuItem.children" >
@@ -27,11 +23,9 @@
     </ul>
 </script>
 <script type="text/ng-template" id="menuTemplateInit">
-    <div class="row facet" ng-click="filterByFacet(menuItem.nodeLabel)">
-        <div class="col-xs-12 searchRelatedButton" ng-click="filterByFacet(menuItem.nodeLabel)">
-            <h5>
-                <a href="">{{ menuItem.nodeLabel }}&nbsp; <span class="glyphicon glyphicon-menu-right pull-right"></span></a>
-            </h5>
+    <div class="row" ng-click="filterByFacet(menuItem.nodeLabel)">
+        <div class="col-xs-10 searchRelatedButton" ng-click="filterByFacet(menuItem.nodeLabel)">
+            <a href="">{{ menuItem.nodeLabel }}&nbsp;<span class="glyphicon glyphicon-menu-right pull-right"></span></a>
         </div>
     </div>
 </script>
