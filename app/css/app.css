@@ -108,7 +108,7 @@ ul.noLeftPadding {
 }
 
 .facet {
-    border-bottom: 1px dotted #cacaca;
+    /*border-bottom: 1px dotted #cacaca;*/
     margin: 0 15px 0 15px;
 }
 
@@ -144,4 +144,25 @@ li {
         margin-bottom: 10px;
         width: 100px;
     }
+
+}
+
+.searchRelatedButton {
+    border-top: 1px solid #96d1f8;
+    background: #006983;
+    padding: 10px 40px;
+    border-radius: 0px;
+    color: white;
+}
+.searchRelatedButton:hover {
+    background: #A33F1F;
+    cursor: pointer;
+}
+.searchRelatedButton:active {
+    border-top-color: #28597a;
+    background: #A33F1F;
+}
+.searchRelatedButton a {
+    color: white;
+    text-decoration: none;
 }

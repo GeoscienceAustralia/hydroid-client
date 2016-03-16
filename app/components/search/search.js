@@ -4,7 +4,7 @@
 
     var module = angular.module('search', ['search-services']);
 
-    module.directive('hydroidSearch', ['$http', '$timeout', 'SearchServices', function ($http, $timeout, SearchServices) {
+    module.directive('hydroidSearch', ['$http', '$timeout', 'SearchServices','$location', function ($http, $timeout, SearchServices, $location) {
         return {
             restrict: 'E',
             scope: {
@@ -55,6 +55,7 @@
                     if ($scope.query) {
                         $scope.query = null;
                     }
+                    $location.search('facet',null);
                     $scope.results = [];
                     SearchServices.resetMenuCounters($scope.menuItems);
                 };

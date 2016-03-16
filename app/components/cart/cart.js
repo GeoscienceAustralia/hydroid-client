@@ -32,6 +32,10 @@
                 $scope.downloadCartItems = function() {
                     location.href = hydroidConfig.s3BundlesUrl + $scope.buildDownloadString($scope.cartList);
                 }
+
+                $scope.clearCartItems = function() {
+                    $scope.cartList.length = 0;
+                }
             }]
         }
     }]);
