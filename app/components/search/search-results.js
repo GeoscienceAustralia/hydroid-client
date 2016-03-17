@@ -15,6 +15,15 @@
             templateUrl: 'components/search/search-results.html',
             controller: ['$scope', function($scope) {
 
+                $scope.visibleResults = {
+                    document: true, dataset: true, model: true, image: true
+                };
+
+                $scope.toggleVisibleResults = function(docType) {
+                    docType = docType.toLowerCase();
+                    $scope.visibleResults[docType] = !$scope.visibleResults[docType];
+                };
+
                 $scope.goToDownloadUrl = function(urn) {
                     location.href = hydroidConfig.s3RdfsUrl + urn;
                 };
