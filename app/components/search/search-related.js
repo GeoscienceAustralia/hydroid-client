@@ -52,7 +52,7 @@
                     } else {
                        queryFacet = facet;
                     }
-                    $http.get($scope.solrUrl + '/' + $scope.solrCollection + '/select?q=' + getChildrenFacets(queryFacet) + '&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
+                    $http.get($scope.solrUrl + '/' + $scope.solrCollection + '/select?q=' + getChildrenFacets(queryFacet) + '&rows=50&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
                             .then(function (response) {
                             console.log(response.data);
                             $timeout(function () {

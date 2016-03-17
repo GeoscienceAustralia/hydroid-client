@@ -18,8 +18,7 @@
                 }
 
                 $scope.getDownloadUrl = function(item) {
-                    if (item.docType == "IMAGE") return hydroidConfig.s3ImagesUrl + item.about;
-                    return hydroidConfig.s3RdfsUrl + item.about;
+                    return item.docUrl;
                 }
 
                 $scope.buildDownloadString = function() {
