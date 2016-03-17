@@ -83,16 +83,20 @@
         </div>
         <hr ng-show="visibleResults.model || $last"/>
     </div>
-    <div ng-show="(results.docs | filter: { docType: 'IMAGE' }).length > 0">
+    <div ng-show="(results.imageRows">
         <h4>
             <span ng-class="{'glyphicon glyphicon-collapse-down': visibleResults.image, 'glyphicon glyphicon-expand': !visibleResults.image}"
                   ng-click="toggleVisibleResults('IMAGE')"></span>
             Images
         </h4>
-        <div class="row" ng-show="visibleResults.image">
-            <div class="col-xs-6 col-sm-4 col-lg-2 cartBtnStyles" ng-repeat="result in results.docs | filter: { docType: 'IMAGE' }">
-                <img ng-src="{{getDownloadImageUrl(result.about)}}" alt="{{ result.title }}" class="img-thumbnail img-responsive">
+        <div ng-show="visibleResults.image">
+            <div class="row" ng-repeat="row in results.imageRows" ng-show="visibleResults.image">
+                <div class="col-xs-6 col-sm-4 col-lg-2" ng-repeat="result in row">
+                    <img ng-src="{{result.docUrl}}" alt="{{result.title}}" class="img-thumbnail img-responsive"
+                         ng-click="popupImage(result.title, result.docUrl, result.content)">
+                </div>
             </div>
         </div>
     </div>
+    <br/>
 </div>

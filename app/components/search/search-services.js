@@ -114,13 +114,38 @@
             return facetArray;
         };
 
+        var getResultImageRows = function(results, cols) {
+            if (!results) {
+                return [];
+            }
+            if (!cols) cols = 6;
+            var rows = [], columns = [], imageCounter = 0;
+            for (var i = 0; i < results.length; i++) {
+                if (results[i].docType === 'IMAGE') {
+                    columns.push(results[i]);
+                    imageCounter ++;
+                    // this row is complete so we start the next
+                    if (imageCounter === 6) {
+                        rows.push(columns);
+                        imageCounter = 0;
+                        columns = [];
+                    }
+                }
+            }
+            if (columns.length > 0) {
+                rows.push(columns);
+            }
+            return rows;
+        };
+
         return {
             getFacetStats: getFacetStats,
             findMenuItemByLabel: findMenuItemByLabel,
             resetMenuCounters: resetMenuCounters,
             setMenuCounters: setMenuCounters,
             setMenuTotalCounters: setMenuTotalCounters,
-            getAllFacetsForMenuItem: getAllFacetsForMenuItem
+            getAllFacetsForMenuItem: getAllFacetsForMenuItem,
+            getResultImageRows: getResultImageRows
         };
 
     }]);

@@ -1,11 +1,10 @@
 /* global angular */
 (function () {
     "use strict";
-    var module = angular.module('search-results', ['hydroid.modal'
 
-    ]);
+    var module = angular.module('search-results', ['hydroid.modal']);
 
-    module .directive('hydroidSearchResults', ['hydroidConfig', function(modalService) {
+    module.directive('hydroidSearchResults', ['hydroidModalService', function(modalService) {
         return {
             restrict: 'E',
             scope: {
@@ -28,10 +27,6 @@
                     location.href = itemUrl;
                 };
 
-                $scope.getDownloadImageUrl = function(urn) {
-                    return hydroidConfig.s3ImagesUrl + urn;
-                };
-
                 $scope.isItemInCart = function(urn) {
                     for(var i = 0; i < $scope.cartList.length; i++) {
                         if (urn == $scope.cartList[i].about) return true;
@@ -48,7 +43,6 @@
                 $scope.popupImage = function(imageTitle, imageUrl, imageContent) {
                     var labels = '';
                     var imageContent = imageContent.slice(imageContent.indexOf('\n') + 1);
-                    // sanitise HTML as this could be source of XSS
                     var labelArrays = imageContent.split(',');
                     for (var i=0; i < labelArrays.length; i++) {
                         labels = labels + labelArrays[i] + ', ';
