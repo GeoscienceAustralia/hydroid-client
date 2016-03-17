@@ -108,8 +108,7 @@ ul.noLeftPadding {
 }
 
 .facet {
-    /*border-bottom: 1px dotted #cacaca;*/
-    margin: 0 15px 0 15px;
+    margin: 0px;
 }
 
 li {
@@ -125,8 +124,7 @@ li {
     color: #006983;
     padding-bottom: 5px;
     border-bottom: 2px solid #006983;
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-bottom: 35px;
 }
 
 .cartBtnStyles > button {
@@ -165,4 +163,39 @@ li {
 .searchRelatedButton a {
     color: white;
     text-decoration: none;
+}
+
+.search-wrapper {
+    width: 100%;
+    background-color: #006983;
+}
+
+.btn {
+    border-radius: 0px;
+}
+
+.panel-hydroid {
+    border-color: #006983;
+}
+
+.panel-hydroid > .panel-heading {
+    color: #fff;
+    background-color: #006983;
+    border-color: #006983;
+}
+
+.panel-hydroid > .panel-heading + .panel-collapse > .panel-body {
+    border-top-color: #006983;
+}
+
+.panel-hydroid > .panel-footer + .panel-collapse > .panel-body {
+    border-bottom-color: #006983;
+}
+
+.break-word {
+    word-wrap: break-word;
+}
+
+table.shopping-cart {
+    table-layout: fixed;
 }

@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="modalOptions.close()"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" ng-show="modalOptions.headerText" ng-bind="modalOptions.headerText"></h4>
+</div>
+<div class="modal-body">
+    <img ng-show="modalOptions.imageSrc" ng-src="{{modalOptions.imageSrc}}" class="img-responsive"/>
+    <p ng-show="modalOptions.bodyText" ng-bind-html="modalOptions.bodyText"></p>
+</div>
+<div class="modal-footer" ng-show="modalOptions.actionButtonText">
+    <button type="button" class="btn btn-primary" ng-click="modalOptions.ok()">{{modalOptions.actionButtonText}}</button>
+    <button type="button" class="btn btn-default" ng-click="modalOptions.close()">{{modalOptions.closeButtonText}}</button>
+</div>

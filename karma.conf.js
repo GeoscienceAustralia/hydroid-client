@@ -15,6 +15,8 @@ module.exports = function (config) {
             'node_modules/angular-route/angular-route.js',
             'node_modules/karma-read-json/karma-read-json.js',
             'node_modules/phantomjs-function-bind-polyfill/index.js',
+            'node_modules/bootstrap/dist/js/bootstrap.min.js',
+            'node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
             'app/components/**/*.js',
             'app/components/**/*.html',
             {pattern: 'app/data/**/*.json', included: false}

@@ -1,27 +1,19 @@
-<head>
-    <style>
-        table {border-collapse:collapse; table-layout:fixed;}
-        table td {word-wrap:break-word;}
-    </style>
-</head>
-<div class="panel panel-primary">
-    <div class="panel-heading" style="background-color: #006983;">
+<div class="panel panel-hydroid">
+    <div class="panel-heading">
         <h2 class="panel-title">Cart Items <span class="glyphicon glyphicon-shopping-cart pull-right"></span></h2>
     </div>
     <div class="panel-body">
-        <table class="table table-condensed">
+        <table class="table table-condensed shopping-cart">
             <thead>
             <tr>
-                <th width="60%">File Name</th>
-                <th width="30%">File Type</th>
-                <th width="10%"></th>
+                <th width="80%">File Name</th>
+                <th width="20%"></th>
             </tr>
             </thead>
             <tr ng-repeat="item in cartList">
-                <td><a href="{{getDownloadUrl(item)}}">{{ item.title }}</a></td>
-                <td>{{ item.docType }}</td>
-                <td>
-                    <button class="btn btn-danger btn-sm" style="border-radius: 0px;" ng-click="removeItemFromCart(item)">
+                <td class="break-word"><a href="{{getDownloadUrl(item)}}">{{ item.title }}</a></td>
+                <td class="text-right">
+                    <button class="btn btn-danger btn-sm" ng-click="removeItemFromCart(item)">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     </button>
                 </td>
@@ -29,12 +21,13 @@
         </table>
     </div>
     <div class="panel-footer">
-        <div class="text-left">
-            <button class="btn btn-success btn-xl" style="border-radius: 0px;" ng-click="downloadCartItems()">Download All <span class="glyphicon glyphicon-download-alt"></span></button>
-            <button class="btn btn-danger btn-xl pull-right" style="border-radius: 0px;" ng-click="clearCartItems()">Remove All <span class="glyphicon glyphicon-trash"></span></button>
-        </div>
-        <div class="text-right cartBtnStyles">
-
+        <div class="row">
+            <div class="col-xs-6 col-md-12 col-lg-6">
+                <button class="btn btn-success btn-xl" ng-click="downloadCartItems()">Download All <span class="glyphicon glyphicon-download-alt"></span></button>
+            </div>
+            <div class="col-xs-6 col-md-12 col-lg-6 text-right">
+                <button class="btn btn-danger btn-xl" ng-click="clearCartItems()">Remove All <span class="glyphicon glyphicon-trash"></span></button>
+            </div>
         </div>
     </div>
 </div>
