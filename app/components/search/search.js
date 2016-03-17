@@ -35,7 +35,7 @@
 
                 $scope.search = function (query) {
                     $http.get($scope.solrUrl + '/' + $scope.solrCollection +
-                            '/select?q=*' + query + '*&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
+                            '/select?q="*' + query + '*"&rows=50&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
                         .then(function (response) {
                                 console.log(response.data);
                                 $timeout(function () {
