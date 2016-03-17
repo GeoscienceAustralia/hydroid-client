@@ -110,6 +110,10 @@ ul.noLeftPadding {
 .facet {
     margin: 0px;
 }
+.facet .badge {
+    color: #006983;
+    background-color: #fff;
+}
 
 li {
     list-style: none;
@@ -135,7 +139,7 @@ li {
 .cartBtnStyles .btn-primary:hover {
     background-color: #A33F1F;
     border-color: #A33F1F;
-    color:white;
+    color: #fff;
 }
 @media only screen and (max-width: 1090px) {
     .cartBtnStyles > button {
@@ -150,7 +154,7 @@ li {
     background: #006983;
     padding: 10px 40px;
     border-radius: 0px;
-    color: white;
+    color: #fff;
 }
 .searchRelatedButton:hover {
     background: #A33F1F;
@@ -161,7 +165,7 @@ li {
     background: #A33F1F;
 }
 .searchRelatedButton a {
-    color: white;
+    color: #fff;
     text-decoration: none;
 }
 
