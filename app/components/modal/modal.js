@@ -19,47 +19,46 @@
             imageSrc: null
         };
 
-        var modalOptions = {};
-
         var service = {};
-
-        service.modalOptions = function() {
-            return modalOptions;
-        };
 
         service.confirm = function(headerText, bodyText) {
 
-            this.modalOptions = {};
-            angular.extend(this.modalOptions, modalOptionsDefault);
+            var modalOptions = {};
+            angular.extend(modalOptions, modalOptionsDefault);
 
             if (headerText != null) {
-                this.modalOptions.headerText = headerText;
+                modalOptions.headerText = headerText;
             }
 
             if (bodyText != null) {
-                this.modalOptions.bodyText = $sce.trustAsHtml(bodyText);
+                modalOptions.bodyText = $sce.trustAsHtml(bodyText);
             }
 
             modalDefaults.controller = 'hydroidModalConfirmCtrl';
+            modalDefaults.resolve = { modalOptions: modalOptions };
+
             return $uibModal.open(modalDefaults).result;
         };
 
         service.show = function(headerText, bodyText, imageSrc) {
-            this.modalOptions = {};
+
+            var modalOptions = {};
 
             if (headerText != null) {
-                this.modalOptions.headerText = headerText;
+                modalOptions.headerText = headerText;
             }
 
             if (bodyText != null) {
-                this.modalOptions.bodyText = $sce.trustAsHtml(bodyText);
+                modalOptions.bodyText = $sce.trustAsHtml(bodyText);
             }
 
             if (imageSrc != null) {
-                this.modalOptions.imageSrc = imageSrc;
+                modalOptions.imageSrc = imageSrc;
             }
 
             modalDefaults.controller = 'hydroidModalShowCtrl';
+            modalDefaults.resolve = { modalOptions: modalOptions };
+
             $uibModal.open(modalDefaults);
         };
 
@@ -67,11 +66,11 @@
 
     }]);
 
-    module.controller('hydroidModalConfirmCtrl', ['$scope', '$uibModalInstance', 'hydroidModalService',
-        function($scope, $uibModalInstance, hydroidModalService) {
+    module.controller('hydroidModalConfirmCtrl', ['$scope', '$uibModalInstance', 'modalOptions',
+        function($scope, $uibModalInstance, modalOptions) {
 
             $scope.modalOptions = {};
-            angular.extend($scope.modalOptions, hydroidModalService.modalOptions);
+            angular.extend($scope.modalOptions, modalOptions);
 
             $scope.modalOptions.ok = function() {
                 $uibModalInstance.close('ok');
@@ -83,11 +82,11 @@
         }
     ]);
 
-    module.controller('hydroidModalShowCtrl', ['$scope', '$uibModalInstance', 'hydroidModalService',
-        function($scope, $uibModalInstance, hydroidModalService) {
+    module.controller('hydroidModalShowCtrl', ['$scope', '$uibModalInstance', 'modalOptions',
+        function($scope, $uibModalInstance, modalOptions) {
 
             $scope.modalOptions = {};
-            angular.extend($scope.modalOptions, hydroidModalService.modalOptions);
+            angular.extend($scope.modalOptions, modalOptions);
 
             $scope.modalOptions.close = function () {
                 $uibModalInstance.dismiss('cancel');
