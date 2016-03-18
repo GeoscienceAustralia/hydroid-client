@@ -39,7 +39,11 @@
                         .then(function (response) {
                                 console.log(response.data);
                                 $timeout(function () {
-                                    $scope.results = {docs: response.data.response.docs, facets: response.data.facet_counts};
+                                    $scope.results = {
+                                        docs: response.data.response.docs,
+                                        facets: response.data.facet_counts,
+                                        imageRows: SearchServices.getResultImageRows(response.data.response.docs)
+                                    };
                                     var facetStats = SearchServices.getFacetStats($scope.results.facets);
                                     SearchServices.resetMenuCounters($scope.menuItems);
                                     SearchServices.setMenuCounters(facetStats, $scope.menuItems);

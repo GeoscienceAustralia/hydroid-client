@@ -56,7 +56,11 @@
                             .then(function (response) {
                             console.log(response.data);
                             $timeout(function () {
-                                $scope.results = {docs: response.data.response.docs, facets: response.data.facet_counts};
+                                $scope.results = {
+                                    docs: response.data.response.docs,
+                                    facets: response.data.facet_counts,
+                                    imageRows: SearchServices.getResultImageRows(response.data.response.docs)
+                                };
                                 var facetStats = SearchServices.getFacetStats($scope.results.facets);
                                 var menuItem = SearchServices.findMenuItemByLabel(queryFacet,$scope.menuItems);
                                 var facetArray = SearchServices.getAllFacetsForMenuItem(menuItem);
