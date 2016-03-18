@@ -1,19 +1,31 @@
 <div class="search-wrapper">
-    <hydroid-search solr-url="/solr" solr-collection="hydroid" results="searchResults" menu-items="menuItems"></hydroid-search>
+    <hydroid-search on-query="onQueryFunction(query)" on-reset="onResetFunction()"></hydroid-search>
 </div>
 <div class="row">
-    <div class="col-sm-3" ng-show="hasSearchRelated()">
-        <hydroid-search-related solr-url="/solr" solr-collection="hydroid" results="searchResults"
+    <div class="col-sm-3">
+        <hydroid-search-related solr-url="/solr" solr-collection="hydroid"
                                 menu-items="menuItems" menu-url="/data/menu.json"></hydroid-search-related>
         <div class="hidden-xs hidden-sm" ng-show="hasCartItems()">
             <br/>
             <shopping-cart cart-list="cartItems"></shopping-cart>
         </div>
     </div>
-    <div ng-class="{'col-sm-9': hasSearchRelated(), 'col-sm-12': !hasSearchResults()}">
+    <div class="col-sm-9">
         <div ng-show="hasSearchResults()">
             <h4 class="searchResults">Search Results</h4>
-            <hydroid-search-results results="searchResults" cart-list="cartItems"></hydroid-search-results>
+            <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query"
+                                    doc-type="DOCUMENT" section-title="Reports and articles"
+                                    on-results="onResultsFunction(results)"></hydroid-search-results>
+            <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query"
+                                    doc-type="DATASET" section-title="Data sets"
+                                    on-results="onResultsFunction(results)"></hydroid-search-results>
+            <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query"
+                                    doc-type="MODEL" section-title="Models"
+                                    on-results="onResultsFunction(results)"></hydroid-search-results>
+            <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query"
+                                    doc-type="IMAGE" section-title="Reports and articles"
+                                    template-path="components/search/search-results-images.html"
+                                    on-results="onResultsFunction(results)"></hydroid-search-results>
         </div>
     </div>
 </div>

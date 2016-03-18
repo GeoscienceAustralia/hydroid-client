@@ -1,15 +1,12 @@
 /* global angular */
 (function () {
     "use strict";
-    var module = angular.module('search-related', ['search-services'
-
-    ]);
+    var module = angular.module('search-related', ['search-services']);
 
     module .directive('hydroidSearchRelated', ['$http', '$timeout', 'SearchServices','$location', function ($http, $timeout, SearchServices,$location) {
         return {
             restrict: 'E',
             scope: {
-                results: '=',
                 menuItems:'=',
                 solrUrl: '@',
                 solrCollection: '@',
@@ -110,4 +107,5 @@
             }]
         };
     }]);
+
 })();

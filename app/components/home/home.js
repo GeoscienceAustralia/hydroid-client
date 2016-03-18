@@ -1,31 +1,52 @@
 (function () {
     "use strict";
 
-    var module = angular.module('home', ['search-services'
+    var module = angular.module('home', ['search-services']);
 
-    ]);
-
-    module.directive('hydroidHome', ['SearchServices', function(SearchServices) {
+    module.directive('hydroidHome', function() {
         return {
             restrict: 'E',
-            scope: { },
+            scope: {},
             templateUrl: 'components/home/home.html',
             controller: ['$scope', function($scope) {
-                $scope.searchResults = []; // Initialise empty results
+
+                var documents = [];
+                var facets = [];
+
+                $scope.query = '';
                 $scope.menuItems = [];
                 $scope.cartItems = [];
 
+                $scope.onQueryFunction = function(query) {
+                    documents = [];
+                    $scope.query = query;
+                };
+
+                $scope.onResetFunction = function() {
+                    var a = 1;
+                };
+
+                $scope.onResultsFunction = function(results) {
+                    if (results.docs.length > 0) {
+                        documents.push(results.docs);
+                    }
+                };
+
+                /*
                 $scope.$watch('searchResults', function () {
                     console.log($scope.searchResults);
                 })
+                */
 
                 $scope.hasSearchResults = function() {
-                    return $scope.searchResults && $scope.searchResults.docs && $scope.searchResults.docs.length > 0;
+                    return documents.length > 0;
                 }
 
+                /*
                 $scope.hasSearchRelated = function() {
                     return $scope.menuItems && $scope.menuItems.length > 0;
                 }
+                */
 
                 $scope.hasCartItems = function() {
                     return $scope.cartItems.length > 0;
@@ -33,5 +54,6 @@
 
             }]
         };
-    }]);
+    });
+
 })();

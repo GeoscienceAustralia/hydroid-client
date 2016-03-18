@@ -8,15 +8,14 @@
         return {
             restrict: 'E',
             scope: {
-                results: '=',
-                menuItems: '=',
-                solrUrl: '@',
-                solrCollection: '@'
+                onQuery: '&',
+                onReset: '&'
             },
             templateUrl: 'components/search/search.html',
             controller: ['$scope', function ($scope) {
 
                 $scope.query = '';
+
                 var searchTimeout;
                 $scope.$watch('query', function (newVal, oldVal) {
                     if (newVal) {
@@ -25,14 +24,19 @@
                                 $timeout.cancel(searchTimeout);
                             }
                             searchTimeout = $timeout(function () {
-                                $scope.search(newVal);
+                                if ($scope.onQuery) {
+                                    $scope.onQuery({query: $scope.query});
+                                }
                             },200)
                         }
                     } else if (oldVal) {
-                        $scope.resetSearch();
+                        if ($scope.onReset) {
+                            $scope.onReset();
+                        }
                     }
                 });
 
+                /*
                 $scope.search = function (query) {
                     $http.get($scope.solrUrl + '/' + $scope.solrCollection +
                             '/select?q="*' + query + '*"&rows=50&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
@@ -54,14 +58,20 @@
                                 console.log('error in api request');
                             });
                 };
+                */
 
                 $scope.resetSearch = function() {
+                    /*
                     if ($scope.query) {
                         $scope.query = null;
                     }
                     $location.search('facet',null);
                     $scope.results = [];
                     SearchServices.resetMenuCounters($scope.menuItems);
+                    */
+                    if ($scope.onReset()) {
+                        $scope.onReset();
+                    }
                 };
 
             }],
