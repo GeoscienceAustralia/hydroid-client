@@ -6,10 +6,12 @@
     module.directive('hydroidHeader', [function() {
         return {
             restrict: 'E',
-            scope: { },
+            scope: {
+                appLogo: '@',
+                appTitle: '@'
+            },
             templateUrl: 'components/header/header.html',
             controller: ['$scope', function($scope) {
-
 
             }]
         }
