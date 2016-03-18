@@ -1,30 +1,31 @@
-<div class="navbar navbar-default navbar-fixed-top ga-header ng-scope" role="navigation" style="background-color: black;">
+<div class="navbar navbar-default navbar-fixed-top ga-header ng-scope" role="navigation">
     <div class="container">
         <div class="navbar-header">
-
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".ga-header-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-
-            <a href="http://www.ga.gov.au" class="hidden-xs"><img src="img/ga_logo.png" alt="Australian Government - Geoscience Australia" class="logo" title="Australian Government - Geoscience Australia"> </a>
-            <a href="http://www.ga.gov.au" class="visible-xs logo-container-small"><img src="img/ga_logo.png" alt="Australian Government - Geoscience Australia" class="logo-stacked" title="Australian Government - Geoscience Australia"> </a>
-
-            <h1 class="appTitle visible-xs ng-binding" style="color: white;">Hydroid</h1>
+            <a href="http://www.ga.gov.au" class="hidden-xs"><img src="{{appLogo}}" alt="Australian Government - Geoscience Australia" class="logo" title="Australian Government - Geoscience Australia"> </a>
+            <a href="http://www.ga.gov.au" class="visible-xs logo-container-small"><img src="{{appLogo}}" alt="Australian Government - Geoscience Australia" class="logo-stacked" title="Australian Government - Geoscience Australia"> </a>
+            <h1 class="appTitle visible-xs ng-binding">{{appTitle}}</h1>
         </div>
         <div class="navbar-collapse collapse ga-header-collapse">
-            <ul class="nav navbar-nav">
+            <div class="drilldown-container">
                 <li class="hidden-xs">
-                    <h1 class="applicationTitle ng-binding" style="color: white;">Hydroid</h1>
+                    <h1 class="applicationTitle ng-binding">{{appTitle}}</h1>
                 </li>
-                <!-- ngIf: isMap -->
-            </ul>
+                <ul class="nav nav-pills drilldown-root">
+                    <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Research</a></li>
+                    <li><a href="#">People</a></li>
+                    <li><a href="#">Publications</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Images and Maps</a></li>
+                </ul>
+            </div>
         </div>
-        <nav class="navbar navbar-dark bg-inverse" style="background-color: black;">
-            <!-- Navbar content -->
-        </nav>
-        <!--/.nav-collapse -->
     </div>
 </div>

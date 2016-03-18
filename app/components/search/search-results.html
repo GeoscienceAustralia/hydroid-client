@@ -1,7 +1,11 @@
 <div>
     <div ng-repeat="result in results.docs | filter: { docType: 'DOCUMENT' }">
-        <h4 ng-show="$first">Reports and articles</h4>
-        <div class="row">
+        <h4 ng-show="$first">
+            <span ng-class="{'glyphicon glyphicon-collapse-down': visibleResults.document, 'glyphicon glyphicon-expand': !visibleResults.document}"
+                  ng-click="toggleVisibleResults(result.docType)"></span>
+            Reports and articles
+        </h4>
+        <div class="row" ng-show="visibleResults.document">
             <div class="col-sm-9">
                 <p>
                     <b ng-show="result.title">{{ result.title }}: </b>
@@ -21,11 +25,15 @@
                 </button>
             </div>
         </div>
-        <hr/>
+        <hr ng-show="visibleResults.document || $last"/>
     </div>
     <div ng-repeat="result in results.docs | filter: { docType: 'DATASET' }">
-        <h4 ng-show="$first">Data sets</h4>
-        <div class="row">
+        <h4 ng-show="$first">
+            <span ng-class="{'glyphicon glyphicon-collapse-down': visibleResults.dataset, 'glyphicon glyphicon-expand': !visibleResults.dataset}"
+                  ng-click="toggleVisibleResults(result.docType)"></span>
+            Data sets
+        </h4>
+        <div class="row" ng-show="visibleResults.dataset">
             <div class="col-sm-9">
                 <p>
                     <b ng-show="result.title">{{ result.title }}: </b>
@@ -45,11 +53,15 @@
                 </button>
             </div>
         </div>
-        <hr/>
+        <hr ng-show="visibleResults.dataset || $last"/>
     </div>
     <div ng-repeat="result in results.docs | filter: { docType: 'MODEL' }">
-        <h4 ng-show="$first">Models</h4>
-        <div class="row">
+        <h4 ng-show="$first">
+            <span ng-class="{'glyphicon glyphicon-collapse-down': visibleResults.model, 'glyphicon glyphicon-expand': !visibleResults.model}"
+                  ng-click="toggleVisibleResults(result.docType)"></span>
+            Models
+        </h4>
+        <div class="row" ng-show="visibleResults.model">
             <div class="col-sm-9">
                 <p>
                     <b ng-show="result.title">{{ result.title }}: </b>
@@ -69,15 +81,22 @@
                 </button>
             </div>
         </div>
-        <hr/>
+        <hr ng-show="visibleResults.model || $last"/>
     </div>
-    <div ng-show="(results.docs | filter: { docType: 'IMAGE' }).length > 0">
-        <h4>Images</h4>
-        <div class="row">
-            <div class="col-xs-6 col-sm-4 col-lg-2 cartBtnStyles" ng-repeat="result in results.docs | filter: { docType: 'IMAGE' }">
-                <img ng-src="{{result.docUrl}}" ng-click="popupImage(result.title, result.docUrl, result.content)"
-                     alt="{{ result.title }}" class="img-thumbnail img-responsive"/>
+    <div ng-show="results.imageRows">
+        <h4>
+            <span ng-class="{'glyphicon glyphicon-collapse-down': visibleResults.image, 'glyphicon glyphicon-expand': !visibleResults.image}"
+                  ng-click="toggleVisibleResults('IMAGE')"></span>
+            Images
+        </h4>
+        <div ng-show="visibleResults.image">
+            <div class="row" ng-repeat="row in results.imageRows" ng-show="visibleResults.image">
+                <div class="col-xs-6 col-sm-4 col-lg-2" ng-repeat="result in row">
+                    <img ng-src="{{result.docUrl}}" alt="{{result.title}}" class="img-thumbnail img-responsive"
+                         ng-click="popupImage(result.title, result.docUrl, result.content)">
+                </div>
             </div>
         </div>
     </div>
+    <br/>
 </div>
