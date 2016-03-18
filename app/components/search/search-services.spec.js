@@ -76,4 +76,12 @@ describe('hydroid search services tests', function () {
         expect(menuData[4].count).toBe(0);
     });
 
+    it('should transform the image documents to a matrix of 1 row and 6 cols', function () {
+        var dummyDocs = readJSON('app/data/solr-results-docs.json');
+        var rows = SearchServices.getResultImageRows(dummyDocs);
+        expect(rows).not.toBe(null);
+        expect(rows.length).toBe(1);
+        expect(rows[0].length).toBe(6);
+    });
+
 });
