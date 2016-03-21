@@ -2,9 +2,9 @@
 (function () {
     "use strict";
 
-    var module = angular.module('search', ['search-services']);
+    var module = angular.module('search', []);
 
-    module.directive('hydroidSearch', ['$http', '$timeout', 'SearchServices','$location', function ($http, $timeout, SearchServices, $location) {
+    module.directive('hydroidSearch', ['$timeout', function ($timeout) {
         return {
             restrict: 'E',
             scope: {
@@ -15,8 +15,8 @@
             controller: ['$scope', function ($scope) {
 
                 $scope.query = '';
-
                 var searchTimeout;
+
                 $scope.$watch('query', function (newVal, oldVal) {
                     if (newVal) {
                         if (newVal != oldVal) {
@@ -36,48 +36,18 @@
                     }
                 });
 
-                /*
-                $scope.search = function (query) {
-                    $http.get($scope.solrUrl + '/' + $scope.solrCollection +
-                            '/select?q="*' + query + '*"&rows=50&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
-                        .then(function (response) {
-                                console.log(response.data);
-                                $timeout(function () {
-                                    $scope.results = {
-                                        docs: response.data.response.docs,
-                                        facets: response.data.facet_counts,
-                                        imageRows: SearchServices.getResultImageRows(response.data.response.docs)
-                                    };
-                                    var facetStats = SearchServices.getFacetStats($scope.results.facets);
-                                    SearchServices.resetMenuCounters($scope.menuItems);
-                                    SearchServices.setMenuCounters(facetStats, $scope.menuItems);
-                                    SearchServices.setMenuTotalCounters($scope.menuItems);
-                                });
-                            },
-                            function (response) {
-                                console.log('error in api request');
-                            });
-                };
-                */
-
                 $scope.resetSearch = function() {
-                    /*
-                    if ($scope.query) {
-                        $scope.query = null;
-                    }
-                    $location.search('facet',null);
-                    $scope.results = [];
-                    SearchServices.resetMenuCounters($scope.menuItems);
-                    */
+                    $scope.query = null;
                     if ($scope.onReset()) {
                         $scope.onReset();
                     }
                 };
 
             }],
-            link: function (scope, element, attrs) {
 
+            link: function (scope, element, attrs) {
             }
         };
     }]);
+
 })();

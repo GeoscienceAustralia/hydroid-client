@@ -1,11 +1,17 @@
-<div ng-show="results.imageRows.length > 0">
+<div ng-show="imageRows.length <= 0">
+    <h4>
+        <span class="glyphicon glyphicon-collapse-down"></span>
+        {{ sectionTitle }}
+    </h4>
+</div>
+<div ng-show="imageRows.length > 0">
     <h4>
         <span ng-class="{'glyphicon glyphicon-collapse-down': showResults, 'glyphicon glyphicon-expand': !showResults}"
               ng-click="toggleShowResults()"></span>
-        Images
+        {{ sectionTitle }}
     </h4>
     <div ng-show="showResults">
-        <div class="row" ng-repeat="row in results.imageRows">
+        <div class="row imageRow" ng-repeat="row in imageRows">
             <div class="col-xs-6 col-sm-4 col-lg-2" ng-repeat="result in row">
                 <img ng-src="{{result.docUrl}}" alt="{{result.title}}" class="img-thumbnail img-responsive"
                      ng-click="popupImage(result.title, result.docUrl, result.content)">
@@ -13,3 +19,9 @@
         </div>
     </div>
 </div>
+<div ng-show="hasNextPage && showResults">
+    <a href="" ng-click="nextPage()">
+        Show more results...
+    </a>
+</div>
+<hr/>

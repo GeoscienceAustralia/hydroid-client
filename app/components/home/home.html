@@ -3,27 +3,27 @@
 </div>
 <div class="row">
     <div class="col-sm-3">
-        <hydroid-search-related solr-url="/solr" solr-collection="hydroid"
-                                menu-items="menuItems" menu-url="/data/menu.json"></hydroid-search-related>
+        <hydroid-search-related menu-url="/data/menu.json" menu-items="menuItems" has-results="hasSearchResults"
+                                on-menu-click="onMenuClickFunction(facet)"></hydroid-search-related>
         <div class="hidden-xs hidden-sm" ng-show="hasCartItems()">
             <br/>
             <shopping-cart cart-list="cartItems"></shopping-cart>
         </div>
     </div>
     <div class="col-sm-9">
-        <div ng-show="hasSearchResults()">
+        <div ng-show="hasSearchResults">
             <h4 class="searchResults">Search Results</h4>
-            <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query"
-                                    doc-type="DOCUMENT" section-title="Reports and articles"
+            <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query" facet="facet"
+                                    doc-type="DOCUMENT" section-title="Reports and articles" menu-items="menuItems" cart-items="cartItems"
                                     on-results="onResultsFunction(results)"></hydroid-search-results>
-            <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query"
-                                    doc-type="DATASET" section-title="Data sets"
+            <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query" facet="facet"
+                                    doc-type="DATASET" section-title="Data sets" menu-items="menuItems" cart-items="cartItems"
                                     on-results="onResultsFunction(results)"></hydroid-search-results>
-            <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query"
-                                    doc-type="MODEL" section-title="Models"
+            <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query" facet="facet"
+                                    doc-type="MODEL" section-title="Models" menu-items="menuItems" cart-items="cartItems"
                                     on-results="onResultsFunction(results)"></hydroid-search-results>
-            <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query"
-                                    doc-type="IMAGE" section-title="Reports and articles"
+            <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query" facet="facet"
+                                    doc-type="IMAGE" section-title="Images" menu-items="menuItems" cart-items="cartItems"
                                     template-path="components/search/search-results-images.html"
                                     on-results="onResultsFunction(results)"></hydroid-search-results>
         </div>

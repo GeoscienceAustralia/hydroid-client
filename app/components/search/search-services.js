@@ -8,8 +8,8 @@
 
         var getFacetStats = function(facets) {
             var facetStats = [];
-            for (var i=0; i < facets.facet_fields.label_s.length; i=i+2) {
-                facetStats.push({ facet: facets.facet_fields.label_s[i], count: facets.facet_fields.label_s[i+1]});
+            for (var i=0; i < facets.length; i=i+2) {
+                facetStats.push({ facet: facets[i], count: facets[i+1]});
             }
             return facetStats;
         };

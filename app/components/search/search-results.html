@@ -1,4 +1,10 @@
-<div ng-repeat="result in results.docs | filter: { docType: docType }">
+<div ng-show="documents.length === 0">
+    <h4>
+        <span class="glyphicon glyphicon-collapse-down"></span>
+        {{ sectionTitle }}
+    </h4>
+</div>
+<div ng-repeat="result in documents">
     <h4 ng-show="$first">
         <span ng-class="{'glyphicon glyphicon-collapse-down': showResults, 'glyphicon glyphicon-expand': !showResults}"
               ng-click="toggleShowResults()"></span>
@@ -15,17 +21,20 @@
             <button class="btn btn-primary btn-sm" ng-click="goToDownloadUrl(result.docUrl)">Download</button>
             <button class="btn btn-primary btn-sm"
                     ng-click="addToCart(result)">
-                <!--
                 <div ng-if="!isItemInCart(result.about)">
                     Add to cart
                 </div>
-
                 <div ng-if="isItemInCart(result.about)">
                     Added <span class="glyphicon glyphicon-ok" ng-show="isItemInCart(result.about)"></span>
                 </div>
-                -->
             </button>
         </div>
     </div>
-    <hr ng-show="showResults || $last"/>
+    <hr ng-show="showResults && !$last"/>
 </div>
+<div ng-show="hasNextPage && showResults">
+    <a href="" ng-click="nextPage()">
+        Show more results...
+    </a>
+</div>
+<hr/>

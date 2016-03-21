@@ -12,22 +12,42 @@
                 solrUrl: '@',
                 solrCollection: '@',
                 query: "=",
+                facet: "=",
                 docType: '@',
                 sectionTitle: '@',
-                onResults: '&'
+                onResults: '&',
+                menuItems: '=',
+                cartItems: '='
             },
             templateUrl: function(elements, attributes) {
                 return attributes.templatePath || 'components/search/search-results.html';
             },
             controller: ['$scope', function($scope) {
 
+                var currentPage = 0;
+                var hasNextPage = false;
+                $scope.documents = [];
+                $scope.imageRows = [];
+
                 $scope.$watch('query', function (newVal, oldVal) {
                     if (newVal) {
                         if (newVal != oldVal) {
-                            $scope.search(newVal);
+                            currentPage = 0;
+                            $scope.documents = [];
+                            $scope.imageRows = [];
+                            $scope.search(newVal, $scope.facet);
                         }
-                    } else if (oldVal) {
-                        //$scope.resetSearch();
+                    }
+                });
+
+                $scope.$watch('facet', function (newVal, oldVal) {
+                    if (newVal) {
+                        if (newVal != oldVal) {
+                            currentPage = 0;
+                            $scope.documents = [];
+                            $scope.imageRows = [];
+                            $scope.search($scope.query, newVal);
+                        }
                     }
                 });
 
@@ -37,32 +57,44 @@
                     $scope.showResults = !$scope.showResults;
                 };
 
-                $scope.search = function (query) {
-                    var totalsRows = ($scope.docType === 'IMAGE' ? 12 : 5);
-                    $http.get($scope.solrUrl + '/' + $scope.solrCollection + '/select?q="*' + query + '*" AND docType:'
-                                + $scope.docType + '&rows=' + totalsRows + '&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
-                        .then(function (response) {
+                $scope.search = function (query, facet) {
+                    var totalsRows = ($scope.docType === 'IMAGE' ? 6 : 5);
+                    var start = (currentPage * 5);
+
+                    var url = $scope.solrUrl + '/' + $scope.solrCollection + '/select?q=docType:' + $scope.docType;
+
+                    if (query) {
+                        url = url + ' AND "*' + query + '*"';
+                    }
+
+                    if (facet) {
+                        url = url + ' AND (' + getChildrenFacets(facet) + ')';
+                    }
+
+                    url = url + '&rows=' + totalsRows + '&start=' + start + '&facet=true&facet.field=label_s&facet.mincount=1&wt=json'
+
+                    $http.get(url).then(function (response) {
                             console.log(response.data);
                             $timeout(function () {
+
                                 // The results that get displayed
-                                $scope.results = { docs: response.data.response.docs };
+                                $scope.documents = $scope.documents.concat(response.data.response.docs);
                                 // The matrix of image rows/cols
                                 if ($scope.docType === 'IMAGE') {
-                                    $scope.results.imageRows = SearchServices.getResultImageRows(response.data.response.docs);
+                                    $scope.imageRows = $scope.imageRows.concat(SearchServices.getResultImageRows(response.data.response.docs));
                                 }
+                                $scope.hasNextPage =  response.data.response.docs.length >= totalsRows;
+
                                 // The push results up to add up
                                 if ($scope.onResults) {
                                     $scope.onResults({
                                         results: {
                                             docs: response.data.response.docs,
-                                            facets: response.data.facet_counts
+                                            facets: response.data.facet_counts,
+                                            currentPage: currentPage
                                         }
                                     });
                                 }
-                                //var facetStats = SearchServices.getFacetStats($scope.results.facets);
-                                //SearchServices.resetMenuCounters($scope.menuItems);
-                                //SearchServices.setMenuCounters(facetStats, $scope.menuItems);
-                                //SearchServices.setMenuTotalCounters($scope.menuItems);
                             });
                         },
                         function (response) {
@@ -75,15 +107,15 @@
                 };
 
                 $scope.isItemInCart = function(urn) {
-                    for(var i = 0; i < $scope.cartList.length; i++) {
-                        if (urn == $scope.cartList[i].about) return true;
+                    for(var i = 0; i < $scope.cartItems.length; i++) {
+                        if (urn == $scope.cartItems[i].about) return true;
                     }
                     return false;
                 };
 
                 $scope.addToCart = function(item) {
                     if (!$scope.isItemInCart(item.about)){
-                        $scope.cartList.push(item);
+                        $scope.cartItems.push(item);
                     }
                 };
 
@@ -99,7 +131,35 @@
                     modalService.show(imageTitle, imageContent, imageUrl);
                 };
 
+                $scope.nextPage = function() {
+                    currentPage ++;
+                    $scope.search($scope.query, $scope.facet);
+                };
+
+                var getAllChildrenFacets = function(menuItem, facets) {
+                    if (facets != '') {
+                        facets = facets + ' OR ';
+                    }
+                    facets = facets + 'label:"' + menuItem.nodeLabel + '"';
+                    if (menuItem.children) {
+                        for (var i=0; i < menuItem.children.length; i++) {
+                            facets = getAllChildrenFacets(menuItem.children[i], facets);
+                        }
+                    }
+                    return facets;
+                };
+
+                var getChildrenFacets = function(facet) {
+                    // find menuItem for this facet
+                    var menuItem = SearchServices.findMenuItemByLabel(facet, $scope.menuItems);
+                    if (menuItem) {
+                        return getAllChildrenFacets(menuItem, '');
+                    }
+                    return 'label:"' + facet + '"';
+                };
+
             }]
         };
     }]);
+
 })();
