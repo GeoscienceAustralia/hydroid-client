@@ -2,7 +2,10 @@
 (function () {
     "use strict";
 
-    var module = angular.module('search-results', ['hydroid.modal']);
+    var module = angular.module('search-results', [
+        'hydroid.modal',
+        'search-services'
+    ]);
 
     module.directive('hydroidSearchResults', ['$http', '$timeout', 'SearchServices', 'hydroidModalService',
         function($http, $timeout, SearchServices, modalService) {
