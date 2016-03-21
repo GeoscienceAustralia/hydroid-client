@@ -1,15 +1,15 @@
-<div ng-if="results.docs.length > 0">
+<div ng-if="hasResults">
     <ul class="noLeftPadding">
-        <li ng-repeat="menuItem in menuItems" ng-include="'menuTemplate'" ng-if="!results.docs || results.docs.length == 0 || menuItem.count > 0"></li>
+        <li ng-repeat="menuItem in menuItems" ng-include="'menuTemplate'" ng-if="!hasResults || menuItem.count > 0"></li>
     </ul>
 </div>
-<div ng-if="results.docs.length == 0 || !results.docs">
+<div ng-if="!hasResults">
     <ul class="noLeftPadding">
         <li ng-repeat="menuItem in menuItems" ng-include="'menuTemplateInit'"></li>
     </ul>
 </div>
 <script type="text/ng-template" id="menuTemplate">
-    <div class="row facet" ng-if="!results.docs || results.docs.length == 0 || menuItem.count > 0" ng-class="{searchRelatedButton: menuItem.nodeType == null}">
+    <div class="row facet" ng-if="!hasResults || menuItem.count > 0" ng-class="{searchRelatedButton: menuItem.nodeType == null}">
         <a href="#/?facet={{menuItem.nodeLabel.split(' ').join('_')}}" class="col-xs-9">
             <h5>{{ menuItem.nodeLabel }}&nbsp;</h5>
         </a>
@@ -18,7 +18,7 @@
         </div>
     </div>
     <ul ng-if="menuItem.children">
-        <li ng-repeat="menuItem in menuItem.children" ng-include="'menuTemplate'" ng-if="!results.docs || results.docs.length == 0 || menuItem.count > 0" style="background-color: white">
+        <li ng-repeat="menuItem in menuItem.children" ng-include="'menuTemplate'" ng-if="!hasResults || menuItem.count > 0" style="background-color: white">
         </li>
     </ul>
 </script>
