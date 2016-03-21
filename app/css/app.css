@@ -199,3 +199,7 @@ li {
 table.shopping-cart {
     table-layout: fixed;
 }
+
+.imageRow {
+    margin-bottom: 15px;
+}

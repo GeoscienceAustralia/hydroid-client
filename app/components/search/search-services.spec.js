@@ -25,16 +25,12 @@ describe('hydroid search services tests', function () {
     });
 
     it('should be able to collect facet stats', function () {
-        var dummyFacetResponse = {
-            facet_fields: {
-                label_s: [
-                    'Marine',
-                    5,
-                    'Coral',
-                    12
-                ]
-            }
-        };
+        var dummyFacetResponse = [
+            'Marine',
+            5,
+            'Coral',
+            12
+        ];
         var facetStats = SearchServices.getFacetStats(dummyFacetResponse);
         expect(facetStats).not.toBe(null);
         expect(facetStats[0].count).toBe(5);
@@ -53,16 +49,12 @@ describe('hydroid search services tests', function () {
         var menuData = readJSON('app/data/menu.json');
         expect(menuData).not.toBe(null);
         expect(menuData.length).toBeGreaterThan(0);
-        var dummyFacetResponse = {
-            facet_fields: {
-                label_s: [
-                    'sponges',
-                    5,
-                    'macroalgae',
-                    12
-                ]
-            }
-        };
+        var dummyFacetResponse = [
+            'sponges',
+            5,
+            'macroalgae',
+            12
+        ];
         var facetStats = SearchServices.getFacetStats(dummyFacetResponse);
         SearchServices.setMenuCounters(facetStats,menuData);
         var menuItem = SearchServices.findMenuItemByLabel('sponges',menuData);
