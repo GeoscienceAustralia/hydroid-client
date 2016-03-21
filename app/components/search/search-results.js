@@ -62,7 +62,7 @@
 
                 $scope.search = function (query, facet) {
                     var totalsRows = ($scope.docType === 'IMAGE' ? 6 : 5);
-                    var start = (currentPage * 5);
+                    var start = (currentPage * totalsRows);
 
                     var url = $scope.solrUrl + '/' + $scope.solrCollection + '/select?q=docType:' + $scope.docType;
 
@@ -84,9 +84,9 @@
                                 $scope.documents = $scope.documents.concat(response.data.response.docs);
                                 // The matrix of image rows/cols
                                 if ($scope.docType === 'IMAGE') {
-                                    $scope.imageRows = $scope.imageRows.concat(SearchServices.getResultImageRows(response.data.response.docs));
+                                    $scope.imageRows = $scope.imageRows.concat(SearchServices.getResultImageRows(response.data.response.docs, totalsRows));
                                 }
-                                $scope.hasNextPage =  response.data.response.docs.length >= totalsRows;
+                                $scope.hasNextPage =  response.data.response.numFound > (totalsRows * (currentPage + 1));
 
                                 // The push results up to add up
                                 if ($scope.onResults) {
