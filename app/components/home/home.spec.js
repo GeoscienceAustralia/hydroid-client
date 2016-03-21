@@ -32,13 +32,13 @@ describe('Hydroid home components tests', function () {
         $rootScope = _$rootScope_;
         $timeout = _$timeout_;
         $httpBackend.when('GET','/solr/hydroid/select?q=docType:DOCUMENT AND "*sharks*"&rows=5&start=0&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
-            .respond(JSON.stringify({ response: { docs: [ {}]}}));
+            .respond(JSON.stringify({ "responseHeader":{"status":0,"QTime":1,"params":{"facet":"true","facet.mincount":"1","json":"","start":"0","q":"docType:IMAGE AND \"*thiswontbthe*\"","facet.field":"label_s","wt":"json","rows":"6"}},"response":{"numFound":0,"start":0,"docs":[]},"facet_counts":{"facet_queries":{},"facet_fields":{"label_s":[]},"facet_dates":{},"facet_ranges":{},"facet_intervals":{},"facet_heatmaps":{}} }));
         $httpBackend.when('GET','/solr/hydroid/select?q=docType:DATASET AND "*sharks*"&rows=5&start=0&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
-            .respond(JSON.stringify({ response: { docs: [ {}]}}));
+            .respond(JSON.stringify({ "responseHeader":{"status":0,"QTime":1,"params":{"facet":"true","facet.mincount":"1","json":"","start":"0","q":"docType:IMAGE AND \"*thiswontbthe*\"","facet.field":"label_s","wt":"json","rows":"6"}},"response":{"numFound":0,"start":0,"docs":[]},"facet_counts":{"facet_queries":{},"facet_fields":{"label_s":[]},"facet_dates":{},"facet_ranges":{},"facet_intervals":{},"facet_heatmaps":{}} }));
         $httpBackend.when('GET','/solr/hydroid/select?q=docType:MODEL AND "*sharks*"&rows=5&start=0&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
-            .respond(JSON.stringify({ response: { docs: [ {}]}}));
+            .respond(JSON.stringify({ "responseHeader":{"status":0,"QTime":1,"params":{"facet":"true","facet.mincount":"1","json":"","start":"0","q":"docType:IMAGE AND \"*thiswontbthe*\"","facet.field":"label_s","wt":"json","rows":"6"}},"response":{"numFound":0,"start":0,"docs":[]},"facet_counts":{"facet_queries":{},"facet_fields":{"label_s":[]},"facet_dates":{},"facet_ranges":{},"facet_intervals":{},"facet_heatmaps":{}} }));
         $httpBackend.when('GET','/solr/hydroid/select?q=docType:IMAGE AND "*sharks*"&rows=6&start=0&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
-            .respond(JSON.stringify({ response: { docs: [ {}]}}));
+            .respond(JSON.stringify({ "responseHeader":{"status":0,"QTime":1,"params":{"facet":"true","facet.mincount":"1","json":"","start":"0","q":"docType:IMAGE AND \"*thiswontbthe*\"","facet.field":"label_s","wt":"json","rows":"6"}},"response":{"numFound":0,"start":0,"docs":[]},"facet_counts":{"facet_queries":{},"facet_fields":{"label_s":[]},"facet_dates":{},"facet_ranges":{},"facet_intervals":{},"facet_heatmaps":{}} }));
     }));
 
     it('Should have isolated scope', function () {

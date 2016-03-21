@@ -4,7 +4,7 @@
 
     var module = angular.module('search', []);
 
-    module.directive('hydroidSearch', ['$timeout', function ($timeout) {
+    module.directive('hydroidSearch', ['$timeout', '$location', function ($timeout, $location) {
         return {
             restrict: 'E',
             scope: {
@@ -38,7 +38,8 @@
 
                 $scope.resetSearch = function() {
                     $scope.query = null;
-                    if ($scope.onReset()) {
+                    $location.search('facet', null);
+                    if ($scope.onReset) {
                         $scope.onReset();
                     }
                 };

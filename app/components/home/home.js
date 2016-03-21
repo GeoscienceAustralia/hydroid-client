@@ -47,6 +47,8 @@
 
                 $scope.onResetFunction = function() {
                     resultsCounter = 0;
+                    $scope.query = null;
+                    $scope.facet = null;
                     $scope.facetStats = [];
                     $scope.hasSearchResults = false;
                     SearchServices.resetMenuCounters($scope.menuItems);
