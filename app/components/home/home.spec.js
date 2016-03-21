@@ -58,5 +58,7 @@ describe('Hydroid home components tests', function () {
         directiveScope.$digest();
         $rootScope.$digest();
         $httpBackend.flush();
+        directiveScope.$digest();
+        $timeout.flush();
     });
 });
