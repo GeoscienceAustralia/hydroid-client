@@ -14,7 +14,7 @@
             <h5>{{ menuItem.nodeLabel }}&nbsp;</h5>
         </a>
         <div class="col-xs-3 text-right">
-            <span class="badge" style="background-color: white; color: #006983;" ng-if="menuItem.count">{{ menuItem.count }}</span>
+            <span class="badge" ng-if="menuItem.count">{{ menuItem.count }}</span>
         </div>
     </div>
     <ul ng-if="menuItem.children">
@@ -23,8 +23,8 @@
     </ul>
 </script>
 <script type="text/ng-template" id="menuTemplateInit">
-    <div class="row facet">
-        <a href="#/?facet={{menuItem.nodeLabel.split(' ').join('_')}}" class="col-xs-12 searchRelatedButton">
+    <div class="row facet searchRelatedButton">
+        <a href="#/?facet={{menuItem.nodeLabel.split(' ').join('_')}}" class="col-xs-12">
             <h5>{{ menuItem.nodeLabel }}&nbsp; <span class="glyphicon glyphicon-menu-right pull-right"></span></h5>
         </a>
     </div>
