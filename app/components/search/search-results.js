@@ -26,7 +26,7 @@
                 return attributes.templatePath || 'components/search/search-results.html';
             },
             controller: ['$scope', function($scope) {
-
+                $scope.isLoading = false;
                 var currentPage = 0;
                 var hasNextPage = false;
                 $scope.documents = [];
@@ -61,6 +61,7 @@
                 };
 
                 $scope.search = function (query, facet) {
+                    $scope.isLoading = true;
                     var totalsRows = ($scope.docType === 'IMAGE' ? 6 : 5);
                     var start = (currentPage * totalsRows);
 
@@ -78,6 +79,7 @@
 
                     $http.get(url).then(function (response) {
                             console.log(response.data);
+                            $scope.isLoading = false;
                             $timeout(function () {
 
                                 // The results that get displayed

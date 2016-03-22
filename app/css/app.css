@@ -200,6 +200,39 @@ li {
     word-wrap: break-word;
 }
 
+.fade-in-out {
+    transition: 1s linear all;
+    opacity: 1;
+}
+
+@keyframes fadeInAnimation {
+    0%   { opacity:0; }
+    100% { opacity:1; }
+}
+@-o-keyframes fadeInAnimation{
+    0%   { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes fadeInAnimation{
+    0%   { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes fadeInAnimation{
+    0%   { opacity:0; }
+    100% { opacity:1; }
+}
+
+.animate-fade-in {
+    -webkit-animation: fadeInAnimation 0.5s;
+    -moz-animation: fadeInAnimation 0.5s;
+    -o-animation: fadeInAnimation 0.5s;
+    animation: fadeInAnimation 0.5s;
+}
+
+.fade-in-out.ng-hide {
+    opacity: 0;
+}
+
 table.shopping-cart {
     table-layout: fixed;
 }
