@@ -1,5 +1,5 @@
 body {
-    padding-top: 104px;
+    padding-top: 90px;
     background-color: white;
 }
 .navbar.navbar-inverse {
@@ -11,9 +11,7 @@ body {
 }
 .navbar, .navbar.navbar-default {
     background-color: white;
-}
-.strap-container {
-    margin-top: 30px;
+    height: 95px;
 }
 /* Search box and button - START */
 .searchBoxFullContainer {
@@ -121,7 +119,7 @@ li {
 }
 
 .mainView {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .searchResults {
