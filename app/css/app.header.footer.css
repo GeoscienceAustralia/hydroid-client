@@ -334,6 +334,10 @@ img.logo-stacked {
 /*End responsive footer*/
 
 /* Bootstrap override collapse Header */
+.ga-header {
+    background-color: #EBEBEB !important;
+}
+
 @media ( max-width : 1200px) {
 	.navbar {
 		z-index: 1100;
