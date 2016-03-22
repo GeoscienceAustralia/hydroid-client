@@ -13,7 +13,7 @@
                 onMenuClick: '&'
             },
             templateUrl: 'components/search/search-related.html',
-            controller: ['$scope', function($scope) {
+            controller: ['$scope', '$log', function($scope, $log) {
 
                 $scope.buildMenu = function () {
                     return $http.get($scope.menuUrl)
@@ -23,7 +23,7 @@
                             });
                         },
                         function (response) {
-                            console.log('error in menu api request');
+                            $log.error('Error calling Menu API, Code: ' + response.status);
                         });
                 };
 
