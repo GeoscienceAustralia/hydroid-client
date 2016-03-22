@@ -14,7 +14,7 @@
         <div class="row imageRow" ng-repeat="row in imageRows">
             <div class="col-xs-6 col-sm-4 col-lg-2" ng-repeat="result in row">
                 <div class="img-thumbnail">
-                    <img ng-src="{{result.docUrl}}" alt="{{result.title}}"
+                    <img ng-src="{{result.imgThumb}}" alt="{{result.title}}"
                          ng-click="popupImage(result.title, result.docUrl, result.content)" class="img-responsive"/>
 
                         <div ng-if="!isItemInCart(result.about)">
