@@ -9,7 +9,8 @@
         'search-related',
         'enhancer',
         'cart',
-        'header'
+        'header',
+        'hydroid-alerts'
     ]);
 
     mod.config(['$routeProvider', '$locationProvider', '$provide',

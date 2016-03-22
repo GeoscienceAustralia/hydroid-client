@@ -9,7 +9,8 @@ describe('Hydroid home components tests', function () {
     angular.module('mockHomeApp', [
         'ngMock',
         'home',
-        'search-results'
+        'search-results',
+        'hydroid-alerts'
     ]);
 
     // load the templates
@@ -17,7 +18,8 @@ describe('Hydroid home components tests', function () {
         module(
             'components/home/home.html',
             'components/search/search-results.html',
-            'components/search/search-results-images.html'
+            'components/search/search-results-images.html',
+            'components/alerts/alerts.html'
         ));
 
     // Load the myApp module, which contains the directive

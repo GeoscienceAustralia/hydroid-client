@@ -6,18 +6,27 @@
     module.service('hydroidAlertsService', function() {
 
         var alerts = [];
-
         var service = {};
+
+        var addAlert = function(alert) {
+            if (alerts.length === 0) {
+                alerts.push(alert);
+            } else {
+                setTimeout(function() {
+                    alerts[0] = alert;
+                }, 5000);
+            }
+        };
 
         service.showInfo = function(message) {
             console.log('INFO: ', message);
-            alerts.push({msg: message, type: 'success'});
+            addAlert({msg: message, type: 'success'});
 
         };
 
         service.showError = function(message) {
             console.log('ERROR: ', message);
-            alerts.push({msg: message, type: 'danger'});
+            addAlert({msg: message, type: 'danger'});
         };
 
         service.debug = function(message) {
