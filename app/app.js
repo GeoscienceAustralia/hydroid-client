@@ -8,7 +8,8 @@
         'search-results',
         'search-related',
         'enhancer',
-        'cart'
+        'cart',
+        'header'
     ]);
 
     mod.config(['$routeProvider', '$locationProvider',
@@ -16,6 +17,7 @@
             $routeProvider.when('/', {template: '<hydroid-home></hydroid-home>',reloadOnSearch:false});
             $routeProvider.when('/enhancer', {template: '<hydroid-enhancer></hydroid-enhancer>'});
             $routeProvider.when('/cart', {template: '<shopping-cart></shopping-cart>'});
+            $routeProvider.when('/header', {template: '<hydroid-header></hydroid-header>'});
             $routeProvider.otherwise({redirectTo: '/'});
             $locationProvider.html5Mode(false);
         }]);
