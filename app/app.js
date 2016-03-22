@@ -8,7 +8,8 @@
         'search-results',
         'search-related',
         'enhancer',
-        'cart'
+        'cart',
+        'header'
     ]);
 
     mod.config(['$routeProvider', '$locationProvider', '$provide',

@@ -103,7 +103,7 @@ a {
 }
 
 img.logo {
-	width: 180px;
+	width: 200px;
 }
 
 img.logo-stacked {
@@ -183,7 +183,6 @@ img.logo-stacked {
 	position: absolute;
 	top: 0;
 	margin-left: 120px;
-	color:black;
 }
 
 .appTitle h1 {
