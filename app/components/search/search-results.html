@@ -21,12 +21,8 @@
             <button class="btn btn-primary btn-sm" ng-click="goToDownloadUrl(result.docUrl)">Download</button>
             <button class="btn btn-primary btn-sm"
                     ng-click="addToCart(result)">
-                <div ng-if="!isItemInCart(result.about)">
-                    Add to cart
-                </div>
-                <div ng-if="isItemInCart(result.about)">
-                    Added <span class="glyphicon glyphicon-ok" ng-show="isItemInCart(result.about)"></span>
-                </div>
+                <div ng-if="!isItemInCart(result.about)">Add to cart</div>
+                <div ng-if="isItemInCart(result.about)">Added <span class="glyphicon glyphicon-ok" ng-show="isItemInCart(result.about)"></span></div>
             </button>
         </div>
     </div>
