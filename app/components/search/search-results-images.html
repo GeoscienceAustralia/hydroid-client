@@ -17,10 +17,10 @@
                     <img ng-src="{{result.imgThumb}}" alt="{{result.title}}"
                          ng-click="popupImage(result.title, result.docUrl, result.content)" class="img-responsive"/>
 
-                        <div ng-if="!isItemInCart(result.about)">
+                        <div ng-if="!isItemInCart(result.about)" class="cartBtnStyles">
                             <button ng-click="addToCart(result)" type="button" class="btn btn-primary btn-sm" style="margin-top:5px;width:100%">Add to cart</button>
                         </div>
-                        <div ng-if="isItemInCart(result.about)">
+                        <div ng-if="isItemInCart(result.about)" class="cartBtnStyles">
                             <button ng-click="addToCart(result)" type="button" class="btn btn-primary btn-sm" style="margin-top:5px;width:100%">
                                 Added <span class="glyphicon glyphicon-ok" ng-show="isItemInCart(result.about)"></span>
                             </button>
