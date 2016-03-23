@@ -7,7 +7,7 @@ describe('hydroid modal service tests', function () {
         $httpBackend,
         modalService;
 
-    angular.module('modalMockApp', ['ngMock','hydroid.modal']);
+    angular.module('modalMockApp', ['ngMock','hydroid.modal','components/modal/modal.html']);
 
     // Load the myApp module, which contains the service
     beforeEach(module('modalMockApp'));
@@ -21,8 +21,6 @@ describe('hydroid modal service tests', function () {
         modalService = _hydroidModalService_;
         $timeout = _$timeout_;
         $httpBackend = $injector.get('$httpBackend');
-        $httpBackend.when('GET','components/modal/modal.html')
-            .respond('<div id="headerTextTest" ng-bind="modalOptions.headerText">');
     }));
 
     it('should have confirm and show functions', function () {
@@ -36,16 +34,12 @@ describe('hydroid modal service tests', function () {
     it('should bind header text for confirm modal', function () {
         modalService.confirm('header text test', 'body text test');
         $timeout.flush();
-        $httpBackend.flush();
-        $timeout.flush();
-        expect($('#headerTextTest')[0].innerHTML).toBe('header text test');
+        expect($('.modal-title')[0].innerHTML).toBe('header text test');
     });
 
     it('should bind header text for show modal', function () {
         modalService.show('header text test1', 'body text test');
         $timeout.flush();
-        $httpBackend.flush();
-        $timeout.flush();
-        expect($('#headerTextTest')[0].innerHTML).toBe('header text test1');
+        expect($('.modal-title')[0].innerHTML).toBe('header text test1');
     });
 });
