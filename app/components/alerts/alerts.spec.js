@@ -1,46 +1,50 @@
 /* global describe, beforeEach, it */
 
-describe('Hydroid header components tests', function () {
+describe('Hydroid alerts components tests', function () {
     var $compile,
         $httpBackend,
         $timeout,
-        $rootScope;
+        $rootScope,
+        hydroidAlertsService;
 
-    angular.module('mockHeaderApp', [
+    angular.module('mockAlertsApp', [
         'ngMock',
-        'header'
+        'hydroid-alerts'
     ]);
 
     // load the templates
     beforeEach(
         module(
-            'components/header/header.html'
+            'components/alerts/alerts.html'
         ));
 
     // Load the myApp module, which contains the directive
-    beforeEach(module('mockHeaderApp'));
+    beforeEach(module('mockAlertsApp'));
 
     // Store references to $rootScope and $compile
     // so they are available to all tests in this describe block
-    beforeEach(inject(function(_$compile_, _$httpBackend_, _$timeout_, _$rootScope_){
+    beforeEach(inject(function(_$compile_, _$httpBackend_, _$timeout_, _$rootScope_, _hydroidAlertsService_){
         // The injector unwraps the underscores (_) from around the parameter names when matching
         $compile = _$compile_;
         $httpBackend = _$httpBackend_;
         $timeout = _$timeout_;
         $rootScope = _$rootScope_;
+        hydroidAlertsService = _hydroidAlertsService_;
     }));
 
     it('Should have isolated scope', function () {
-        var element = $compile('<hydroid-header></hydroid-header>')($rootScope);
+        var element = $compile('<hydroid-alerts></hydroid-alerts>')($rootScope);
         $rootScope.$digest();
         var directiveScope = element.isolateScope();
         expect(directiveScope).not.toBe(null);
     });
 
-    it('Should have Hydroid as header title.', function () {
-        var element = $compile('<hydroid-header app-logo="img/geoscience_inline_padded_small.png" app-title="Hydroid"></hydroid-header>')($rootScope);
+    it('should bind header text for confirm modal', function () {
+        hydroidAlertsService.showError('Error Occurred');
+        var element = $compile('<hydroid-alerts></hydroid-alerts>')($rootScope);
         $rootScope.$digest();
         $timeout.flush();
-        expect(element.find('.applicationTitle')[0].innerHTML.trim()).toBe('<h1 class="ng-binding">Hydroid</h1>');
+        expect(element.find('.alert-danger')[0].innerHTML).toContain('Error Occurred');
     });
+
 });

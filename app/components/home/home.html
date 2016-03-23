@@ -1,4 +1,3 @@
-<hydroid-header app-logo="img/geoscience_inline_padded_small.png" app-title="Hydroid"></hydroid-header>
 <div class="search-wrapper">
     <hydroid-search on-query="onQueryFunction(query)" on-reset="onResetFunction()"></hydroid-search>
 </div>
@@ -12,6 +11,7 @@
         </div>
     </div>
     <div class="col-sm-9">
+        <hydroid-alerts></hydroid-alerts>
         <div ng-show="hasSearchResults">
             <h4 class="searchResults">Search Results</h4>
             <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query" facet="facet"

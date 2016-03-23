@@ -77,6 +77,12 @@
 	.heading {
 		margin-left: 15px;
 	}
+    .ga-header .navbar-nav > li {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }
 
 /* Universal */
@@ -97,21 +103,30 @@ a {
 	width: 100%;
 }
 
+.ga-header .navbar-nav > li a {
+    color: #006983;
+    font-weight: 600;
+}
+
+.ga-header .navbar-nav > li a:hover {
+    color: #a33f1f;
+}
+
 #logo {
 	padding-left: 0;
 	margin-left: 0;
 }
 
 img.logo {
-	width: 200px;
+	height: 90px;
 }
 
 img.logo-stacked {
-	width: 106px;
+	width: 150px;
 }
 
-.logo-container-small {
-    width: 106px;
+.logo-container-stacked {
+    width: 150px;
 }
 
 /* Breadcrumbs */
@@ -179,18 +194,26 @@ img.logo-stacked {
 	padding-top: 2px;
 }
 
+.applicationTitle {
+    margin-left: 150px;
+    color: black;
+}
 .appTitle {
-	position: absolute;
-	top: 0;
-	margin-left: 120px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    margin-top: -10px;
+    margin-left: 160px;
+    font-size: medium;
 }
 
-.appTitle h1 {
-	font-size: medium;
-	margin: 0;
-	font-weight: bold;
+.navbar.navbar-inverse {
+    background-color: #72c7e7;
 }
-
+.navbar, .navbar.navbar-default {
+    background-color: white;
+    height: 95px;
+}
 .navbar-default .navbar-nav li button {
     background: none;
     border: none;
@@ -201,10 +224,10 @@ img.logo-stacked {
 }
 
 .navbar-default .navbar-nav li a {
-	margin-top: 20px;
-	padding-top: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
+	margin-top: 0px;
+	padding-top: 0px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 .navbar-default {
@@ -240,7 +263,8 @@ img.logo-stacked {
 }
 
 .strap-container {
-    height:11px;
+    height:5px;
+    margin-top: 5px;
 }
 
 .strap-container > div {
@@ -330,74 +354,9 @@ img.logo-stacked {
 	margin-bottom: 2px;
 	margin-top: 2px;
 }
-
-/*End responsive footer*/
-
-/* Bootstrap override collapse Header */
-@media ( max-width : 1200px) {
-	.navbar {
-		z-index: 1100;
-	}
-	.navbar-header .visible-xs {
-		display: block !important;
-	}
-	.navbar-header .hidden-xs {
-		display: none !important;
-	}
-	.ga-header .navbar-header {
-		float: none;
-	}
-	.ga-header .navbar-toggle {
-		display: block;
-	}
-	.ga-header .navbar-collapse {
-		border-top: 2px solid #5E6A71;
-		margin-top: 5px;
-		z-index: 1090;
-		overflow-x: hidden;
-	}
-	.ga-header .navbar-collapse.collapse {
-		display: none !important;
-		margin-right: -15px;
-		margin-left: -15px;
-	}
-	.ga-header .navbar-nav {
-		float: none !important;
-		margin: 7.5px 0px;
-	}
-	.applicationTitle {
-		display: none !important;
-	}
-	.navbar-default .navbar-nav li a {
-		margin-top: 0px !important;
-	}
-	.ga-header .navbar-nav>li {
-		float: none;
-	}
-}
-/* end Bootstrap override collapse Header */
-
-/* Bootstrap override collapse Footer */
-@media ( max-width : 1050px) {
-	.ga-footer .navbar-collapse {
-		border-top: 2px solid #5E6A71;
-	}
-	.ga-footer .navbar-collapse.collapse {
-		display: none !important;
-	}
-	.ga-footer .navbar-toggle {
-		display: block !important;
-	}
-	.ga-footer .navbar-header {
-		float: none !important;
-	}
-	.ga-footer .navbar-nav>li {
-		float: none !important;
-	}
-}
-/* end Bootstrap override collapse Footer */
-@media screen and (max-width: 480px) {
-	.appTitle {
-		margin-left: 110px;
+@media screen and (max-width: 768px) {
+	.navbar-nav {
+		background-color: white;
+		z-index: 200;
 	}
 }
