@@ -1,9 +1,9 @@
 (function () {
     "use strict";
 
-    var module = angular.module('home', ['search-services']);
+    var module = angular.module('home', ['search-services', 'hydroid-alerts']);
 
-    module.directive('hydroidHome', ['SearchServices', '$location', function(SearchServices, $location) {
+    module.directive('hydroidHome', ['SearchServices', '$location', '$log', function(SearchServices, $location, $log) {
         return {
             restrict: 'E',
             scope: {},
@@ -83,6 +83,9 @@
                             SearchServices.setMenuCounters($scope.facetStats, $scope.menuItems);
                         }
                         SearchServices.setMenuTotalCounters($scope.menuItems);
+                        if (!$scope.hasSearchResults) {
+                            $log.error('No documents were found that match your search criteria')
+                        }
                     }
                 };
 
