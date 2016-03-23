@@ -1,23 +1,29 @@
 <div class="navbar navbar-default navbar-fixed-top ga-header ng-scope" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse">
+            <button type="button" class="navbar-toggle" data-target="#navigationBar" data-toggle="collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="http://www.ga.gov.au" class="hidden-xs"><img src="{{appLogo}}" alt="Australian Government - Geoscience Australia" class="logo" title="Australian Government - Geoscience Australia"> </a>
-            <a href="http://www.ga.gov.au" class="visible-xs logo-container-small"><img src="{{appLogo}}" alt="Australian Government - Geoscience Australia" class="logo-stacked" title="Australian Government - Geoscience Australia"> </a>
-            <h1 class="appTitle visible-xs ng-binding">{{appTitle}}</h1>
+            <a href="http://www.ga.gov.au" class="hidden-xs">
+                <img src="{{appLogo}}" alt="Australian Government - Geoscience Australia" class="logo" title="Australian Government - Geoscience Australia">
+            </a>
+            <a href="http://www.ga.gov.au" class="visible-xs logo-container-stacked">
+                <img src="{{smlLogo}}" alt="Australian Government - Geoscience Australia" class="logo-stacked" title="Australian Government - Geoscience Australia">
+            </a>
+            <div class="appTitle visible-xs">
+                <h1>{{appTitle}}</h1>
+            </div>
         </div>
 
-        <div class="collapse navbar-collapse">
-            <li class="hidden-xs">
-                <h1 class="applicationTitle">{{appTitle}}</h1>
-            </li>
+        <div class="collapse navbar-collapse" id="navigationBar">
+            <div class="applicationTitle hidden-xs">
+                <h1>{{appTitle}}</h1>
+            </div>
             <ul class="nav navbar-nav">
-                <li><a href=""><span class="glyphicon glyphicon-home"></span></a></li>
+                <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -32,19 +38,6 @@
                 </li>
                 <li class="dropdown">
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">People <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="">Test</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Publications <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="">Test</a></li>
-                    </ul>
-                </li>
-                <li><a href="">News</a></li>
-                <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Images and Maps <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="">Test</a></li>
                     </ul>
