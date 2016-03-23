@@ -69,7 +69,7 @@
                 var hasFoundResults = false;
 
                 $scope.onResultsFunction = function(results) {
-                    if (results.docs.length > 0) {
+                    if (results.currentPage === 0 && results.docs.length > 0) {
                         // Only mark as loading if the UI needs updating.
                         $scope.isLoading = true;
 
