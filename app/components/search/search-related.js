@@ -10,7 +10,8 @@
                 menuUrl: '@',
                 menuItems:'=',
                 hasResults: '=',
-                onMenuClick: '&'
+                onMenuClick: '&',
+                isLoading: '='
             },
             templateUrl: 'components/search/search-related.html',
             controller: ['$scope', '$log', function($scope, $log) {
@@ -27,6 +28,14 @@
                         });
                 };
 
+                $scope.$watchCollection('menuItems', function (newVal, oldVal) {
+                    if(newVal && oldVal) {
+                        $scope.showChange = newVal.length != oldVal.length;
+                    } else {
+                        $scope.showChange = true;
+                    }
+                });
+
                 $scope.buildMenu().then(function () {
                     var queryParams = $location.search();
                     if(queryParams.facet) {
@@ -37,18 +46,6 @@
                         });
                     }
                 });
-
-                $scope.$on('$locationChangeSuccess', function () {
-                    var queryParams = $location.search();
-                    if(queryParams.facet) {
-                        $timeout(function () {
-                            if ($scope.onMenuClick) {
-                                $scope.onMenuClick({facet: queryParams.facet});
-                            }
-                        });
-                    }
-                });
-
             }]
         };
     }]);

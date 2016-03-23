@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-sm-3">
         <hydroid-search-related menu-url="/data/menu.json" menu-items="menuItems" has-results="hasSearchResults"
-                                on-menu-click="onMenuClickFunction(facet)"></hydroid-search-related>
+                                on-menu-click="onMenuClickFunction(facet)" is-loading="isLoading"></hydroid-search-related>
         <div class="hidden-xs hidden-sm" ng-show="hasCartItems()">
             <br/>
             <shopping-cart cart-list="cartItems"></shopping-cart>
