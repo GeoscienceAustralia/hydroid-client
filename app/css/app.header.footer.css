@@ -122,11 +122,11 @@ img.logo {
 }
 
 img.logo-stacked {
-	width: 120px;
+	width: 150px;
 }
 
-.logo-container-small {
-    width: 120px;
+.logo-container-stacked {
+    width: 150px;
 }
 
 /* Breadcrumbs */
@@ -194,18 +194,26 @@ img.logo-stacked {
 	padding-top: 2px;
 }
 
+.applicationTitle {
+    margin-left: 150px;
+    color: black;
+}
 .appTitle {
-	position: absolute;
-	top: 0;
-	margin-left: 120px;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    margin-top: -10px;
+    margin-left: 160px;
+    font-size: medium;
 }
 
-.appTitle h1 {
-	font-size: medium;
-	margin: 0;
-	font-weight: bold;
+.navbar.navbar-inverse {
+    background-color: #72c7e7;
 }
-
+.navbar, .navbar.navbar-default {
+    background-color: white;
+    height: 95px;
+}
 .navbar-default .navbar-nav li button {
     background: none;
     border: none;
@@ -390,6 +398,9 @@ img.logo-stacked {
 	.ga-header .navbar-nav>li {
 		float: none;
 	}
+    .navbar, .navbar.navbar-default {
+        height: 0px;
+    }
 }
 /* end Bootstrap override collapse Header */
 
@@ -410,10 +421,8 @@ img.logo-stacked {
 	.ga-footer .navbar-nav>li {
 		float: none !important;
 	}
+    .applicationTitle {
+        display: none !important;
+    }
 }
 /* end Bootstrap override collapse Footer */
-@media screen and (max-width: 480px) {
-	.appTitle {
-		margin-left: 110px;
-	}
-}

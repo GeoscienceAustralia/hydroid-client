@@ -2,17 +2,6 @@ body {
     padding-top: 90px;
     background-color: white;
 }
-.navbar.navbar-inverse {
-    background-color: #72c7e7;
-}
-.applicationTitle {
-    margin-left: 150px;
-    color: black;
-}
-.navbar, .navbar.navbar-default {
-    background-color: white;
-    height: 95px;
-}
 /* Search box and button - START */
 .searchBoxFullContainer {
     padding:25px;
@@ -129,7 +118,8 @@ li {
     margin-bottom: 35px;
 }
 
-.cartBtnStyles > button {
+.cartBtnStyles > button,
+.cartBtnStyles .btn.btn-primary:focus {
     background-color: #006983;
     border-radius: 0px;
 }
@@ -139,10 +129,13 @@ li {
     border-color: #A33F1F;
     color:white;
 }
-@media only screen and (max-width: 1090px) {
+@media only screen and (max-width: 1200px) {
     .cartBtnStyles > button {
         margin-bottom: 10px;
         width: 100px;
+    }
+    body {
+        padding-top: 65px;
     }
 
 }

@@ -8,6 +8,7 @@
             restrict: 'E',
             scope: {
                 appLogo: '@',
+                smlLogo: '@',
                 appTitle: '@'
             },
             templateUrl: 'components/header/header.html',
