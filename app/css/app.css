@@ -119,6 +119,10 @@ li {
     margin-bottom: 35px;
 }
 
+.cartBtn {
+    width: 100%;
+}
+
 .cartBtnStyles > button,
 .cartBtnStyles .btn.btn-primary:focus {
     background-color: #006983;
@@ -130,12 +134,15 @@ li {
     border-color: #A33F1F;
     color:white;
 }
+
 @media only screen and (max-width: 1200px) {
     .cartBtnStyles > button {
         margin-bottom: 10px;
         width: 100px;
     }
-
+    .cartBtn {
+        margin-bottom: 5px;
+    }
 }
 
 .searchRelatedButton {
