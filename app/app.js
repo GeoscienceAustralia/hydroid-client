@@ -9,16 +9,33 @@
         'search-related',
         'enhancer',
         'cart',
-        'header'
+        'header',
+        'hydroid-alerts'
     ]);
 
-    mod.config(['$routeProvider', '$locationProvider',
-        function ($routeProvider, $locationProvider) {
+    mod.config(['$routeProvider', '$locationProvider', '$provide',
+        function ($routeProvider, $locationProvider, $provide) {
             $routeProvider.when('/', {template: '<hydroid-home></hydroid-home>',reloadOnSearch:false});
-            $routeProvider.when('/enhancer', {template: '<hydroid-enhancer></hydroid-enhancer>'});
-            $routeProvider.when('/cart', {template: '<shopping-cart></shopping-cart>'});
-            $routeProvider.when('/header', {template: '<hydroid-header></hydroid-header>'});
             $routeProvider.otherwise({redirectTo: '/'});
             $locationProvider.html5Mode(false);
+
+            $provide.decorator('$log', ['$delegate', 'hydroidAlertsService', function ($delegate, hydroidAlertsService) {
+
+                $delegate.info = function(msg) {
+                    hydroidAlertsService.showInfo(msg);
+                };
+
+                $delegate.error = function(msg) {
+                    hydroidAlertsService.showError(msg);
+                };
+
+                $delegate.debug = function(msg) {
+                    hydroidAlertsService.debug(msg);
+                };
+
+                return $delegate;
+            }]);
+
         }]);
+
 })();
