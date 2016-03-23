@@ -1,5 +1,5 @@
 body {
-    padding-top: 90px;
+    padding-top:100px;
     background-color: white;
 }
 /* Search box and button - START */
@@ -133,9 +133,6 @@ li {
     .cartBtnStyles > button {
         margin-bottom: 10px;
         width: 100px;
-    }
-    body {
-        padding-top: 65px;
     }
 
 }

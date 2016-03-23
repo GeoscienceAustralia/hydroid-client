@@ -354,75 +354,9 @@ img.logo-stacked {
 	margin-bottom: 2px;
 	margin-top: 2px;
 }
-
-/*End responsive footer*/
-
-/* Bootstrap override collapse Header */
-@media ( max-width : 1200px) {
-	.navbar {
-		z-index: 1100;
+@media screen and (max-width: 768px) {
+	.navbar-nav {
+		background-color: white;
+		z-index: 200;
 	}
-	.navbar-header .visible-xs {
-		display: block !important;
-	}
-	.navbar-header .hidden-xs {
-		display: none !important;
-	}
-	.ga-header .navbar-header {
-		float: none;
-	}
-	.ga-header .navbar-toggle {
-		display: block;
-	}
-	.ga-header .navbar-collapse {
-		border-top: 2px solid #5E6A71;
-		margin-top: 5px;
-		z-index: 1090;
-		overflow-x: hidden;
-	}
-	.ga-header .navbar-collapse.collapse {
-		display: none !important;
-		margin-right: -15px;
-		margin-left: -15px;
-	}
-	.ga-header .navbar-nav {
-		float: none !important;
-		margin: 7.5px 0px;
-	}
-	.applicationTitle {
-		display: none !important;
-	}
-	.navbar-default .navbar-nav li a {
-		margin-top: 0px !important;
-	}
-	.ga-header .navbar-nav>li {
-		float: none;
-	}
-    .navbar, .navbar.navbar-default {
-        height: 0px;
-    }
 }
-/* end Bootstrap override collapse Header */
-
-/* Bootstrap override collapse Footer */
-@media ( max-width : 1050px) {
-	.ga-footer .navbar-collapse {
-		border-top: 2px solid #5E6A71;
-	}
-	.ga-footer .navbar-collapse.collapse {
-		display: none !important;
-	}
-	.ga-footer .navbar-toggle {
-		display: block !important;
-	}
-	.ga-footer .navbar-header {
-		float: none !important;
-	}
-	.ga-footer .navbar-nav>li {
-		float: none !important;
-	}
-    .applicationTitle {
-        display: none !important;
-    }
-}
-/* end Bootstrap override collapse Footer */
