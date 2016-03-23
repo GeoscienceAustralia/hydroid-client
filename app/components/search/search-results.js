@@ -25,7 +25,7 @@
             templateUrl: function(elements, attributes) {
                 return attributes.templatePath || 'components/search/search-results.html';
             },
-            controller: ['$scope', function($scope) {
+            controller: ['$scope', '$log', function($scope, $log) {
                 $scope.isLoading = false;
                 var currentPage = 0;
                 var hasNextPage = false;
@@ -78,32 +78,35 @@
                     url = url + '&rows=' + totalsRows + '&start=' + start + '&facet=true&facet.field=label_s&facet.mincount=1&wt=json'
 
                     $http.get(url).then(function (response) {
-                            console.log(response.data);
+                            $log.debug(response.data);
                             $scope.isLoading = false;
                             $timeout(function () {
+                                try {
+                                    // The results that get displayed
+                                    $scope.documents = $scope.documents.concat(response.data.response.docs);
+                                    // The matrix of image rows/cols
+                                    if ($scope.docType === 'IMAGE') {
+                                        $scope.imageRows = $scope.imageRows.concat(SearchServices.getResultImageRows(response.data.response.docs, totalsRows));
+                                    }
+                                    $scope.hasNextPage = response.data.response.numFound > (totalsRows * (currentPage + 1));
 
-                                // The results that get displayed
-                                $scope.documents = $scope.documents.concat(response.data.response.docs);
-                                // The matrix of image rows/cols
-                                if ($scope.docType === 'IMAGE') {
-                                    $scope.imageRows = $scope.imageRows.concat(SearchServices.getResultImageRows(response.data.response.docs, totalsRows));
-                                }
-                                $scope.hasNextPage =  response.data.response.numFound > (totalsRows * (currentPage + 1));
-
-                                // The push results up to add up
-                                if ($scope.onResults) {
-                                    $scope.onResults({
-                                        results: {
-                                            docs: response.data.response.docs,
-                                            facets: response.data.facet_counts,
-                                            currentPage: currentPage
-                                        }
-                                    });
+                                    // The push results up to add up
+                                    if ($scope.onResults) {
+                                        $scope.onResults({
+                                            results: {
+                                                docs: response.data.response.docs,
+                                                facets: response.data.facet_counts,
+                                                currentPage: currentPage
+                                            }
+                                        });
+                                    }
+                                } catch (err) {
+                                    $log.error('Error calling Solr API, Cause: ' + err.name + '(' + err.message + ')');
                                 }
                             });
                         },
                         function (response) {
-                            console.log('error in api request');
+                            $log.error('Error calling Solr API, Code: ' + response.status);
                         });
                 };
 
