@@ -231,3 +231,46 @@ table.shopping-cart {
 .imageRow {
     margin-bottom: 15px;
 }
+
+.vertically-centered {
+    height: 100px;  /* highest image */
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+@media (min-width: 360px) {
+    .vertically-centered {
+        height: 120px;
+    }
+}
+
+@media (min-width: 640px) {
+    .vertically-centered {
+        height: 160px;
+    }
+}
+
+@media (min-width: 768px) {
+    .vertically-centered {
+        height: 140px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .vertically-centered {
+        height: 160px;
+    }
+}
+
+.vertically-centered img {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
