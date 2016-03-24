@@ -58,16 +58,18 @@
 
                 $scope.formatSelectionContext = function(selectionContextArray) {
                     var selectionContext = '';
-                    for (var i=0; i < selectionContextArray.length; i++) {
-                        if ($scope.query) {
-                            selectionContext = selectionContext
-                                + $filter('hydroidQueryResultsFilter')(selectionContextArray[i], $scope.query);
-                        } else {
-                            selectionContext = selectionContext
-                                + $filter('hydroidFacetsResultsFilter')(selectionContextArray[i], $scope.facetsArray);
-                        }
-                        if (selectionContext.length >= 1500) {
-                            break;
+                    if (selectionContextArray) {
+                        for (var i = 0; i < selectionContextArray.length; i++) {
+                            if ($scope.query) {
+                                selectionContext = selectionContext
+                                    + $filter('hydroidQueryResultsFilter')(selectionContextArray[i], $scope.query);
+                            } else {
+                                selectionContext = selectionContext
+                                    + $filter('hydroidFacetsResultsFilter')(selectionContextArray[i], $scope.facetsArray);
+                            }
+                            if (selectionContext.length >= 1500) {
+                                break;
+                            }
                         }
                     }
                     return $sce.trustAsHtml(selectionContext);
