@@ -7,8 +7,32 @@
         'search-services'
     ]);
 
-    module.directive('hydroidSearchResults', ['$http', '$timeout', 'SearchServices', 'hydroidModalService',
-        function($http, $timeout, SearchServices, modalService) {
+    module.filter('hydroidQueryResultsFilter', function() {
+        return function(text, query) {
+            var newText = "";
+            if (text.indexOf(query) >= 0) {
+                newText = text.replace(query, '<b>' + query + '</b>') + '...';
+            }
+            return newText;
+        };
+    });
+
+    module.filter('hydroidFacetsResultsFilter', function() {
+        return function(text, facets) {
+            var newText = "";
+            for (var i=0; i < facets.length; i++) {
+                var facet = facets[i];
+                if (text.indexOf(facet) >= 0) {
+                    newText = text.replace(facet, '<b>' + facet + '</b>') + '...';
+                    break;
+                }
+            }
+            return newText;
+        };
+    });
+
+    module.directive('hydroidSearchResults', ['$http', '$timeout', 'SearchServices', 'hydroidModalService', '$filter', '$sce',
+        function($http, $timeout, SearchServices, modalService, $filter, $sce) {
         return {
             restrict: 'E',
             scope: {
@@ -31,6 +55,23 @@
                 var hasNextPage = false;
                 $scope.documents = [];
                 $scope.imageRows = [];
+
+                $scope.formatSelectionContext = function(selectionContextArray) {
+                    var selectionContext = '';
+                    for (var i=0; i < selectionContextArray.length; i++) {
+                        if ($scope.query) {
+                            selectionContext = selectionContext
+                                + $filter('hydroidQueryResultsFilter')(selectionContextArray[i], $scope.query);
+                        } else {
+                            selectionContext = selectionContext
+                                + $filter('hydroidFacetsResultsFilter')(selectionContextArray[i], $scope.facetsArray);
+                        }
+                        if (selectionContext.length >= 1500) {
+                            break;
+                        }
+                    }
+                    return $sce.trustAsHtml(selectionContext);
+                };
 
                 $scope.$watch('query', function (newVal, oldVal) {
                     if (newVal) {
@@ -72,7 +113,8 @@
                     }
 
                     if (facet) {
-                        url = url + ' AND (' + getChildrenFacets(facet) + ')';
+                        $scope.facetsArray = getChildrenFacetsArray(facet);
+                        url = url + ' AND (' + getChildrenFacets() + ')';
                     }
 
                     url = url + '&rows=' + totalsRows + '&start=' + start + '&facet=true&facet.field=label_s&facet.mincount=1&wt=json'
@@ -144,26 +186,34 @@
                     $scope.search($scope.query, $scope.facet);
                 };
 
-                var getAllChildrenFacets = function(menuItem, facets) {
-                    if (facets != '') {
-                        facets = facets + ' OR ';
-                    }
-                    facets = facets + 'label:"' + menuItem.nodeLabel + '"';
+                var getAllChildrenFacetsArray = function(menuItem, facetsArray) {
+                    facetsArray.push(menuItem.nodeLabel);
                     if (menuItem.children) {
                         for (var i=0; i < menuItem.children.length; i++) {
-                            facets = getAllChildrenFacets(menuItem.children[i], facets);
+                            facetsArray = getAllChildrenFacetsArray(menuItem.children[i], facetsArray);
                         }
                     }
-                    return facets;
+                    return facetsArray;
                 };
 
-                var getChildrenFacets = function(facet) {
+                var getChildrenFacetsArray = function(facet) {
                     // find menuItem for this facet
                     var menuItem = SearchServices.findMenuItemByLabel(facet, $scope.menuItems);
                     if (menuItem) {
-                        return getAllChildrenFacets(menuItem, '');
+                        return getAllChildrenFacetsArray(menuItem, []);
                     }
-                    return 'label:"' + facet + '"';
+                    return [facet];
+                };
+
+                var getChildrenFacets = function() {
+                    var facets = "";
+                    for (var i=0; i < $scope.facetsArray.length; i++) {
+                        if (i > 0) {
+                            facets = facets + ' OR ';
+                        }
+                        facets = facets + 'label:"' + $scope.facetsArray[i] + '"';
+                    }
+                    return facets;
                 };
 
             }]

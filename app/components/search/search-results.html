@@ -11,13 +11,22 @@
         {{ sectionTitle }}
     </h4>
     <div class="row" ng-show="showResults"  ng-class="{'animate-fade-out': isLoading, 'animate-fade-in': !isLoading}">
-        <div class="col-sm-9">
+        <div class="col-sm-10">
+            <div><b>{{ result.title }}</b></div>
+            <div ng-show="result.created"><b>Created on: </b>{{ result.created | date }}</div>
+            <div ng-show="result.creator"><b>Authors: </b>{{ result.creator }}</div>
+            <p ng-bind-html="formatSelectionContext(result.selectionContext)"></p>
+            <!--
             <p>
-                <b ng-show="result.title">{{ result.title }}: </b>
-                {{ result.content }}
+                <br/>
+                <span ng-repeat="selection in result.selectionContext">
+                    <span ng-if="query" ng-bind-html="selection | hydroidQueryResultsFilter : query"></span>
+                    <span ng-if="facetsArray && !query" ng-bind-html="selection | hydroidFacetsResultsFilter : facetsArray"></span>
+                </span>
             </p>
+            -->
         </div>
-        <div class="col-sm-3 text-right cartBtnStyles">
+        <div class="col-sm-2 text-right cartBtnStyles">
             <button class="btn btn-primary btn-sm" ng-click="goToDownloadUrl(result.docUrl)">Download</button>
             <button class="btn btn-primary btn-sm"
                     ng-click="addToCart(result)">

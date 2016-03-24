@@ -264,7 +264,7 @@ img.logo-stacked {
 
 .strap-container {
     height:5px;
-    margin-top: 5px;
+    margin-top: -5px;
 }
 
 .strap-container > div {

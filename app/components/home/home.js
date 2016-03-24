@@ -47,17 +47,17 @@
 
                 $scope.onResetFunction = function(isQuery) {
                     resultsCounter = 0;
-                    $scope.query = null;
-                    $scope.facet = null;
                     $scope.facetStats = [];
                     if(!isQuery) {
+                        $scope.query = null;
+                        $scope.facet = null;
                         $scope.hasSearchResults = false;
                     }
                     SearchServices.resetMenuCounters($scope.menuItems);
                 };
 
                 $scope.onMenuClickFunction = function(facet) {
-                    $scope.onResetFunction();
+                    $scope.onResetFunction(true);
                     if (facet.indexOf('_') > -1) {
                         facet = facet.split('_').join(' ');
                     }
