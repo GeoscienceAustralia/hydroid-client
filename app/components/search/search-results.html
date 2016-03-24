@@ -15,16 +15,8 @@
             <div><b>{{ result.title }}</b></div>
             <div ng-show="result.created"><b>Created on: </b>{{ result.created | date }}</div>
             <div ng-show="result.creator"><b>Authors: </b>{{ result.creator }}</div>
+            <br/>
             <p ng-bind-html="formatSelectionContext(result.selectionContext)"></p>
-            <!--
-            <p>
-                <br/>
-                <span ng-repeat="selection in result.selectionContext">
-                    <span ng-if="query" ng-bind-html="selection | hydroidQueryResultsFilter : query"></span>
-                    <span ng-if="facetsArray && !query" ng-bind-html="selection | hydroidFacetsResultsFilter : facetsArray"></span>
-                </span>
-            </p>
-            -->
         </div>
         <div class="col-sm-2 text-right cartBtnStyles">
             <button class="btn btn-primary btn-sm" ng-click="goToDownloadUrl(result.docUrl)">Download</button>
