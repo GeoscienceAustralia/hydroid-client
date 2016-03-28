@@ -3,7 +3,7 @@
 
     var module = angular.module('header', []);
 
-    module.directive('hydroidHeader', [function() {
+    module.directive('applicationHeader', [function() {
         return {
             restrict: 'E',
             scope: {
@@ -11,7 +11,9 @@
                 smlLogo: '@',
                 appTitle: '@'
             },
-            templateUrl: 'components/header/header.html',
+            templateUrl: function(elements, attributes) {
+                return attributes.templatePath || 'components/header/header.html';
+            },
             controller: ['$scope', function($scope) {
 
             }]
