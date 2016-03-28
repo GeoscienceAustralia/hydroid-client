@@ -24,7 +24,7 @@
             </div>
         </div>
         <ul ng-if="menuItem.children">
-            <li ng-repeat="menuItem in menuItem.children" ng-include="'menuTemplate'" ng-if="!hasResults || menuItem.count > 0" style="background-color: white">
+            <li ng-repeat="menuItem in menuItem.children" ng-include="'menuTemplate'" ng-if="!hasResults || menuItem.count > 0">
             </li>
         </ul>
     </script>

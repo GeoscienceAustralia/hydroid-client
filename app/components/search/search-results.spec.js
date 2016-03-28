@@ -6,7 +6,8 @@ describe('hydroid search results tests', function () {
         modalService,
         $timeout,
         $httpBackend,
-        SearchServices;
+        SearchServices,
+        $filter;
 
     angular.module('mockSearchResultsApp', ['ngMock', 'search-results']);
 
@@ -16,7 +17,7 @@ describe('hydroid search results tests', function () {
 
     // Store references to $rootScope and $compile
     // so they are available to all tests in this describe block
-    beforeEach(inject(function($injector,_$compile_, _$rootScope_,_$timeout_){
+    beforeEach(inject(function($injector,_$compile_, _$rootScope_,_$timeout_, _$filter_) {
         // The injector unwraps the underscores (_) from around the parameter names when matching
         $compile = _$compile_;
         $rootScope = _$rootScope_;
@@ -24,6 +25,7 @@ describe('hydroid search results tests', function () {
         $httpBackend = $injector.get('$httpBackend');
         $httpBackend.when('GET','/solr/hydroid/select?q=docType:DOCUMENT AND "*coral*"&rows=5&start=0&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
             .respond(angular.toJson({response: {docs:[{}]}}));
+        $filter = _$filter_;
     }));
 
     it('should be able to collect facet stats', function () {
@@ -43,6 +45,16 @@ describe('hydroid search results tests', function () {
         $httpBackend.flush();
         $timeout.flush();
         expect(directiveScope.documents.length).toBe(1);
+    });
+
+    it('should be able to wrap the keyword in bold tag <b>', function() {
+        expect($filter('hydroidQueryResultsFilter')('shark is the keyword I am looking for', 'shark')).toContain('<b>shark</b>');
+    });
+
+    it('should be able to wrap the only the first facet in bold tag <b>', function() {
+        var facets = ['seahorse', 'whale']
+        expect($filter('hydroidFacetsResultsFilter')('this is a text about a seahorse and a whale', facets)).toContain('<b>seahorse</b>');
+        expect($filter('hydroidFacetsResultsFilter')('this is a text about a seahorse and a whale', facets)).not.toContain('<b>whale</b>');
     });
 
 });
