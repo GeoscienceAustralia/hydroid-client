@@ -229,15 +229,13 @@
                     }
                 };
 
-                $scope.popupImage = function(imageTitle, imageUrl, imageContent) {
+                $scope.popupImage = function(imageTitle, imageUrl, labelArray) {
                     var labels = '';
-                    var imageContent = imageContent.slice(imageContent.indexOf('\n') + 1);
-                    var labelArrays = imageContent.split(',');
-                    for (var i=0; i < labelArrays.length; i++) {
-                        labels = labels + labelArrays[i] + ', ';
+                    for (var i=0; i < labelArray.length; i++) {
+                        labels = labels + labelArray[i] + ', ';
                     }
                     labels = labels.substring(0, labels.length - 2);
-                    imageContent = '<br/><b>Labels: </b>' + labels;
+                    var imageContent = '<br/><b>Labels: </b>' + labels;
                     modalService.show(imageTitle, imageContent, imageUrl);
                 };
 

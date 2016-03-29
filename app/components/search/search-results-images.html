@@ -16,7 +16,7 @@
                 <div class="img-thumbnail">
                     <div class="vertically-centered">
                         <img ng-src="{{result.imgThumb}}" alt="{{result.title}}"
-                             ng-click="popupImage(result.title, result.docUrl, result.content)" class="img-responsive"/>
+                             ng-click="popupImage(result.title, result.docUrl, result.label)" class="img-responsive"/>
                     </div>
                     <div ng-if="!isItemInCart(result.about)" class="cartBtnStyles">
                         <button ng-click="addToCart(result)" type="button" class="btn btn-primary btn-sm" style="margin-top:5px;width:100%">Add to cart</button>

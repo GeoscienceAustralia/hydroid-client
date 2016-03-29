@@ -100,9 +100,6 @@
                             SearchServices.setMenuCounters($scope.facetStats, $scope.menuItems);
                         }
                         SearchServices.setMenuTotalCounters($scope.menuItems);
-                        if (!$scope.hasSearchResults) {
-                            $log.error('No documents were found that match your search criteria')
-                        }
                     }
 
                 };
