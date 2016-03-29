@@ -7,28 +7,86 @@
         'search-services'
     ]);
 
-    module.filter('hydroidQueryResultsFilter', function() {
+    module.filter('hydroidQueryResultsFilter', [function() {
         return function(text, query) {
+            // Skip filter
+            if(!query || !text)
+                return text;
             var newText = "";
             if (text.indexOf(query) >= 0) {
-                newText = text.replace(query, '<b>' + query + '</b>') + '...';
+                var regEx = new RegExp(query, 'g');
+                newText = text.replace(regEx, '<b>' + query + '</b>') + '...';
             }
             return newText;
         };
-    });
+    }]);
 
-    module.filter('hydroidFacetsResultsFilter', function() {
+    module.filter('hydroidFacetsResultsFilter', [function() {
         return function(text, facets) {
             var newText = "";
+            // Skip filter
+            if(!text || !facets)
+                return text;
+
             for (var i=0; i < facets.length; i++) {
                 var facet = facets[i];
                 if (text.indexOf(facet) >= 0) {
-                    newText = text.replace(facet, '<b>' + facet + '</b>') + '...';
-                    break;
+                    var regEx = new RegExp(facet, 'g');
+                    newText = newText != "" ? newText.replace(regEx, '<b>' + facet + '</b>') : text.replace(regEx, '<b>' + facet + '</b>');
                 }
             }
+            newText = newText + ' ...';
             return newText;
         };
+    }]);
+
+    module.filter('hydroidTrustedText', ['$sce',function($sce) {
+        return function (text) {
+            return $sce.trustAsHtml(text);
+        }
+    }]);
+
+    module.filter('hydroidTruncateTextPreview', function () {
+        function findStartOfNearestSentence(text, matchIndex) {
+            var index = text.substr(0).search(/[A-Z]/);
+            if(index > -1 && index < 50){
+                return index;
+            } else {
+                return (matchIndex > 0 && matchIndex > 50) ? matchIndex - 50 : 0;
+            }
+        }
+
+       return function (selectionContextArray, query, facetArray) {
+           var matchContextsText = '';
+           if (selectionContextArray) {
+               for (var i = 0; i < selectionContextArray.length; i++) {
+                   var selection = selectionContextArray[i];
+                   if (query) {
+                       var matchIndex = selection.indexOf(query);
+                       if(matchIndex > -1) {
+                           var startIndex = findStartOfNearestSentence(selection,matchIndex);
+                           var endIndex = (selection.length > (matchIndex + 50)) ? matchIndex + 50 : selection.length;
+                           matchContextsText += selection.substr(startIndex,endIndex - startIndex) + '...';
+                       }
+                   } else {
+                       for (var j=0; j < facetArray.length; j++) {
+                           var facet = facetArray[j];
+                           var matchFacetIndex = selection.indexOf(facet);
+                           if (matchFacetIndex >= 0) {
+                               var startFacetIndex = findStartOfNearestSentence(selection,matchFacetIndex);
+                               var endFacetIndex = (selection.length > (matchFacetIndex + 50)) ? matchFacetIndex + 50 : selection.length;
+                               matchContextsText += selection.substr(startFacetIndex,endFacetIndex - startFacetIndex) + '...';
+                               break;
+                           }
+                       }
+                   }
+                   if(matchContextsText.length > 400) {
+                       break;
+                   }
+               }
+           }
+           return matchContextsText;
+       }
     });
 
     module.directive('hydroidSearchResults', ['$http', '$timeout', 'SearchServices', 'hydroidModalService', '$filter', '$sce',
@@ -171,15 +229,13 @@
                     }
                 };
 
-                $scope.popupImage = function(imageTitle, imageUrl, imageContent) {
+                $scope.popupImage = function(imageTitle, imageUrl, labelArray) {
                     var labels = '';
-                    var imageContent = imageContent.slice(imageContent.indexOf('\n') + 1);
-                    var labelArrays = imageContent.split(',');
-                    for (var i=0; i < labelArrays.length; i++) {
-                        labels = labels + labelArrays[i] + ', ';
+                    for (var i=0; i < labelArray.length; i++) {
+                        labels = labels + labelArray[i] + ', ';
                     }
                     labels = labels.substring(0, labels.length - 2);
-                    imageContent = '<br/><b>Labels: </b>' + labels;
+                    var imageContent = '<br/><b>Labels: </b>' + labels;
                     modalService.show(imageTitle, imageContent, imageUrl);
                 };
 
