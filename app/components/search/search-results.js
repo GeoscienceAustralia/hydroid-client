@@ -32,9 +32,10 @@
                 var facet = facets[i];
                 if (text.indexOf(facet) >= 0) {
                     var regEx = new RegExp(facet, 'g');
-                    newText = text.replace(regEx, '<b>' + facet + '</b>') + '...';
+                    newText = newText != "" ? newText.replace(regEx, '<b>' + facet + '</b>') : text.replace(regEx, '<b>' + facet + '</b>');
                 }
             }
+            newText = newText + ' ...';
             return newText;
         };
     }]);

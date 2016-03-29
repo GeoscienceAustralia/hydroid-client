@@ -54,7 +54,7 @@ describe('hydroid search results tests', function () {
     it('should be able to wrap the only the first facet in bold tag <b>', function() {
         var facets = ['seahorse', 'whale']
         expect($filter('hydroidFacetsResultsFilter')('this is a text about a seahorse and a whale', facets)).toContain('<b>seahorse</b>');
-        expect($filter('hydroidFacetsResultsFilter')('this is a text about a seahorse and a whale', facets)).not.toContain('<b>whale</b>');
+        expect($filter('hydroidFacetsResultsFilter')('this is a text about a seahorse and a whale', facets)).toContain('<b>whale</b>');
     });
 
 });
