@@ -57,4 +57,13 @@ describe('hydroid search results tests', function () {
         expect($filter('hydroidFacetsResultsFilter')('this is a text about a seahorse and a whale', facets)).toContain('<b>whale</b>');
     });
 
+    it('should truncate text looking for start of sentences.', function () {
+        var sentence = ['blah. For example, the importance of deep-water coral habitat on seamounts stems from our knowledge that there are perhaps around 10,000 seamounts on Earth'];
+        expect($filter('hydroidTruncateTextPreview')(sentence, 'coral',['corals']).indexOf('For example')).toBe(0);
+    });
+
+    it('should truncate text using facet array', function () {
+        var sentence = ['blah. For example, the importance of deep-water coral habitat on seamounts stems from our knowledge that there are perhaps around 10,000 seamounts on Earth'];
+        expect($filter('hydroidTruncateTextPreview')(sentence, '',['coral']).indexOf('For example')).toBe(0);
+    });
 });
