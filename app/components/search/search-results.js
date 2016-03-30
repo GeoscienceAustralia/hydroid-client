@@ -131,7 +131,6 @@
             controller: ['$scope', '$log', function($scope, $log) {
                 $scope.isLoading = false;
                 var currentPage = 0;
-                var hasNextPage = false;
                 $scope.documents = [];
                 $scope.imageRows = [];
                 $scope.highlights = [];
