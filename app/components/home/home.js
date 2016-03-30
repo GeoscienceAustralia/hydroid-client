@@ -8,7 +8,7 @@
             restrict: 'E',
             scope: {},
             templateUrl: 'components/home/home.html',
-            controller: ['$scope', function($scope) {
+            controller: ['$scope', '$anchorScroll', function($scope, $anchorScroll) {
 
                 var resultsCounter = 0;
 
@@ -115,6 +115,9 @@
                     }
                 });
 
+                $scope.$on('$routeChangeSuccess', function() {
+                    if($location.hash()) $anchorScroll();
+                });
             }]
         };
     }]);

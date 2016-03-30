@@ -271,6 +271,33 @@ img.logo-stacked {
     padding: 0;
 }
 
+.cartAnchor {
+    margin-top: -1px;
+    border-top: 1px solid #96d1f8;
+    background: #006983;
+    padding: 10px 40px;
+    border-radius: 0px;
+    color: white;
+    border-bottom: none;
+    margin-top: -70px;
+}
+.cartAnchor:hover {
+    background: #A33F1F;
+    cursor: pointer;
+}
+.cartAnchor:active {
+    border-top-color: #28597a;
+    background: #A33F1F;
+}
+.cartAnchor a {
+    color: #fff;
+    text-decoration: none;
+}
+.cartAnchor .badge {
+    color: #28597a;
+    background-color: #fff;
+}
+
 /* end Header*/
 
 /* Footer */
