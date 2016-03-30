@@ -31,7 +31,7 @@ describe('Hydroid header components tests', function () {
     }));
 
     it('Should have isolated scope', function () {
-        var element = $compile('<hydroid-header></hydroid-header>')($rootScope);
+        var element = $compile('<application-header></application-header>')($rootScope);
         $rootScope.$digest();
         var directiveScope = element.isolateScope();
         expect(directiveScope).not.toBe(null);
