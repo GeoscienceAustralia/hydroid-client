@@ -3,6 +3,9 @@
         <span class="glyphicon glyphicon-collapse-down"></span>
         {{ sectionTitle }}
     </h4>
+    <div class="text-danger">
+        No {{ sectionTitle | lowercase }} found that match your search criteria.
+    </div>
 </div>
 <div ng-show="imageRows.length > 0">
     <h4>

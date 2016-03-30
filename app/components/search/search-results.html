@@ -3,6 +3,9 @@
         <span class="glyphicon glyphicon-collapse-down"></span>
         {{ sectionTitle }}
     </h4>
+    <div class="text-danger">
+        No {{ sectionTitle | lowercase }} found that match your search criteria.
+    </div>
 </div>
 <div ng-repeat="result in documents">
     <h4 ng-show="$first">
@@ -16,7 +19,7 @@
             <h6 ng-show="result.created"><b>Created on: </b>{{ result.created | date }}</h6>
             <h6 ng-show="result.creator"><b>Authors: </b>{{ result.creator }}</h6>
             <br/>
-            <p ng-bind-html="result.selectionContext | hydroidTruncateTextPreview: query:facetsArray | hydroidQueryResultsFilter: query | hydroidFacetsResultsFilter: facetsArray | hydroidTrustedText"></p>
+            <p ng-bind-html="result.selectionContext | hydroidTruncateTextPreview: query:facetsArray | hydroidQueryResultsFilter: query | hydroidFacetsResultsFilter: facetsArray | hydroidRelateHighlights: result.about:highlights | hydroidTrustedText"></p>
         </div>
         <div class="col-sm-2 text-right cartBtnStyles">
             <button class="btn btn-primary btn-sm" ng-click="goToDownloadUrl(result.docUrl)">Download</button>

@@ -13,8 +13,9 @@
             if(!query || !text)
                 return text;
             var newText = "";
-            if (text.indexOf(query) >= 0) {
-                var regEx = new RegExp(query, 'g');
+            var regEx = new RegExp(query, 'i');
+            if (text.search(regEx) >= 0) {
+                regEx = new RegExp(query, 'gi');
                 newText = text.replace(regEx, '<b>' + query + '</b>') + '...';
             }
             return newText;
@@ -27,11 +28,11 @@
             // Skip filter
             if(!text || !facets)
                 return text;
-
             for (var i=0; i < facets.length; i++) {
                 var facet = facets[i];
-                if (text.indexOf(facet) >= 0) {
-                    var regEx = new RegExp(facet, 'g');
+                var regEx = new RegExp(facet, 'i');
+                if (text.search(regEx) >= 0) {
+                    regEx = new RegExp(facet, 'gi');
                     newText = newText != "" ? newText.replace(regEx, '<b>' + facet + '</b>') : text.replace(regEx, '<b>' + facet + '</b>');
                 }
             }
@@ -62,13 +63,14 @@
                for (var i = 0; i < selectionContextArray.length; i++) {
                    var selection = selectionContextArray[i];
                    if (query) {
-                       var matchIndex = selection.indexOf(query);
+                       var regEx = new RegExp(query, 'i');
+                       var matchIndex = selection.search(regEx);
                        if(matchIndex > -1) {
                            var startIndex = findStartOfNearestSentence(selection,matchIndex);
                            var endIndex = (selection.length > (matchIndex + 50)) ? matchIndex + 50 : selection.length;
                            matchContextsText += selection.substr(startIndex,endIndex - startIndex) + '...';
                        }
-                   } else {
+                   } else if (facetArray) {
                        for (var j=0; j < facetArray.length; j++) {
                            var facet = facetArray[j];
                            var matchFacetIndex = selection.indexOf(facet);
@@ -89,8 +91,27 @@
        }
     });
 
-    module.directive('hydroidSearchResults', ['$http', '$timeout', 'SearchServices', 'hydroidModalService', '$filter', '$sce',
-        function($http, $timeout, SearchServices, modalService, $filter, $sce) {
+    module.filter('hydroidRelateHighlights', function() {
+        return function (selectionContext, about, highlights) {
+            var content = '';
+            if (selectionContext) {
+                return selectionContext;
+            } else if (about && highlights) {
+                for (var i=0; i < highlights.length; i++) {
+                    var subject = highlights[i][about];
+                    if (subject && subject.content) {
+                        for (var j=0; j < subject.content.length; j++) {
+                            content = content + subject.content[j] + '...';
+                        }
+                    }
+                }
+            }
+            return content;
+        }
+    });
+
+    module.directive('hydroidSearchResults', ['$http', '$timeout', 'SearchServices', 'hydroidModalService',
+        function($http, $timeout, SearchServices, modalService) {
         return {
             restrict: 'E',
             scope: {
@@ -110,28 +131,9 @@
             controller: ['$scope', '$log', function($scope, $log) {
                 $scope.isLoading = false;
                 var currentPage = 0;
-                var hasNextPage = false;
                 $scope.documents = [];
                 $scope.imageRows = [];
-
-                $scope.formatSelectionContext = function(selectionContextArray) {
-                    var selectionContext = '';
-                    if (selectionContextArray) {
-                        for (var i = 0; i < selectionContextArray.length; i++) {
-                            if ($scope.query) {
-                                selectionContext = selectionContext
-                                    + $filter('hydroidQueryResultsFilter')(selectionContextArray[i], $scope.query);
-                            } else {
-                                selectionContext = selectionContext
-                                    + $filter('hydroidFacetsResultsFilter')(selectionContextArray[i], $scope.facetsArray);
-                            }
-                            if (selectionContext.length >= 1500) {
-                                break;
-                            }
-                        }
-                    }
-                    return $sce.trustAsHtml(selectionContext);
-                };
+                $scope.highlights = [];
 
                 $scope.$watch('query', function (newVal, oldVal) {
                     if (newVal) {
@@ -139,6 +141,7 @@
                             currentPage = 0;
                             $scope.documents = [];
                             $scope.imageRows = [];
+                            $scope.highlights = [];
                             $scope.search(newVal, $scope.facet);
                         }
                     }
@@ -150,6 +153,7 @@
                             currentPage = 0;
                             $scope.documents = [];
                             $scope.imageRows = [];
+                            $scope.highlights = [];
                             $scope.search($scope.query, newVal);
                         }
                     }
@@ -165,6 +169,8 @@
                     $scope.isLoading = true;
                     var totalsRows = ($scope.docType === 'IMAGE' ? 6 : 5);
                     var start = (currentPage * totalsRows);
+                    var highlightParams = '&hl=true&hl.simple.pre=<b>&hl.simple.post=</b>&hl.snippets=5&hl.fl=content' +
+                        '&fl=extracted-from,concept,docUrl,about,imgThumb,docType,label,title,selectionContext,created,creator';
 
                     var url = $scope.solrUrl + '/' + $scope.solrCollection + '/select?q=docType:' + $scope.docType;
 
@@ -178,14 +184,15 @@
                     }
 
                     url = url + '&rows=' + totalsRows + '&start=' + start + '&facet=true&facet.field=label_s&facet.mincount=1&wt=json'
+                        + highlightParams;
 
                     $http.get(url).then(function (response) {
-                            $log.debug(response.data);
                             $scope.isLoading = false;
                             $timeout(function () {
                                 try {
                                     // The results that get displayed
                                     $scope.documents = $scope.documents.concat(response.data.response.docs);
+                                    $scope.highlights = $scope.highlights.concat(response.data.highlighting);
                                     // The matrix of image rows/cols
                                     if ($scope.docType === 'IMAGE') {
                                         $scope.imageRows = $scope.imageRows.concat(SearchServices.getResultImageRows(response.data.response.docs, totalsRows));
