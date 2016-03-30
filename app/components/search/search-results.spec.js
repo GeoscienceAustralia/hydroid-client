@@ -23,7 +23,7 @@ describe('hydroid search results tests', function () {
         $rootScope = _$rootScope_;
         $timeout = _$timeout_;
         $httpBackend = $injector.get('$httpBackend');
-        $httpBackend.when('GET','/solr/hydroid/select?q=docType:DOCUMENT AND "*coral*"&rows=5&start=0&facet=true&facet.field=label_s&facet.mincount=1&wt=json')
+        $httpBackend.when('GET','/solr/hydroid/select?q=docType:DOCUMENT AND "*coral*"&rows=5&start=0&facet=true&facet.field=label_s&facet.mincount=1&wt=json&hl=true&hl.simple.pre=<b>&hl.simple.post=</b>&hl.snippets=5&hl.fl=content&fl=extracted-from,concept,docUrl,about,imgThumb,docType,label,title,selectionContext,created,creator')
             .respond(angular.toJson({response: {docs:[{}]}}));
         $filter = _$filter_;
     }));
@@ -66,4 +66,20 @@ describe('hydroid search results tests', function () {
         var sentence = ['blah. For example, the importance of deep-water coral habitat on seamounts stems from our knowledge that there are perhaps around 10,000 seamounts on Earth'];
         expect($filter('hydroidTruncateTextPreview')(sentence, '',['coral']).indexOf('For example')).toBe(0);
     });
+
+    it('should create preview text using highlights', function () {
+        var selectionContext = '';
+        var about = "urn:content-item-sha1:209db084ead9ea5e7fa3ea6c19572b6da1e10e44";
+        var highlights = [{
+            "urn:content-item-sha1:this-is-not-a-valid-urn": {
+                content: ["a sample text found in a random <b>project</b>"]
+            },
+            "urn:content-item-sha1:209db084ead9ea5e7fa3ea6c19572b6da1e10e44": {
+                content: ["suggestions during the early phases of this <b>project</b>. Tara Anderson, Scott Nichol, Nic Bax, and two anonymous"]
+            }
+        }];
+        var expectedValue = "suggestions during the early phases of this <b>project</b>. Tara Anderson, Scott Nichol, Nic Bax, and two anonymous...";
+        expect($filter('hydroidRelateHighlights')(selectionContext, about, highlights)).toBe(expectedValue);
+    });
+
 });

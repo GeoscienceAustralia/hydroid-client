@@ -96,7 +96,7 @@
             var content = '';
             if (selectionContext) {
                 return selectionContext;
-            } else if (highlights) {
+            } else if (about && highlights) {
                 for (var i=0; i < highlights.length; i++) {
                     var subject = highlights[i][about];
                     if (subject && subject.content) {
