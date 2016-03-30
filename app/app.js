@@ -9,6 +9,7 @@
         'search-related',
         'enhancer',
         'cart',
+        'anchor',
         'header',
         'hydroid-alerts'
     ]);
