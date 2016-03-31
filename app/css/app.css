@@ -127,6 +127,8 @@ li {
 .cartBtnStyles .btn.btn-primary:focus {
     background-color: #006983;
     border-radius: 0px;
+    width: 100px;
+    margin-bottom: 10px;
 }
 .cartBtnStyles .btn-primary:active,
 .cartBtnStyles .btn-primary:hover {

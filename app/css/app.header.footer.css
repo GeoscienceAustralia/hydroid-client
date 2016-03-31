@@ -272,14 +272,13 @@ img.logo-stacked {
 }
 
 .cartAnchor {
-    margin-top: -1px;
     border-top: 1px solid #96d1f8;
     background: #006983;
     padding: 10px 40px;
-    border-radius: 0px;
-    color: white;
+    border-radius: 30px;
+    color: #fff;
     border-bottom: none;
-    margin-top: -70px;
+    margin-top: -40px;
 }
 .cartAnchor:hover {
     background: #A33F1F;
@@ -386,4 +385,9 @@ img.logo-stacked {
 		background-color: white;
 		z-index: 200;
 	}
+    .cartAnchor {
+        position: absolute;
+        margin-top: 0px;
+        padding: 5px 5px;
+    }
 }
