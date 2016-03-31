@@ -14,9 +14,9 @@
             templateUrl: 'components/cart/anchor.html',
             controller: ['$scope', function($scope) {
 
-                $scope.isCartEmpty = function() {
-                    return $scope.cartItems.length == 0;
-                }
+                $scope.cartHasItems = function() {
+                    return $scope.cartItems.length > 0;
+                };
             }]
         }
     }]);

@@ -17,7 +17,6 @@
                 $scope.query = null;
                 $scope.facet = null;
                 $scope.menuItems = [];
-//                $scope.cartItems = [];
                 $scope.facetStats = [];
                 $scope.hasSearchResults = false;
 
