@@ -110,15 +110,20 @@
                 };
 
                 $scope.$on('$locationChangeSuccess', function () {
+                    if($location.hash()) {
+                        $anchorScroll.yOffset = 100;
+                        $anchorScroll();
+                    }
                     var queryParams = $location.search();
                     if(queryParams.facet) {
                         $scope.onMenuClickFunction(queryParams.facet);
                     }
                 });
 
-                $scope.$on('$routeChangeSuccess', function() {
-                    if($location.hash()) $anchorScroll();
-                });
+//                $scope.$on('$routeChangeSuccess', function() {
+//                    if($location.hash()) $anchorScroll();
+//                    $anchorScroll('cartAnchor');
+//                });
             }]
         };
     }]);
