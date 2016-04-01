@@ -105,7 +105,7 @@ a {
 
 .ga-header .navbar-nav > li a {
     color: #006983;
-    font-weight: 600;
+    font-weight: bold;
 }
 
 .ga-header .navbar-nav > li a:hover {
@@ -271,28 +271,20 @@ img.logo-stacked {
     padding: 0;
 }
 
-.cartAnchor {
-    border-top: 1px solid #96d1f8;
-    background: #006983;
-    padding: 5px 30px;
+.cartAnchorBtn > button,
+.cartAnchorBtn .btn.btn-primary:focus {
+    background-color: #006983;
     border-radius: 30px;
-    color: #fff;
-    border-bottom: none;
-    margin-top: -35px;
+    margin-top: -45px;
+    outline: none;
 }
-.cartAnchor:hover {
-    background: #A33F1F;
-    cursor: pointer;
+.cartAnchorBtn .btn-primary:active,
+.cartAnchorBtn .btn-primary:hover {
+    background-color: #A33F1F;
+    border-color: #A33F1F;
+    color:white;
 }
-.cartAnchor:active {
-    border-top-color: #28597a;
-    background: #A33F1F;
-}
-.cartAnchor a {
-    color: #fff;
-    text-decoration: none;
-}
-.cartAnchor .badge {
+.cartAnchorBtn .badge {
     color: #28597a;
     background-color: #fff;
 }
@@ -385,9 +377,9 @@ img.logo-stacked {
 		background-color: white;
 		z-index: 200;
 	}
-    .cartAnchor {
+    .cartAnchorBtn {
         position: absolute;
-        margin-top: 0px;
+        margin-top: 20px;
         padding: 5px 5px;
     }
 }

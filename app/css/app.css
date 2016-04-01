@@ -129,6 +129,7 @@ li {
     border-radius: 0px;
     width: 100px;
     margin-bottom: 10px;
+    outline: none;
 }
 .cartBtnStyles .btn-primary:active,
 .cartBtnStyles .btn-primary:hover {
