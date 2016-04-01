@@ -12,14 +12,18 @@
                 cartItems: "="
             },
             templateUrl: 'components/cart/anchor.html',
-            controller: ['$scope', function($scope) {
+            controller: ['$scope', '$location', '$anchorScroll', function($scope, $location, $anchorScroll) {
 
                 $scope.cartHasItems = function() {
                     return $scope.cartItems.length > 0;
                 };
 
-                $scope.resetUrl = function() {
-                    location.href = '/#/';
+                $scope.scrollToCart = function(newHash) {
+                    var oldHash = $location.hash();
+                    $location.hash(newHash);
+                    $anchorScroll.yOffset = 100;
+                    $anchorScroll();
+                    $location.hash(oldHash);
                 }
             }]
         }
