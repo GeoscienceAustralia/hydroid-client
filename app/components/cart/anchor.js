@@ -17,6 +17,10 @@
                 $scope.cartHasItems = function() {
                     return $scope.cartItems.length > 0;
                 };
+
+                $scope.resetUrl = function() {
+                    location.href = '/#/';
+                }
             }]
         }
     }]);
