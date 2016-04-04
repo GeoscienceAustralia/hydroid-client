@@ -2,8 +2,7 @@ describe('Hydroid anchor component tests', function () {
     var $compile,
         $httpBackend,
         $timeout,
-        $rootScope,
-        hydroidAnchorService;
+        $rootScope;
 
     angular.module('mockAnchorApp', ['ngMock','anchor']);
 
@@ -21,7 +20,6 @@ describe('Hydroid anchor component tests', function () {
         $httpBackend = _$httpBackend_;
         $timeout = _$timeout_;
         $rootScope = _$rootScope_;
-//        hydroidAnchorService = _hydroidAnchorService_;
     }));
 
     it('Should have isolated scope', function () {
@@ -29,6 +27,22 @@ describe('Hydroid anchor component tests', function () {
         var element = $compile('<cart-anchor cart-items="cartItems"></cart-anchor>')($rootScope);
         $rootScope.$digest();
         var directiveScope = element.isolateScope();
-        expect(directiveScope).not.toBe(null);
+        expect(directiveScope).not.toBe(undefined);
+        expect(directiveScope.cartHasItems()).toBe(false);
+        $rootScope.cartItems.push({ test: 'foo'});
+        $rootScope.$digest();
+        expect(directiveScope.cartHasItems()).toBe(true);
+    });
+
+    it('Should have `cartHasItems` predicate function', function () {
+        $rootScope.cartItems = [];
+        var element = $compile('<cart-anchor cart-items="cartItems"></cart-anchor>')($rootScope);
+        $rootScope.$digest();
+        var directiveScope = element.isolateScope();
+        expect(directiveScope.cartHasItems).not.toBe(undefined);
+        expect(directiveScope.cartHasItems()).toBe(false);
+        $rootScope.cartItems.push({ test: 'foo'});
+        $rootScope.$digest();
+        expect(directiveScope.cartHasItems()).toBe(true);
     });
 });
