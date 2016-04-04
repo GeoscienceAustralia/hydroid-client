@@ -44,14 +44,16 @@ describe('Hydroid home components tests', function () {
     }));
 
     it('Should have isolated scope', function () {
-        var element = $compile('<hydroid-home></hydroid-home>')($rootScope);
+        $rootScope.cartItems = [];
+        var element = $compile('<hydroid-home cart-items="cartItems"></hydroid-home>')($rootScope);
         $rootScope.$digest();
         var directiveScope = element.isolateScope();
         expect(directiveScope).not.toBe(null);
     });
 
     it('Should have `onQueryFunction` that takes a search query.', function () {
-        var element = $compile('<hydroid-home></hydroid-home>')($rootScope);
+        $rootScope.cartItems = [];
+        var element = $compile('<hydroid-home cart-items="cartItems"></hydroid-home>')($rootScope);
         $rootScope.$digest();
         var directiveScope = element.isolateScope();
         expect(directiveScope).not.toBe(null);

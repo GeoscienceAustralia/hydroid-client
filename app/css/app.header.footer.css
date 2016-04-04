@@ -105,7 +105,7 @@ a {
 
 .ga-header .navbar-nav > li a {
     color: #006983;
-    font-weight: 600;
+    font-weight: bold;
 }
 
 .ga-header .navbar-nav > li a:hover {
@@ -271,6 +271,24 @@ img.logo-stacked {
     padding: 0;
 }
 
+.cartAnchorBtn > button,
+.cartAnchorBtn .btn.btn-primary:focus {
+    background-color: #006983;
+    border-radius: 30px;
+    margin-top: -45px;
+    outline: none;
+}
+.cartAnchorBtn .btn-primary:active,
+.cartAnchorBtn .btn-primary:hover {
+    background-color: #A33F1F;
+    border-color: #A33F1F;
+    color:white;
+}
+.cartAnchorBtn .badge {
+    color: #28597a;
+    background-color: #fff;
+}
+
 /* end Header*/
 
 /* Footer */
@@ -359,4 +377,9 @@ img.logo-stacked {
 		background-color: white;
 		z-index: 200;
 	}
+    .cartAnchorBtn {
+        position: absolute;
+        margin-top: 20px;
+        padding: 5px 5px;
+    }
 }

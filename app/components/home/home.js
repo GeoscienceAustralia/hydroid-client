@@ -6,16 +6,17 @@
     module.directive('hydroidHome', ['SearchServices', '$location', '$log', function(SearchServices, $location, $log) {
         return {
             restrict: 'E',
-            scope: {},
+            scope: {
+                cartItems: '='
+            },
             templateUrl: 'components/home/home.html',
-            controller: ['$scope', function($scope) {
+            controller: ['$scope', '$anchorScroll', function($scope, $anchorScroll) {
 
                 var resultsCounter = 0;
 
                 $scope.query = null;
                 $scope.facet = null;
                 $scope.menuItems = [];
-                $scope.cartItems = [];
                 $scope.facetStats = [];
                 $scope.hasSearchResults = false;
 
@@ -118,5 +119,4 @@
             }]
         };
     }]);
-
 })();

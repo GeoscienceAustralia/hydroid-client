@@ -14,13 +14,19 @@
                 <img src="{{smlLogo}}" alt="Australian Government - Geoscience Australia" class="logo-stacked" title="Australian Government - Geoscience Australia">
             </a>
             <div class="appTitle visible-xs">
-                <h1>{{appTitle}}</h1>
+                <h3>{{appTitle}}</h3>
+            </div>
+            <div class="visible-xs">
+                <cart-anchor cart-items="cartItems"></cart-anchor>
             </div>
         </div>
 
         <div class="collapse navbar-collapse" id="navigationBar">
             <div class="applicationTitle hidden-xs">
                 <h1>{{appTitle}}</h1>
+            </div>
+            <div class="hidden-xs">
+                <cart-anchor cart-items="cartItems"></cart-anchor>
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="#/"><span class="glyphicon glyphicon-home"></span></a></li>
@@ -44,5 +50,6 @@
                 </li>
             </ul>
         </div>
+
     </div>
 </div>

@@ -7,7 +7,7 @@
                                 on-menu-click="onMenuClickFunction(facet)" is-loading="isLoading"></hydroid-search-related>
         <div class="hidden-xs hidden-sm" ng-show="hasCartItems()">
             <br/>
-            <shopping-cart cart-list="cartItems"></shopping-cart>
+            <shopping-cart cart-list="cartItems" id="cartAnchor"></shopping-cart>
         </div>
     </div>
     <div class="col-sm-9">
@@ -32,5 +32,5 @@
 </div>
 <div class="visible-xs visible-sm" ng-show="hasCartItems()">
     <br/>
-    <shopping-cart cart-list="cartItems"></shopping-cart>
+    <shopping-cart cart-list="cartItems" id="cartAnchor"></shopping-cart>
 </div>

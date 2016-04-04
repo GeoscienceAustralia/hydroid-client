@@ -9,7 +9,8 @@
             scope: {
                 appLogo: '@',
                 smlLogo: '@',
-                appTitle: '@'
+                appTitle: '@',
+                cartItems: '='
             },
             templateUrl: function(elements, attributes) {
                 return attributes.templatePath || 'components/header/header.html';

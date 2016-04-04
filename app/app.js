@@ -9,13 +9,18 @@
         'search-related',
         'enhancer',
         'cart',
+        'anchor',
         'header',
         'hydroid-alerts'
     ]);
 
+    mod.controller('anchorCtrl', ['$scope', function ($scope) {
+        $scope.cartItems = [];
+    }]);
+
     mod.config(['$routeProvider', '$locationProvider', '$provide',
         function ($routeProvider, $locationProvider, $provide) {
-            $routeProvider.when('/', {template: '<hydroid-home></hydroid-home>',reloadOnSearch:false});
+            $routeProvider.when('/', {template: '<hydroid-home cart-items="cartItems"></hydroid-home>',reloadOnSearch:false});
             $routeProvider.otherwise({redirectTo: '/'});
             $locationProvider.html5Mode(false);
 
