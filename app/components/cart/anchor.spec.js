@@ -2,7 +2,8 @@ describe('Hydroid anchor component tests', function () {
     var $compile,
         $httpBackend,
         $timeout,
-        $rootScope;
+        $rootScope,
+        hydroidAnchorService;
 
     angular.module('mockAnchorApp', ['ngMock','anchor']);
 
@@ -20,6 +21,7 @@ describe('Hydroid anchor component tests', function () {
         $httpBackend = _$httpBackend_;
         $timeout = _$timeout_;
         $rootScope = _$rootScope_;
+//        hydroidAnchorService = _hydroidAnchorService_;
     }));
 
     it('Should have isolated scope', function () {
