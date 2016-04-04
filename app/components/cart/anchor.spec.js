@@ -28,10 +28,6 @@ describe('Hydroid anchor component tests', function () {
         $rootScope.$digest();
         var directiveScope = element.isolateScope();
         expect(directiveScope).not.toBe(undefined);
-        expect(directiveScope.cartHasItems()).toBe(false);
-        $rootScope.cartItems.push({ test: 'foo'});
-        $rootScope.$digest();
-        expect(directiveScope.cartHasItems()).toBe(true);
     });
 
     it('Should have `cartHasItems` predicate function', function () {
