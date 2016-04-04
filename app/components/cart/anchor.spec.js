@@ -48,5 +48,13 @@ describe('Hydroid anchor component tests', function () {
         $rootScope.$digest();
         var directiveScope = element.isolateScope();
         expect(directiveScope.scrollToCart).not.toBe(undefined);
+        var callSuccess = false;
+        try {
+            directiveScope.scrollToCart();
+            callSuccess = true;
+        } catch(e) {
+            callSuccess = false;
+        }
+        expect(callSuccess).toBe(true);
     });
 });
