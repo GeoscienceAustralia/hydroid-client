@@ -41,4 +41,12 @@ describe('Hydroid anchor component tests', function () {
         $rootScope.$digest();
         expect(directiveScope.cartHasItems()).toBe(true);
     });
+
+    it('Should have `scrollToCart` function', function () {
+        $rootScope.cartItems = [];
+        var element = $compile('<cart-anchor cart-items="cartItems"></cart-anchor>')($rootScope);
+        $rootScope.$digest();
+        var directiveScope = element.isolateScope();
+        expect(directiveScope.scrollToCart).not.toBe(undefined);
+    });
 });
