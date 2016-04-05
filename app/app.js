@@ -11,6 +11,7 @@
         'cart',
         'anchor',
         'header',
+        'footer',
         'hydroid-alerts'
     ]);
 
