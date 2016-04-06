@@ -353,8 +353,7 @@ img.logo-stacked {
 
 .ga-footer .nav>li.contact>a:hover,.ga-footer .nav>li.contact>a:focus
 	{
-	background: url(images/contact-arrow-over.gif) no-repeat center right
-		#72c7e7;
+	background: url(images/contact-arrow-over.gif) no-repeat center right #72c7e7;
 	color: #000000;
 }
 
@@ -367,8 +366,8 @@ img.logo-stacked {
     background-color: #2F2F2F;
 }
 .ga-footer .nav>li>a {
-	padding-top: 3px;
-	padding-bottom: 3px;
+	padding-top: 2px;
+	padding-bottom: 2px;
 }
 
 .ga-footer .navbar-toggle {
@@ -376,19 +375,10 @@ img.logo-stacked {
 	margin-top: 2px;
 }
 
-.ga-footer > div.container {
-    justify-content: center;
-    background-color: #2F2F2F;
-    color: #fff;
-    width: 100%;
-    margin-top: 10px;
-}
-
 @media screen and (max-width: 768px) {
-	.nav {
-		background-color: white;
-		z-index: 200;
-	}
+    .ga-footer {
+        text-align: center;
+    }
     .cartAnchorBtn {
         position: absolute;
         margin-top: 20px;
