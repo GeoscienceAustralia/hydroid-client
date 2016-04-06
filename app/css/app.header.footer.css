@@ -329,10 +329,11 @@ img.logo-stacked {
 /* Responsive footer*/
 .ga-footer {
 	min-height: 42px;
-	margin: 0;
 	background-color: #2F2F2F;
 	border-color: #2F2F2F;
 	border-radius: 0;
+    color: #fff;
+    margin-top: 10px;
 }
 
 .ga-footer .navbar-collapse,.ga-footer .navbar-form {
