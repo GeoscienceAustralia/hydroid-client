@@ -36,7 +36,9 @@
 <div class="container-fluid mainView" ng-view></div>
 <!-- /.container -->
 
-<application-footer></application-footer>
+<ng-include src="'components/footer/footer.html'"></ng-include>
+
+<!--<application-footer></application-footer>-->
 
 <!-- build:js lib/js/jquery.min.js -->
 <script src="../node_modules/jquery/dist/jquery.js"></script>
@@ -65,7 +67,6 @@
 <script src="components/config/config.js"></script>
 <script src="components/modal/modal.js"></script>
 <script src="components/header/header.js"></script>
-<script src="components/footer/footer.js"></script>
 <script src="components/alerts/alerts.js"></script>
 <script src="app.js"></script>
 <!-- endbuild-->
