@@ -380,6 +380,12 @@ img.logo-stacked {
     .ga-footer {
         text-align: center;
     }
+    .ga-footer-sm li a,
+    .ga-footer-sm {
+        background-color: #2F2F2F;
+        color: white;
+        margin-bottom: -120px;
+    }
     #ga-footer-rights ul li {
         display: compact;
     }
