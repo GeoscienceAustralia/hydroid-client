@@ -377,9 +377,6 @@ img.logo-stacked {
 }
 
 @media screen and (max-width: 768px) {
-    .ga-footer {
-        text-align: center;
-    }
     .ga-footer-sm li a,
     .ga-footer-sm {
         background-color: #2F2F2F;
