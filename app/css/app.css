@@ -172,6 +172,10 @@ li {
     text-decoration: none;
 }
 
+.showMoreButton {
+    width:100%;
+}
+
 .search-wrapper {
     width: 100%;
     background-color: #006983;
