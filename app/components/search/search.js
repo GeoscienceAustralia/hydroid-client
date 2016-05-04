@@ -15,27 +15,10 @@
             controller: ['$scope', function ($scope) {
 
                 $scope.query = '';
-                var searchTimeout;
-
-                $scope.$watch('query', function (newVal, oldVal) {
-                    if (newVal) {
-                        if (newVal != oldVal) {
-                            if(searchTimeout != null) {
-                                $timeout.cancel(searchTimeout);
-                            }
-                            searchTimeout = $timeout(function () {
-                                if ($scope.onQuery) {
-                                    $scope.onQuery({query: $scope.query});
-                                }
-                            },200)
-                        }
-                    } else if (oldVal) {
-                        if ($scope.onReset) {
-                            $scope.onReset();
-                        }
-                    }
-                });
-
+                var queryParams = $location.search();
+                if(queryParams.query) {
+                    $scope.query = queryParams.query;
+                }
                 $scope.resetSearch = function() {
                     $scope.query = null;
                     $location.search('facet', null);
@@ -43,6 +26,20 @@
                         $scope.onReset();
                     }
                 };
+
+                $scope.search = function () {
+                    $location.search('query',$scope.query);
+                };
+
+                $scope.searchKeyUp = function (event) {
+                    if(event.keyCode === 13) {
+                        $scope.search();
+                    }
+                };
+
+                $scope.$on('$locationChangeSuccess', function () {
+                    $scope.query = $location.search().query;
+                });
 
             }],
 

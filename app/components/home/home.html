@@ -1,10 +1,10 @@
 <div class="search-wrapper">
-    <hydroid-search on-query="onQueryFunction(query)" on-reset="onResetFunction()"></hydroid-search>
+    <hydroid-search on-query="onSearch(query)" on-reset="onResetFunction()"></hydroid-search>
 </div>
 <div class="row">
     <div class="col-sm-3">
-        <hydroid-search-related menu-url="/data/menu.json" menu-items="menuItems" has-results="hasSearchResults"
-                                on-menu-click="onMenuClickFunction(facet)" is-loading="isLoading"></hydroid-search-related>
+        <hydroid-search-related menu-items="menuItems" has-results="hasSearchResults"
+                                on-menu-click="onMenuClickFunction(facet)"></hydroid-search-related>
         <div class="hidden-xs hidden-sm" ng-show="hasCartItems()">
             <br/>
             <shopping-cart cart-list="cartItems" id="cartAnchor"></shopping-cart>
@@ -15,15 +15,23 @@
         <div ng-show="hasSearchResults">
             <h4 class="searchResults">Search Results</h4>
             <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query" facet="facet"
+                                    documents="documentResults"
+                                    num-found="documentNumFound"
                                     doc-type="DOCUMENT" section-title="Reports and articles" menu-items="menuItems" cart-items="cartItems"
                                     on-results="onResultsFunction(results)"></hydroid-search-results>
             <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query" facet="facet"
+                                    documents="datasetResults"
+                                    num-found="datasetNumFound"
                                     doc-type="DATASET" section-title="Data sets" menu-items="menuItems" cart-items="cartItems"
                                     on-results="onResultsFunction(results)"></hydroid-search-results>
             <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query" facet="facet"
+                                    documents="modelResults"
+                                    num-found="modelNumFound"
                                     doc-type="MODEL" section-title="Models" menu-items="menuItems" cart-items="cartItems"
                                     on-results="onResultsFunction(results)"></hydroid-search-results>
             <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query" facet="facet"
+                                    documents="imageResults"
+                                    num-found="imageNumFound"
                                     doc-type="IMAGE" section-title="Images" menu-items="menuItems" cart-items="cartItems"
                                     template-path="components/search/search-results-images.html"
                                     on-results="onResultsFunction(results)"></hydroid-search-results>

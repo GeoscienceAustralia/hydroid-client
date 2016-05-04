@@ -1,10 +1,10 @@
 <div class="row searchBoxFullContainer">
     <div>
         <div class="input-group col-lg-6 col-sm-12 searchBoxInputContainer col-lg-offset-2">
-            <input type="text" class="form-control" placeholder="What is your interest ?" ng-model="query">
+            <input type="text" class="form-control" placeholder="What is your interest ?" ng-model="query" ng-keyup="searchKeyUp($event)">
         </div>
         <div class="col-lg-2 visible-lg searchBoxBtnContainer">
-            <button type="button" ng-click="resetSearch()" class="btn btn-lg btn-primary btn-group-justified">Reset</button>
+            <button type="button" ng-click="search()" class="btn btn-lg btn-primary btn-group-justified">Search</button>
         </div>
         <!-- /input-group -->
     </div><!-- /.col-lg-4 -->

@@ -3,51 +3,60 @@
     "use strict";
     var module = angular.module('search-related', []);
 
-    module .directive('hydroidSearchRelated', ['$http', '$timeout', '$location', function ($http, $timeout, $location) {
+    module.directive('hydroidSearchRelated', ['$http', '$timeout', '$location', function ($http, $timeout, $location) {
         return {
             restrict: 'E',
             scope: {
-                menuUrl: '@',
-                menuItems:'=',
+                menuItems: '=',
                 hasResults: '=',
-                onMenuClick: '&',
-                isLoading: '='
+                onMenuClick: '&'
             },
             templateUrl: 'components/search/search-related.html',
-            controller: ['$scope', '$log', function($scope, $log) {
-
-                $scope.buildMenu = function () {
-                    return $http.get($scope.menuUrl)
-                        .then(function (response) {
-                            $timeout(function () {
-                                $scope.menuItems = response.data;
-                            });
-                        },
-                        function (response) {
-                            $log.error('Error calling Menu API, Code: ' + response.status);
-                        });
-                };
-
-                $scope.$watchCollection('menuItems', function (newVal, oldVal) {
-                    if(newVal && oldVal) {
-                        $scope.showChange = newVal.length != oldVal.length;
+            controller: ['$scope', '$log', function ($scope, $log) {
+                $scope.setFacet = function (nodeLabel) {
+                    nodeLabel = nodeLabel.split(' ').join('_');
+                    var query = $location.search().query;
+                    if (query) {
+                        $location.search('facet', nodeLabel);
                     } else {
-                        $scope.showChange = true;
+                        $location.search('facet', nodeLabel);
                     }
-                });
-
-                $scope.buildMenu().then(function () {
-                    var queryParams = $location.search();
-                    if(queryParams.facet) {
-                        $timeout(function () {
-                            if ($scope.onMenuClick) {
-                                $scope.onMenuClick({facet: queryParams.facet});
-                            }
-                        });
-                    }
-                });
+                };
             }]
         };
+    }]);
+
+    module.directive('hydroidSearchRelatedItem', ['$http', '$timeout', '$location', function ($http, $timeout, $location) {
+        return {
+            restrict: 'E',
+            scope: {
+                menuItem: '=',
+                hasResults: '=',
+                onMenuClick: '&'
+            },
+            templateUrl: 'components/search/search-related-item.html',
+            controller: ['$scope', '$log', function ($scope, $log) {
+                $scope.setFacet = function (nodeLabel) {
+                    nodeLabel = nodeLabel.split(' ').join('_');
+                    var query = $location.search().query;
+                    if (query) {
+                        $location.search('facet', nodeLabel);
+                    } else {
+                        $location.search('facet', nodeLabel);
+                    }
+                };
+
+                $scope.totalCount = function (menuItem) {
+                    var result = menuItem.count;
+                    if(menuItem.children) {
+                        result += menuItem.children.reduce(function (a,b) {
+                            return a.count + b.count;
+                        });
+                    }
+                    return result;
+                };
+            }]
+        }
     }]);
 
 })();
