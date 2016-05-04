@@ -36,6 +36,10 @@
             },
             templateUrl: 'components/search/search-related-item.html',
             controller: ['$scope', '$log', function ($scope, $log) {
+
+                //$scope.$watch('hasResults', function (newVal) {
+                //
+                //});
                 $scope.setFacet = function (nodeLabel) {
                     nodeLabel = nodeLabel.split(' ').join('_');
                     var query = $location.search().query;

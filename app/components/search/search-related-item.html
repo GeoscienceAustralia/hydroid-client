@@ -8,7 +8,7 @@
         </div>
     </div>
     <ul ng-show="menuItem.children">
-        <li ng-repeat="mu in menuItem.children" ng-enable="totalCount(mu) > 0">
+        <li ng-repeat="mu in menuItem.children" ng-show="totalCount(mu) > 0">
             <hydroid-search-related-item has-results="hasResult" menu-item="mu" on-menu-click="onMenuClick"></hydroid-search-related-item>
         </li>
     </ul>
