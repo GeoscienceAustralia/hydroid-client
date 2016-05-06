@@ -10,7 +10,7 @@
                 cartItems: '='
             },
             templateUrl: 'components/home/home.html',
-            controller: ['$scope', '$anchorScroll', function($scope, $anchorScroll) {
+            controller: ['$scope', function($scope) {
 
                 var resultsCounter = 0;
 
