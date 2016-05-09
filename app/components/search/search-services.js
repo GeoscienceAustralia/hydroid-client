@@ -255,6 +255,19 @@
             return deferred.promise;
         };
 
+        var consolidateStats = function(results) {
+            var allFacetStats = {};
+            for(var i = 0; i < results.length; i++) {
+                var result = results[i];
+                var facetStats = result.facets.facet_fields.label_s;
+                for(var j = 0; j < facetStats.length; j=j+2) {
+                    allFacetStats[facetStats[j]] = allFacetStats[facetStats[j]] ? allFacetStats[facetStats[j]] + facetStats[j + 1] : facetStats[j + 1];
+                }
+
+            }
+            return allFacetStats;
+        };
+
         return {
             search: search,
             getMenu: getMenu,
@@ -265,7 +278,8 @@
             setMenuCounters: setMenuCounters,
             setMenuTotalCounters: setMenuTotalCounters,
             getAllFacetsForMenuItem: getAllFacetsForMenuItem,
-            getResultImageRows: getResultImageRows
+            getResultImageRows: getResultImageRows,
+            consolidateStats: consolidateStats
         };
 
     }]);

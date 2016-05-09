@@ -123,7 +123,6 @@
                 numFound: '=',
                 docType: '@',
                 sectionTitle: '@',
-                onResults: '&',
                 onNextPage: '&',
                 menuItems: '=',
                 cartItems: '='
@@ -134,10 +133,10 @@
             controller: ['$scope', '$log', function($scope, $log) {
                 $scope.isLoading = false;
                 var currentPage = 0;
-                $scope.documents = [];
-                $scope.imageRows = [];
-                $scope.highlights = [];
-                $scope.numFound = 0;
+                $scope.documents = $scope.documents || [];
+                $scope.imageRows = $scope.imageRows || [];
+                $scope.highlights = $scope.highlights || [];
+                $scope.numFound = $scope.numFound || 0;
 
                 $scope.showResults = true;
 

@@ -26,19 +26,6 @@
                 $scope.facetStats = [];
                 $scope.hasSearchResults = false;
 
-                var consolidateStats = function(results) {
-                    var allFacetStats = {};
-                    for(var i = 0; i < results.length; i++) {
-                        var result = results[i];
-                        var facetStats = result.facets.facet_fields.label_s;
-                        for(var j = 0; j < facetStats.length; j=j+2) {
-                            allFacetStats[facetStats[j]] = facetStats[j + 1] || allFacetStats[facetStats[j]] + facetStats[j + 1];
-                        }
-
-                    }
-                    return allFacetStats;
-                };
-
                 $scope.onSearch = function () {
                     $scope.hasSearchResults = true;
                     var queryParams = $location.search();
@@ -47,7 +34,7 @@
                     if (facet && facet.indexOf('_') > -1) {
                         facet = facet.split('_').join(' ');
                     }
-                    var docTypes = ['DOCUMENT','DATASETS', 'MODEL', 'IMAGE'];
+                    var docTypes = ['DOCUMENT','DATASET', 'MODEL', 'IMAGE'];
                     var promises = [];
                     for(var i = 0; i < docTypes.length; i++) {
                         promises.push(SearchServices.search(query,facet,docTypes[i],$scope.menuItems));
@@ -66,7 +53,7 @@
                             }
 
                             if (currentPage === 0) {
-                                var keyValFacetStats = consolidateStats(results);
+                                var keyValFacetStats = SearchServices.consolidateStats(results);
                                 $scope.facetStats = SearchServices.getFacetStats(keyValFacetStats);
 
                                 if (facet) {
@@ -87,11 +74,16 @@
                 };
 
                 $scope.$on('$locationChangeSuccess', function () {
-                    $scope.onSearch();
+                    var queryParams = $location.search();
+                    console.log(queryParams.query);
+                    if(queryParams.query || queryParams.facet) {
+                        $scope.onSearch();
+                    }
                 });
                 $scope.$watch('menuReady', function () {
                     if($scope.menuReady) {
                         var queryParams = $location.search();
+                        console.log(queryParams.query);
                         if(queryParams.query || queryParams.facet) {
                             $scope.onSearch();
                         }
