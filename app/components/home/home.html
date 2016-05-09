@@ -36,6 +36,9 @@
                                     template-path="components/search/search-results-images.html"
                                     on-results="onResultsFunction(results)"></hydroid-search-results>
         </div>
+        <div ng-show="!hasSearchResults">
+            <h2>Welcome to Hydroid!</h2>
+        </div>
     </div>
 </div>
 <div class="visible-xs visible-sm" ng-show="hasCartItems()">

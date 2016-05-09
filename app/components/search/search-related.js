@@ -19,6 +19,19 @@
                     nodeLabel = nodeLabel.split(' ').join('_');
                     $location.search('facet', nodeLabel);
                 };
+
+                $scope.resetFacet = function () {
+                    $scope.facetLabel = null;
+                    $location.search('facet',null);
+                };
+
+                $scope.$on('$locationChangeSuccess', function () {
+                    var facet = $location.search().facet;
+                    $scope.facetLabel = facet;
+                });
+
+                var facet = $location.search().facet;
+                $scope.facetLabel = facet;
             }]
         };
     }]);
@@ -49,6 +62,10 @@
                         });
                     }
                     return result;
+                };
+
+                $scope.resetFacet = function () {
+                  $location.search('facet',null);
                 };
             }]
         }

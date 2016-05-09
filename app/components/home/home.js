@@ -78,6 +78,10 @@
                     if(queryParams.query || queryParams.facet) {
                         $scope.onSearch();
                     }
+                    if(!queryParams.query && !queryParams.facet) {
+                        $scope.hasSearchResults = false;
+                        SearchServices.resetMenuCounters($scope.menuItems);
+                    }
                 });
                 $scope.$watch('menuReady', function () {
                     if($scope.menuReady) {

@@ -11,6 +11,9 @@
             <li ng-repeat="menuItem in menuItems" ng-include="'menuTemplateInit'"></li>
         </ul>
     </div>
+    <div ng-show="facetLabel">
+        <button type="button" ng-click="resetFacet()" class="btn btn-default" style="width:100%">Reset Filter</button>
+    </div>
 
     <script type="text/ng-template" id="menuTemplateInit">
         <div class="row facet searchRelatedButton">
