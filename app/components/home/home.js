@@ -75,7 +75,6 @@
 
                 $scope.$on('$locationChangeSuccess', function () {
                     var queryParams = $location.search();
-                    console.log(queryParams.query);
                     if(queryParams.query || queryParams.facet) {
                         $scope.onSearch();
                     }
