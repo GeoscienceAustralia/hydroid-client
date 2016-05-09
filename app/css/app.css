@@ -290,3 +290,8 @@ table.shopping-cart {
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+
+.hydroidTitle {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
