@@ -2,52 +2,73 @@
 (function () {
     "use strict";
     var module = angular.module('search-related', []);
+    //HACK to avoid recursion
+    window.searchItemMenuLevels = 0;
 
-    module .directive('hydroidSearchRelated', ['$http', '$timeout', '$location', function ($http, $timeout, $location) {
+    module.directive('hydroidSearchRelated', ['$http', '$timeout', '$location', function ($http, $timeout, $location) {
         return {
             restrict: 'E',
             scope: {
-                menuUrl: '@',
-                menuItems:'=',
+                menuItems: '=',
                 hasResults: '=',
-                onMenuClick: '&',
-                isLoading: '='
+                onMenuClick: '&'
             },
             templateUrl: 'components/search/search-related.html',
-            controller: ['$scope', '$log', function($scope, $log) {
-
-                $scope.buildMenu = function () {
-                    return $http.get($scope.menuUrl)
-                        .then(function (response) {
-                            $timeout(function () {
-                                $scope.menuItems = response.data;
-                            });
-                        },
-                        function (response) {
-                            $log.error('Error calling Menu API, Code: ' + response.status);
-                        });
+            controller: ['$scope', '$log', function ($scope, $log) {
+                $scope.setFacet = function (nodeLabel) {
+                    nodeLabel = nodeLabel.split(' ').join('_');
+                    $location.search('facet', nodeLabel);
                 };
 
-                $scope.$watchCollection('menuItems', function (newVal, oldVal) {
-                    if(newVal && oldVal) {
-                        $scope.showChange = newVal.length != oldVal.length;
-                    } else {
-                        $scope.showChange = true;
-                    }
+                $scope.resetFacet = function () {
+                    $scope.facetLabel = null;
+                    $location.search('facet',null);
+                };
+
+                $scope.$on('$locationChangeSuccess', function () {
+                    var facet = $location.search().facet;
+                    $scope.facetLabel = facet;
                 });
 
-                $scope.buildMenu().then(function () {
-                    var queryParams = $location.search();
-                    if(queryParams.facet) {
-                        $timeout(function () {
-                            if ($scope.onMenuClick) {
-                                $scope.onMenuClick({facet: queryParams.facet});
-                            }
-                        });
-                    }
-                });
+                var facet = $location.search().facet;
+                $scope.facetLabel = facet;
             }]
         };
+    }]);
+
+    module.directive('hydroidSearchRelatedItem', ['$http', '$timeout', '$location', function ($http, $timeout, $location) {
+        return {
+            restrict: 'E',
+            scope: {
+                menuItem: '=',
+                hasResults: '=',
+                onMenuClick: '&'
+            },
+            templateUrl: 'components/search/search-related-item.html',
+            controller: ['$scope', '$log', function ($scope, $log) {
+                window.searchItemMenuLevels++;
+                if(window.searchItemMenuLevels > 300)
+                    throw new Error("Recursive menu error!");
+                $scope.setFacet = function (nodeLabel) {
+                    nodeLabel = nodeLabel.split(' ').join('_');
+                    $location.search('facet', nodeLabel);
+                };
+
+                $scope.totalCount = function (menuItem) {
+                    var result = menuItem.count;
+                    if(menuItem.children) {
+                        result += menuItem.children.reduce(function (a,b) {
+                            return a.count + b.count;
+                        });
+                    }
+                    return result;
+                };
+
+                $scope.resetFacet = function () {
+                  $location.search('facet',null);
+                };
+            }]
+        }
     }]);
 
 })();

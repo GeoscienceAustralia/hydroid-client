@@ -5,7 +5,7 @@ describe('hydroid search services tests', function () {
         $rootScope,
         SearchServices;
 
-    angular.module('mockApp', ['ngMock', 'search-services']);
+    angular.module('mockApp', ['ngMock', 'search-services', 'config']);
 
     // Load the myApp module, which contains the service
     beforeEach(module('mockApp'));
@@ -25,16 +25,20 @@ describe('hydroid search services tests', function () {
     });
 
     it('should be able to collect facet stats', function () {
-        var dummyFacetResponse = [
+        var dummyResults= [{
+            facets: { facet_fields: { label_s:[
             'Marine',
             5,
             'Coral',
-            12
-        ];
-        var facetStats = SearchServices.getFacetStats(dummyFacetResponse);
+            12,
+            'Marine',
+            2
+        ]}}}];
+        var facetStats = SearchServices.consolidateStats(dummyResults);
+        console.log(facetStats);
         expect(facetStats).not.toBe(null);
-        expect(facetStats[0].count).toBe(5);
-        expect(facetStats[1].count).toBe(12);
+        expect(facetStats['Marine']).toBe(7);
+        expect(facetStats['Coral']).toBe(12);
     });
 
     it('should be able to find a menu item given a facet match', function () {
@@ -49,13 +53,17 @@ describe('hydroid search services tests', function () {
         var menuData = readJSON('app/data/menu.json');
         expect(menuData).not.toBe(null);
         expect(menuData.length).toBeGreaterThan(0);
-        var dummyFacetResponse = [
-            'sponges',
-            5,
-            'macroalgae',
-            12
-        ];
-        var facetStats = SearchServices.getFacetStats(dummyFacetResponse);
+        var dummyResults= [{
+            facets: { facet_fields: { label_s:[
+                'sponges',
+                5,
+                'Coral',
+                12,
+                'Marine',
+                2
+            ]}}}];
+        var facetStatsKeyVal = SearchServices.consolidateStats(dummyResults);
+        var facetStats = SearchServices.getFacetStats(facetStatsKeyVal);
         SearchServices.setMenuCounters(facetStats,menuData);
         var menuItem = SearchServices.findMenuItemByLabel('sponges',menuData);
         expect(menuItem).not.toBe(null);

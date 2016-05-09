@@ -1,0 +1,15 @@
+<div>
+    <div class="row facet" ng-class="{searchRelatedButton: menuItem.nodeType == null}">
+        <a href="" ng-click="setFacet(menuItem.nodeLabel)" class="col-xs-9">
+            <h5>{{ menuItem.nodeLabel }}&nbsp;</h5>
+        </a>
+        <div class="col-xs-3 text-right">
+            <span class="badge">{{ menuItem.count }}</span>
+        </div>
+    </div>
+    <ul ng-show="menuItem.children">
+        <li ng-repeat="mu in menuItem.children" ng-show="totalCount(mu) > 0">
+            <hydroid-search-related-item has-results="hasResult" menu-item="mu" on-menu-click="onMenuClick"></hydroid-search-related-item>
+        </li>
+    </ul>
+</div>
