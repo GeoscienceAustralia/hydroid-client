@@ -11,6 +11,7 @@
             },
             templateUrl: 'components/home/home.html',
             controller: ['$scope', '$anchorScroll', function($scope, $anchorScroll) {
+                var docTypes = ['DOCUMENT','DATASET', 'MODEL', 'IMAGE'];
                 $scope.menuReady = false;
                 SearchServices.getMenu().then(function (menu) {
                     $timeout(function () {
@@ -34,7 +35,7 @@
                     if (facet && facet.indexOf('_') > -1) {
                         facet = facet.split('_').join(' ');
                     }
-                    var docTypes = ['DOCUMENT','DATASET', 'MODEL', 'IMAGE'];
+
                     var promises = [];
                     for(var i = 0; i < docTypes.length; i++) {
                         promises.push(SearchServices.search(query,facet,docTypes[i],$scope.menuItems));
@@ -78,15 +79,20 @@
                     if(queryParams.query || queryParams.facet) {
                         $scope.onSearch();
                     }
+
                     if(!queryParams.query && !queryParams.facet) {
                         $scope.hasSearchResults = false;
                         SearchServices.resetMenuCounters($scope.menuItems);
+                        for(var i = 0; i < docTypes.length; i++) {
+                            var docType = docTypes[i];
+                            $scope[docType.toLowerCase() + 'NumFound'] = 0;
+                            $scope[docType.toLowerCase() + 'Results'] = [];
+                        }
                     }
                 });
                 $scope.$watch('menuReady', function () {
                     if($scope.menuReady) {
                         var queryParams = $location.search();
-                        console.log(queryParams.query);
                         if(queryParams.query || queryParams.facet) {
                             $scope.onSearch();
                         }
