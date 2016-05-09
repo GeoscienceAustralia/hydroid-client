@@ -41,6 +41,6 @@ describe('Hydroid header components tests', function () {
         var element = $compile('<application-header app-logo="img/geoscience_inline_padded_small.png" app-title="Hydroid"></application-header>')($rootScope);
         $rootScope.$digest();
         $timeout.flush();
-        expect(element.find('.applicationTitle')[0].innerHTML.trim()).toBe('<h1 class="ng-binding">Hydroid</h1>');
+        expect(element.find('.applicationTitle')[0].innerHTML.trim()).toBe('<h1 class="hydroidTitle ng-binding">Hydroid</h1>');
     });
 });
