@@ -14,19 +14,20 @@
         {{ sectionTitle }}
     </h4>
     <div class="row" ng-show="showResults"  ng-class="{'animate-fade-out': isLoading, 'animate-fade-in': !isLoading}">
-        <div class="col-sm-10">
+        <div class="col-sm-9">
             <h4 ng-bind="result.title"></h4>
             <h6 ng-show="result.created"><b>Created on: </b>{{ result.created | date }}</h6>
             <h6 ng-show="result.creator"><b>Authors: </b>{{ result.creator }}</h6>
             <br/>
             <p ng-bind-html="result.selectionContext | hydroidTruncateTextPreview: query:facetsArray | hydroidQueryResultsFilter: query | hydroidFacetsResultsFilter: facetsArray | hydroidRelateHighlights: result.about:highlights | hydroidTrustedText"></p>
         </div>
-        <div class="col-sm-2 text-right cartBtnStyles">
-            <button class="btn btn-primary btn-sm" ng-click="goToDownloadUrl(result.docUrl)">RDF Download</button>
-            <button class="btn btn-primary btn-sm"
+        <div class="col-sm-3 text-right cartBtnStyles">
+            <button class="btn btn-primary" ng-click="downloadOriginal(result)" title="Download File"><span class="glyphicon glyphicon-folder-open"></span></button>
+            <button class="btn btn-primary" ng-click="goToDownloadUrl(result.docUrl)" title="Download RDF"><span class="glyphicon glyphicon-download-alt"></span></button>
+            <button class="btn btn-primary" title="{{isItemInCart(result.about) ? 'Remove from cart' : 'Add to cart'}}"
                     ng-click="addToCart(result)">
-                <div ng-if="!isItemInCart(result.about)">Add to cart</div>
-                <div ng-if="isItemInCart(result.about)">Added <span class="glyphicon glyphicon-ok" ng-show="isItemInCart(result.about)"></span></div>
+                <span ng-if="!isItemInCart(result.about)"><span class="glyphicon glyphicon-shopping-cart"></span><span class="glyphicon glyphicon-plus-sign"></span></span>
+                <span ng-if="isItemInCart(result.about)"><span class="glyphicon glyphicon-shopping-cart"></span><span class="glyphicon glyphicon-ok" ng-show="isItemInCart(result.about)"></span></span>
             </button>
         </div>
     </div>

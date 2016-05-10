@@ -156,9 +156,13 @@
                 });
 
                 $scope.goToDownloadUrl = function(itemUrl) {
-                    location.href = itemUrl;
+                    window.open(itemUrl,'_blank');
                 };
-;
+
+                $scope.downloadOriginal = function(item) {
+                    window.open("/api/downloads/documents/" + item.about,'_blank');
+                };
+
                 $scope.isItemInCart = function(urn) {
                     for(var i = 0; i < $scope.cartItems.length; i++) {
                         if (urn == $scope.cartItems[i].about) return true;
@@ -166,9 +170,16 @@
                     return false;
                 };
 
+                $scope.removeItemFromCart = function(item) {
+                    var index = $scope.cartItems.indexOf(item);
+                    $scope.cartItems.splice(index, 1);
+                };
+
                 $scope.addToCart = function(item) {
                     if (!$scope.isItemInCart(item.about)){
                         $scope.cartItems.push(item);
+                    } else {
+                        $scope.removeItemFromCart(item);
                     }
                 };
 
@@ -189,7 +200,7 @@
                         .then(function (result) {
                             $timeout(function () {
                                 $scope.documents.push.apply($scope.documents,result.docs);
-                            },10);
+                            });
                         });
                 };
 
