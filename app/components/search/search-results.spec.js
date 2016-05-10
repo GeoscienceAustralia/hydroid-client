@@ -8,7 +8,8 @@ describe('hydroid search results tests', function () {
         $httpBackend,
         SearchServices,
         $filter,
-        $location;
+        $location,
+        $httpBackend;
 
     angular.module('mockSearchResultsApp', ['ngMock', 'search-results','config']);
 
@@ -18,7 +19,7 @@ describe('hydroid search results tests', function () {
 
     // Store references to $rootScope and $compile
     // so they are available to all tests in this describe block
-    beforeEach(inject(function($injector,_$compile_, _$rootScope_,_$timeout_, _$filter_,_$location_) {
+    beforeEach(inject(function($injector,_$compile_, _$rootScope_,_$timeout_, _$filter_,_$location_,_$httpBackend_) {
         // The injector unwraps the underscores (_) from around the parameter names when matching
         $compile = _$compile_;
         $rootScope = _$rootScope_;
@@ -26,6 +27,11 @@ describe('hydroid search results tests', function () {
         $httpBackend = $injector.get('$httpBackend');
         $filter = _$filter_;
         $location = _$location_;
+        $httpBackend = _$httpBackend_;
+        $httpBackend.when('GET','/solr/hydroid/select?q=docType:DOCUMENT AND (label:"testing123")&rows=5&start=5&facet=true&facet.field=label_s&facet.mincount=1&wt=json&hl=true&hl.simple.pre=<b>&hl.simple.post=</b>&hl.snippets=5&hl.fl=content&fl=extracted-from,concept,docUrl,about,imgThumb,docType,label,title,selectionContext,created,creator')
+            .respond(JSON.stringify({ "responseHeader":{"status":0,"QTime":1,"params":{"facet":"true","facet.mincount":"1","json":"","start":"0","q":"docType:IMAGE AND \"*thiswontbthe*\"","facet.field":"label_s","wt":"json","rows":"6"}},"response":{"numFound":0,"start":0,"docs":[{},{}]},"facet_counts":{"facet_queries":{},"facet_fields":{"label_s":[]},"facet_dates":{},"facet_ranges":{},"facet_intervals":{},"facet_heatmaps":{}} }));
+        $httpBackend.when('GET','/data/menu.json')
+            .respond(JSON.stringify({}));
     }));
 
     it('should be able to collect facet stats', function () {
@@ -34,7 +40,7 @@ describe('hydroid search results tests', function () {
         $rootScope.menuItems = menuData;
         $rootScope.cartItems = [];
         $rootScope.documents = [{},{}];
-        $rootScope.documentNumFound = 1;
+        $rootScope.documentNumFound = 2;
         var element = $compile('<hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query" facet="facet"' +
         'documents="documents"' +
         'num-found="documentNumFound"' +
@@ -43,7 +49,6 @@ describe('hydroid search results tests', function () {
         var directiveScope = element.isolateScope();
         expect(directiveScope).not.toBe(null);
         directiveScope.$digest();
-        console.log(directiveScope);
         expect(directiveScope.documents.length).toBe(2);
         $rootScope.documents = [];
         $rootScope.$digest();
@@ -84,5 +89,26 @@ describe('hydroid search results tests', function () {
         var expectedValue = "suggestions during the early phases of this <b>project</b>. Tara Anderson, Scott Nichol, Nic Bax, and two anonymous...";
         expect($filter('hydroidRelateHighlights')(selectionContext, about, highlights)).toBe(expectedValue);
     });
+
+    it('Should process "nextPage" call correctly', function () {
+        var menuData = readJSON('app/data/menu.json');
+        $rootScope.menuItems = menuData;
+        $rootScope.cartItems = [];
+        $rootScope.documents = [{},{}];
+        $rootScope.documentNumFound = 2;
+        var element = $compile('<hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query" facet="facet"' +
+            'documents="documents"' +
+            'num-found="documentNumFound"' +
+            'doc-type="DOCUMENT" section-title="Reports and articles" menu-items="menuItems" cart-items="cartItems"></hydroid-search-results>')($rootScope);
+        $rootScope.$digest();
+        var directiveScope = element.isolateScope();
+        expect(directiveScope).not.toBe(null);
+        directiveScope.$digest();
+        expect(directiveScope.documents.length).toBe(2);
+        directiveScope.facet = 'testing123';
+        directiveScope.nextPage();
+        $httpBackend.flush();
+        $timeout.flush();
+    })
 
 });

@@ -162,7 +162,7 @@
                 $scope.downloadOriginal = function(item) {
                     window.open("/api/downloads/documents/" + item.about,'_blank');
                 };
-;
+
                 $scope.isItemInCart = function(urn) {
                     for(var i = 0; i < $scope.cartItems.length; i++) {
                         if (urn == $scope.cartItems[i].about) return true;
@@ -200,7 +200,7 @@
                         .then(function (result) {
                             $timeout(function () {
                                 $scope.documents.push.apply($scope.documents,result.docs);
-                            },10);
+                            });
                         });
                 };
 
