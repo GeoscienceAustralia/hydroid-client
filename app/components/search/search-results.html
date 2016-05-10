@@ -26,8 +26,8 @@
             <button class="btn btn-primary" ng-click="goToDownloadUrl(result.docUrl)" title="Download RDF"><span class="glyphicon glyphicon-download-alt"></span></button>
             <button class="btn btn-primary" title="{{isItemInCart(result.about) ? 'Remove from cart' : 'Add to cart'}}"
                     ng-click="addToCart(result)">
-                <div ng-if="!isItemInCart(result.about)"><span class="glyphicon glyphicon-shopping-cart"></span><span class="glyphicon glyphicon-plus-sign"></span></div>
-                <div ng-if="isItemInCart(result.about)"><span class="glyphicon glyphicon-shopping-cart"></span><span class="glyphicon glyphicon-ok" ng-show="isItemInCart(result.about)"></span></div>
+                <span ng-if="!isItemInCart(result.about)"><span class="glyphicon glyphicon-shopping-cart"></span><span class="glyphicon glyphicon-plus-sign"></span></span>
+                <span ng-if="isItemInCart(result.about)"><span class="glyphicon glyphicon-shopping-cart"></span><span class="glyphicon glyphicon-ok" ng-show="isItemInCart(result.about)"></span></span>
             </button>
         </div>
     </div>
