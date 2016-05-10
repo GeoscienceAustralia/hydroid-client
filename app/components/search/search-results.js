@@ -160,7 +160,7 @@
                 };
 
                 $scope.downloadOriginal = function(item) {
-                    window.open("/api/downloads/documents/" + item.about,'_blank');
+                    window.open("/api/download/documents/" + item.about,'_blank');
                 };
 
                 $scope.isItemInCart = function(urn) {
