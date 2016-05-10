@@ -15,7 +15,7 @@
                 $scope.removeItemFromCart = function(item) {
                     var index = $scope.cartList.indexOf(item);
                     $scope.cartList.splice(index, 1);
-                }
+                };
 
                 $scope.getDownloadUrl = function(item) {
                     return item.docUrl;
