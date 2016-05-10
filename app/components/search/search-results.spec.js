@@ -3,10 +3,7 @@
 describe('hydroid search results tests', function () {
     var $compile,
         $rootScope,
-        modalService,
         $timeout,
-        $httpBackend,
-        SearchServices,
         $filter,
         $location,
         $httpBackend;
@@ -24,20 +21,19 @@ describe('hydroid search results tests', function () {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
         $timeout = _$timeout_;
-        $httpBackend = $injector.get('$httpBackend');
         $filter = _$filter_;
         $location = _$location_;
         $httpBackend = _$httpBackend_;
         $httpBackend.when('GET','/solr/hydroid/select?q=docType:DOCUMENT AND (label:"testing123")&rows=5&start=5&facet=true&facet.field=label_s&facet.mincount=1&wt=json&hl=true&hl.simple.pre=<b>&hl.simple.post=</b>&hl.snippets=5&hl.fl=content&fl=extracted-from,concept,docUrl,about,imgThumb,docType,label,title,selectionContext,created,creator')
             .respond(JSON.stringify({ "responseHeader":{"status":0,"QTime":1,"params":{"facet":"true","facet.mincount":"1","json":"","start":"0","q":"docType:IMAGE AND \"*thiswontbthe*\"","facet.field":"label_s","wt":"json","rows":"6"}},"response":{"numFound":0,"start":0,"docs":[{},{}]},"facet_counts":{"facet_queries":{},"facet_fields":{"label_s":[]},"facet_dates":{},"facet_ranges":{},"facet_intervals":{},"facet_heatmaps":{}} }));
+        var menuData = readJSON('app/data/menu.json');
         $httpBackend.when('GET','/data/menu.json')
-            .respond(JSON.stringify({}));
+            .respond(JSON.stringify(menuData));
+        $rootScope.menuItems = menuData;
     }));
 
     it('should be able to collect facet stats', function () {
         $location.search('query','fish');
-        var menuData = readJSON('app/data/menu.json');
-        $rootScope.menuItems = menuData;
         $rootScope.cartItems = [];
         $rootScope.documents = [{},{}];
         $rootScope.documentNumFound = 2;
@@ -91,8 +87,6 @@ describe('hydroid search results tests', function () {
     });
 
     it('Should process "nextPage" call correctly', function () {
-        var menuData = readJSON('app/data/menu.json');
-        $rootScope.menuItems = menuData;
         $rootScope.cartItems = [];
         $rootScope.documents = [{},{}];
         $rootScope.documentNumFound = 2;
