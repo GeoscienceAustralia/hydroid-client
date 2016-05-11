@@ -8,8 +8,6 @@
         return {
             restrict: 'E',
             scope: {
-                onQuery: '&',
-                onReset: '&',
                 menuItems: '='
             },
             templateUrl: 'components/search/search.html',
@@ -20,13 +18,6 @@
                 if(queryParams.query) {
                     $scope.query = queryParams.query;
                 }
-                $scope.resetSearch = function() {
-                    $scope.query = null;
-                    $location.search('facet', null);
-                    if ($scope.onReset) {
-                        $scope.onReset();
-                    }
-                };
 
                 $scope.search = function () {
                     $location.search('query',$scope.query);

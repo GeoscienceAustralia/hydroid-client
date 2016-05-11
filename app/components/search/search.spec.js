@@ -39,4 +39,16 @@ describe('hydroid search related tests', function () {
         directiveScope.$digest();
     });
 
+    it('Should be able to flatten menu data for typeahead', function () {
+        var menuData = readJSON('app/data/menu.json');
+        $rootScope.menuItems = menuData;
+        $rootScope.hasSearchResults = true;
+        var element = $compile('<hydroid-search menu-items="menuItems"></hydroid-search>')($rootScope);
+        $rootScope.$digest();
+        var directiveScope = element.isolateScope();
+        expect(directiveScope).not.toBe(null);
+        directiveScope.$digest();
+        expect(directiveScope.allLabels.length).toBeGreaterThan(0);
+    });
+
 });
