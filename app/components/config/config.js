@@ -7,7 +7,7 @@
         s3BundlesUrl: '/api/download/bundle/',
         solrUrl: '/solr',
         solrCollection:'hydroid',
-        menuUrl: '/data/menu.json'
+        menuUrl: '/api/menu/hydroid'
     })
     
 })();
