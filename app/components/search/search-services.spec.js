@@ -83,5 +83,4 @@ describe('hydroid search services tests', function () {
         expect(rows.length).toBe(1);
         expect(rows[0].length).toBe(6);
     });
-
 });

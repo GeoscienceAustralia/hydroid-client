@@ -195,7 +195,6 @@
 
                 $scope.nextPage = function() {
                     currentPage ++;
-                    // $scope.search($scope.query, $scope.facet);
                     SearchServices.search($scope.query, $scope.facet,$scope.docType,$scope.menuItems,currentPage)
                         .then(function (result) {
                             $timeout(function () {

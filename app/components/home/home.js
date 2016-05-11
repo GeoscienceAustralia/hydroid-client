@@ -32,6 +32,9 @@
                     var queryParams = $location.search();
                     var query = queryParams.query;
                     var facet = queryParams.facet;
+                    //Update scope query/facet
+                    $scope.query = query;
+                    $scope.facet = facet;
                     if (facet && facet.indexOf('_') > -1) {
                         facet = facet.split('_').join(' ');
                     }
