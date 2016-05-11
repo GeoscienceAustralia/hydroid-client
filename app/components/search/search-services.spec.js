@@ -5,6 +5,15 @@ describe('hydroid search services tests', function () {
         $rootScope,
         SearchServices;
 
+    var mod = angular.module('config', []);
+
+    mod.constant('hydroidConfig',  {
+        s3BundlesUrl: '/api/download/bundle/',
+        solrUrl: '/solr',
+        solrCollection:'hydroid',
+        menuUrl: '/data/menu.json'
+    });
+
     angular.module('mockApp', ['ngMock', 'search-services', 'config']);
 
     // Load the myApp module, which contains the service

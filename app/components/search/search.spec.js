@@ -8,6 +8,15 @@ describe('hydroid search related tests', function () {
         $location,
         $httpBackend;
 
+    var mod = angular.module('config', []);
+
+    mod.constant('hydroidConfig',  {
+        s3BundlesUrl: '/api/download/bundle/',
+        solrUrl: '/solr',
+        solrCollection:'hydroid',
+        menuUrl: '/data/menu.json'
+    });
+
     angular.module('mockSearchApp', ['ngMock', 'search','config']);
 
     beforeEach(module('components/search/search.html'));

@@ -8,6 +8,6 @@
         solrUrl: '/solr',
         solrCollection:'hydroid',
         menuUrl: '/api/menu/hydroid'
-    })
+    });
     
 })();
