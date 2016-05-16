@@ -1,7 +1,8 @@
 <div class="row searchBoxFullContainer">
     <div>
         <div class="input-group col-lg-6 col-sm-12 searchBoxInputContainer col-lg-offset-2">
-            <input type="text" class="form-control" placeholder="What is your interest ?" ng-model="query" ng-keyup="searchKeyUp($event)" uib-typeahead="label for label in allLabels | filter:$viewValue | limitTo:8">
+            <input type="text" class="form-control" placeholder="What is your interest ?" ng-model="query" ng-keyup="searchKeyUp($event)">
+            <!--<input type="text" class="form-control" placeholder="What is your interest ?" ng-model="query" ng-keyup="searchKeyUp($event)" uib-typeahead="label for label in allLabels | filter:$viewValue | limitTo:8">-->
         </div>
         <div class="col-lg-2 visible-lg searchBoxBtnContainer">
             <button type="button" ng-click="search()" class="btn btn-lg btn-primary btn-group-justified">Search</button>
