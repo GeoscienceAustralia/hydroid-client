@@ -12,7 +12,8 @@
     </div>
     <div class="col-sm-9">
         <hydroid-alerts></hydroid-alerts>
-        <div ng-show="hasSearchResults">
+        <h4 ng-show="loading">Loading...</h4>
+        <div ng-show="queryMade && !loading">
             <h4 class="searchResults">Search Results</h4>
             <hydroid-search-results solr-url="/solr" solr-collection="hydroid" query="query" facet="facet"
                                     documents="documentResults"
@@ -36,7 +37,7 @@
                                     template-path="components/search/search-results-images.html"
                                     on-results="onResultsFunction(results)"></hydroid-search-results>
         </div>
-        <div ng-show="!hasSearchResults">
+        <div ng-show="!queryMade">
             <h2>Welcome to Hydroid!</h2>
         </div>
     </div>

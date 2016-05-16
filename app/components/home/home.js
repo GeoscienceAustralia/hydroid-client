@@ -28,7 +28,6 @@
                 $scope.hasSearchResults = false;
 
                 $scope.onSearch = function () {
-                    $scope.hasSearchResults = true;
                     var queryParams = $location.search();
                     var query = queryParams.query;
                     var facet = queryParams.facet;
@@ -45,13 +44,18 @@
                     }
                     SearchServices.resetMenuCounters($scope.menuItems);
                     $scope.facetStats = [];
+                    $scope.queryMade = true;
+                    $scope.loading = true;
                     $q.all(promises).then(function (results) {
-
+                        $scope.loading = false;
                         $timeout(function () {
                             var currentPage = null;
                             for(var i = 0; i < results.length; i++) {
                                 var result = results[i];
                                 currentPage = currentPage || result.currentPage;
+                                if(!$scope.hasSearchResults && result.numFound > 0) {
+                                    $scope.hasSearchResults = true;
+                                }
                                 $scope[result.docType.toLowerCase() + 'NumFound'] = result.numFound;
                                 $scope[result.docType.toLowerCase() + 'Results'] = result.docs;
                             }
@@ -73,6 +77,7 @@
                     });
                 };
 
+
                 $scope.hasCartItems = function() {
                     return $scope.cartItems.length > 0;
                 };
@@ -85,6 +90,7 @@
 
                     if(!queryParams.query && !queryParams.facet) {
                         $scope.hasSearchResults = false;
+                        $scope.queryMade = false;
                         SearchServices.resetMenuCounters($scope.menuItems);
                         for(var i = 0; i < docTypes.length; i++) {
                             var docType = docTypes[i];
