@@ -151,7 +151,7 @@
                         if ($scope.docType === 'IMAGE') {
                             $scope.imageRows = SearchServices.getResultImageRows($scope.documents, totalsRows);
                         }
-                        currentPage = (newVal.length / totalsRows);
+                        currentPage = Math.floor(newVal.length / totalsRows);
                         $scope.hasNextPage = $scope.numFound > (totalsRows * (currentPage + 1));
                     }
                 });
