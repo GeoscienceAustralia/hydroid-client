@@ -183,9 +183,18 @@
             }
         };
 
+        var cachedFacetsForMenuItem = {};
+
         var getAllFacetsForMenuItem = function(menuItem) {
+            if(!menuItem) {
+                return null;
+            }
             var facetArray = [];
+            if(cachedFacetsForMenuItem[menuItem.nodeLabel]) {
+                return cachedFacetsForMenuItem[menuItem.nodeLabel];
+            }
             populateFacetArray(menuItem, facetArray);
+            cachedFacetsForMenuItem[menuItem.nodeLabel] = facetArray;
             return facetArray;
         };
 

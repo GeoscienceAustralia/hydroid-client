@@ -33,11 +33,11 @@
                     var facet = queryParams.facet;
                     //Update scope query/facet
                     $scope.query = query;
-                    $scope.facet = facet;
+
                     if (facet && facet.indexOf('_') > -1) {
                         facet = facet.split('_').join(' ');
                     }
-
+                    $scope.facet = facet;
                     var promises = [];
                     for(var i = 0; i < docTypes.length; i++) {
                         promises.push(SearchServices.search(query,facet,docTypes[i],$scope.menuItems));

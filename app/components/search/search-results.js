@@ -73,7 +73,8 @@
                    } else if (facetArray) {
                        for (var j=0; j < facetArray.length; j++) {
                            var facet = facetArray[j];
-                           var matchFacetIndex = selection.indexOf(facet);
+                           var regEx = new RegExp(facet, 'i');
+                           var matchFacetIndex = selection.search(regEx);
                            if (matchFacetIndex >= 0) {
                                var startFacetIndex = findStartOfNearestSentence(selection,matchFacetIndex);
                                var endFacetIndex = (selection.length > (matchFacetIndex + 50)) ? matchFacetIndex + 50 : selection.length;
@@ -94,7 +95,7 @@
     module.filter('hydroidRelateHighlights', function() {
         return function (selectionContext, about, highlights) {
             var content = '';
-            if (selectionContext) {
+            if (selectionContext && selectionContext.length > 50) {
                 return selectionContext;
             } else if (about && highlights) {
                 for (var i=0; i < highlights.length; i++) {
@@ -151,8 +152,13 @@
                         if ($scope.docType === 'IMAGE') {
                             $scope.imageRows = SearchServices.getResultImageRows($scope.documents, totalsRows);
                         }
-                        currentPage = Math.floor(newVal.length / totalsRows);
-                        $scope.hasNextPage = $scope.numFound > (totalsRows * (currentPage + 1));
+                        currentPage = newVal.length == 0 ? 0 : Math.floor(newVal.length / totalsRows) - 1;
+                        $scope.hasNextPage = $scope.numFound > (totalsRows * (currentPage));
+                        console.log('updating current page');
+                        console.log(currentPage);
+                        var menuItem = SearchServices.findMenuItemByLabel($scope.facet, $scope.menuItems);
+                        var facetArray = SearchServices.getAllFacetsForMenuItem(menuItem);
+                        $scope.facetsArray = facetArray;
                     }
                 });
 
@@ -196,12 +202,15 @@
 
                 $scope.nextPage = function() {
                     currentPage ++;
+                    console.log('running next page with ' + currentPage);
                     SearchServices.search($scope.query, $scope.facet,$scope.docType,$scope.menuItems,currentPage)
                         .then(function (result) {
+
                             $timeout(function () {
                                 $scope.documents.push.apply($scope.documents,result.docs);
                             });
                         });
+
                 };
 
             }]
