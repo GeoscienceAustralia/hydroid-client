@@ -153,7 +153,7 @@
                             $scope.imageRows = SearchServices.getResultImageRows($scope.documents, totalsRows);
                         }
                         currentPage = newVal.length < totalsRows ? 0 : Math.floor(newVal.length / totalsRows) - 1;
-                        $scope.hasNextPage = $scope.numFound > (totalsRows * (currentPage) + 1);
+                        $scope.hasNextPage = $scope.numFound > (totalsRows * (currentPage + 1));
                         var menuItem = SearchServices.findMenuItemByLabel($scope.facet, $scope.menuItems);
                         var facetArray = SearchServices.getAllFacetsForMenuItem(menuItem);
                         $scope.facetsArray = facetArray;
