@@ -153,7 +153,8 @@
                             $scope.imageRows = SearchServices.getResultImageRows($scope.documents, totalsRows);
                         }
                         currentPage = newVal.length < totalsRows ? 0 : Math.floor(newVal.length / totalsRows) - 1;
-                        $scope.hasNextPage = $scope.numFound > (totalsRows * (currentPage + 1));
+                        $scope.hasNextPage = $scope.numFound > newVal.length;
+                        console.log($scope.numFound);
                         var menuItem = SearchServices.findMenuItemByLabel($scope.facet, $scope.menuItems);
                         var facetArray = SearchServices.getAllFacetsForMenuItem(menuItem);
                         $scope.facetsArray = facetArray;
@@ -199,9 +200,9 @@
                 };
 
                 $scope.nextPage = function() {
-                    currentPage ++;
-                    SearchServices.search($scope.query, $scope.facet,$scope.docType,$scope.menuItems,currentPage)
+                    SearchServices.search($scope.query, $scope.facet,$scope.docType,$scope.menuItems,currentPage + 1)
                         .then(function (result) {
+                            currentPage ++;
                             $timeout(function () {
                                 $scope.documents.push.apply($scope.documents,result.docs);
                             });
