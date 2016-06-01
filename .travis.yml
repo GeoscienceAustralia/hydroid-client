@@ -27,8 +27,8 @@ deploy:
     bucket: hydroid
     key: releases/hydroid.zip
     bundle_type: zip
-    application: hydroid
-    deployment_group: Hydroid-Client-Dev-Deployment
+    application: HydroidAmz-hydroidamzappserverAsgCda
+    deployment_group: HydroidAmz-hydroidamzappclientAsgCdg
     region: ap-southeast-2
     on:
       branch: master
