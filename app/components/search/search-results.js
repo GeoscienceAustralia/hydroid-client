@@ -175,6 +175,7 @@
 
                 $scope.isUrl = function(urn) {
                     if (urn != null  && urn.toString().toLowerCase().startsWith('http')) return true;
+                    return false;
                 };
 
                 $scope.isItemInCart = function(urn) {
