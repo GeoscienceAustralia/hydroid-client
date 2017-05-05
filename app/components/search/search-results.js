@@ -174,8 +174,7 @@
                 };
 
                 $scope.isUrl = function(urn) {
-                    if (urn != null  && urn.toString().toLowerCase().startsWith('http')) return true;
-                    return false;
+                    return (urn != 'undefined' && urn != null && urn.toLowerCase().startsWith("http"));
                 };
 
                 $scope.isItemInCart = function(urn) {
