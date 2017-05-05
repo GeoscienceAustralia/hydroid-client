@@ -22,7 +22,7 @@
             <p ng-bind-html="result.selectionContext | hydroidTruncateTextPreview: query:facetsArray | hydroidQueryResultsFilter: query | hydroidFacetsResultsFilter: facetsArray | hydroidRelateHighlights: result.about:highlights | hydroidTrustedText"></p>
         </div>
         <div class="col-sm-3 text-right cartBtnStyles">
-            <button class="btn btn-primary" ng-click="downloadOriginal(result)" title="Download File"><span class="glyphicon glyphicon-folder-open"></span></button>
+            <button class="btn btn-primary" ng-click="downloadOriginal(result)" title="{{isUrl(result.docOrigin) ? 'Open Link' : 'Download File'}}"><span class="glyphicon glyphicon-folder-open"></span></button>
             <button class="btn btn-primary" ng-click="goToDownloadUrl(result.docUrl)" title="Download RDF"><span class="glyphicon glyphicon-download-alt"></span></button>
             <button class="btn btn-primary" title="{{isItemInCart(result.about) ? 'Remove from cart' : 'Add to cart'}}"
                     ng-click="addToCart(result)">

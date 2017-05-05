@@ -166,7 +166,15 @@
                 };
 
                 $scope.downloadOriginal = function(item) {
+                    if ($scope.isUrl(item.docOrigin)) {
+                        window.open(item.docOrigin,'_blank');
+                        return;
+                    }
                     window.open("/api/download/documents/" + item.about,'_blank');
+                };
+
+                $scope.isUrl = function(urn) {
+                    return (urn != 'undefined' && urn != null && urn.toLowerCase().startsWith("http"));
                 };
 
                 $scope.isItemInCart = function(urn) {

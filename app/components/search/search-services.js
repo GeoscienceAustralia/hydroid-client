@@ -16,7 +16,7 @@
             var totalsRows = (docType === 'IMAGE' ? 6 : 5);
             var start = (currentPage * totalsRows);
             var highlightParams = '&hl=true&hl.simple.pre=<b>&hl.simple.post=</b>&hl.snippets=5&hl.fl=content' +
-                '&fl=extracted-from,concept,docUrl,about,imgThumb,docType,label,title,selectionContext,created,creator';
+                '&fl=extracted-from,concept,docUrl,about,imgThumb,docType,docOrigin,label,title,selectionContext,created,creator';
 
             var url = solrUrl + '/' + solrCollection + '/select?q=docType:' + docType;
 
