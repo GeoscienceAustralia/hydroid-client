@@ -28,7 +28,11 @@ module.exports = function (grunt) {
             'copy-data': function () {
                 return gulp.src('app/data/**/*')
                     .pipe(gulp.dest(outputPath + 'data'));
-            }
+            },
+            'copy-search': function () {
+                return gulp.src('app/search.html')
+                    .pipe(gulp.dest(outputPath));
+}
         },
         ngtemplates: {
             app: {
@@ -45,6 +49,6 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-gulp');
     grunt.loadNpmTasks('grunt-angular-templates');
-    grunt.registerTask('build', ['gulp:bundle', 'gulp:copy-bootstrap-fonts', 'gulp:copy-images', 'gulp:copy-data','ngtemplates']);
+    grunt.registerTask('build', ['gulp:bundle', 'gulp:copy-bootstrap-fonts', 'gulp:copy-images', 'gulp:copy-data', 'gulp:copy-search', 'ngtemplates']);
     grunt.registerTask('default', ['build']);
 };
