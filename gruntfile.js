@@ -11,7 +11,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
         gulp: {
             'bundle': function () {
-                return gulp.src('app/index.html')
+                return gulp.src(['app/index.html', 'app/search.html'])
                     .pipe(useref())
                     .pipe(gulpif('*.js', uglify()))
                     .pipe(gulpif('*.css', minifyCss()))
@@ -28,11 +28,7 @@ module.exports = function (grunt) {
             'copy-data': function () {
                 return gulp.src('app/data/**/*')
                     .pipe(gulp.dest(outputPath + 'data'));
-            },
-            'copy-search': function () {
-                return gulp.src('app/search.html')
-                    .pipe(gulp.dest(outputPath));
-}
+            }
         },
         ngtemplates: {
             app: {
@@ -49,6 +45,6 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-gulp');
     grunt.loadNpmTasks('grunt-angular-templates');
-    grunt.registerTask('build', ['gulp:bundle', 'gulp:copy-bootstrap-fonts', 'gulp:copy-images', 'gulp:copy-data', 'gulp:copy-search', 'ngtemplates']);
+    grunt.registerTask('build', ['gulp:bundle', 'gulp:copy-bootstrap-fonts', 'gulp:copy-images', 'gulp:copy-data', 'ngtemplates']);
     grunt.registerTask('default', ['build']);
 };
