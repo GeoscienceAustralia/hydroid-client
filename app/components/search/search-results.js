@@ -166,15 +166,28 @@
                 };
 
                 $scope.downloadOriginal = function(item) {
-                    if ($scope.isUrl(item.docOrigin)) {
-                        window.open(item.docOrigin,'_blank');
+                    var urn = item.docOrigin;
+                    if ($scope.isUrl(urn)) {
+                        if ($scope.isCmiUrl(urn)) {
+                            window.open($scope.getCmiUrl(urn), '_blank');
+                        } else {
+                            window.open(urn, '_blank');
+                        }
                         return;
                     }
                     window.open("/api/download/documents/" + item.about,'_blank');
                 };
 
                 $scope.isUrl = function(urn) {
-                    return (urn != 'undefined' && urn != null && urn.toLowerCase().startsWith("http"));
+                    return urn != 'undefined' && urn != null && urn.toLowerCase().startsWith('http');
+                };
+
+                $scope.isCmiUrl = function(urn) {
+                    return urn.toLowerCase().includes('hydroid_export');
+                };
+
+                $scope.getCmiUrl = function(urn) {
+                    return urn.toLowerCase().replace('hydroid_export','node'); // to open the document in CMI rather the (JSON) endpoint
                 };
 
                 $scope.isItemInCart = function(urn) {
