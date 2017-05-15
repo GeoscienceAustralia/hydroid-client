@@ -3,6 +3,12 @@ body {
     padding-bottom: 100px;
     background-color: white;
 }
+
+.search-body {
+    padding-top:20px;
+    padding-bottom: 20px;
+}
+
 /* Search box and button - START */
 .searchBoxFullContainer {
     padding:25px;

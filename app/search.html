@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="hydroidApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hydroid:  Semantically-enabled search for marine information</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- build:css lib/css/bootstrap.min.css -->
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!-- endbuild -->
+    <!-- build:css css/app.min.css -->
+    <link rel="stylesheet" href="css/app.header.footer.css">
+    <link rel="stylesheet" href="css/app.css">
+    <!-- endbuild -->
+</head>
+<!-- A copy of index.html without the header and footer, used in CMI to embed hydroid search capability into CMI  -->
+<body class="search-body" ng-controller="anchorCtrl">
+
+<div class="container-fluid" ng-view></div>
+<!-- /.container -->
+
+<!-- build:js lib/js/jquery.min.js -->
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<!-- endbuild -->
+<!-- build:js lib/js/bootstrap.min.js -->
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- endbuild -->
+<!-- build:js lib/js/angular.min.js -->
+<script src="../node_modules/angular/angular.js"></script>
+<!-- endbuild -->
+<!-- build:js lib/js/angular-route.min.js -->
+<script src="../node_modules/angular-route/angular-route.js"></script>
+<!-- endbuild -->
+<!-- build:js lib/js/ui-bootstrap-tpls.js -->
+<script src="../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+<!-- endbuild -->
+<!-- build:js lib/js/angular-filter.js -->
+<script src="../node_modules/angular-filter/dist/angular-filter.min.js"></script>
+<!-- endbuild -->
+<!-- build:js js/app.min.js-->
+<script src="components/home/home.js"></script>
+<script src="components/search/search.js"></script>
+<script src="components/search/search-results.js"></script>
+<script src="components/search/search-related.js"></script>
+<script src="components/search/search-services.js"></script>
+<script src="components/enhancer/enhancer.js"></script>
+<script src="components/cart/cart.js"></script>
+<script src="components/cart/anchor.js"></script>
+<script src="components/config/config.js"></script>
+<script src="components/modal/modal.js"></script>
+<script src="components/header/header.js"></script>
+<script src="components/alerts/alerts.js"></script>
+<script src="app.js"></script>
+<!-- endbuild-->
+</body>
+</html>
