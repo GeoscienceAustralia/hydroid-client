@@ -111,6 +111,28 @@
         }
     });
 
+    module.filter('hydroidContentFilter', function() {
+        return function(text, document, scope) {
+            if(!text || text == '') { // if selection context is empty the use the document content
+                var content = document.content;
+                if (content != null && content != '') {
+                    // if cmi content, parse json and get overview field
+                    var urn = document.docOrigin;
+                    if (scope.isUrl(urn) && scope.isCmiUrl(urn)) {
+                        var cmiNodeJson = [];
+                        cmiNodeJson = JSON.parse(content);
+                        if (cmiNodeJson.length > 0) {
+                            return (cmiNodeJson[0].field_overview[0].value).substring(0, 400);
+                        }
+                        return '';
+                    }
+                    return content.substring(0, 400); // else return truncated content
+                }
+            }
+            return text;
+        }
+    });
+
     module.directive('hydroidSearchResults', ['$http', '$timeout', 'SearchServices', 'hydroidModalService',
         function($http, $timeout, SearchServices, modalService) {
         return {
