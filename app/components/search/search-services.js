@@ -9,6 +9,7 @@
         var solrUrl = hydroidConfig.solrUrl; // Get from config?
         var solrCollection = hydroidConfig.solrCollection;
         var menuUrl = hydroidConfig.menuUrl;
+        var apiSummaryUrl = hydroidConfig.apiSummaryUrl;
 
         function search (query, facet, docType, menuItems, currentPage) {
             //$scope.isLoading = true;
@@ -16,7 +17,7 @@
             var totalsRows = (docType === 'IMAGE' ? 6 : 5);
             var start = (currentPage * totalsRows);
             var highlightParams = '&hl=true&hl.simple.pre=<b>&hl.simple.post=</b>&hl.snippets=5&hl.fl=content' +
-                '&fl=extracted-from,concept,docUrl,about,imgThumb,docType,docOrigin,label,title,selectionContext,created,creator';
+                '&fl=extracted-from,concept,docUrl,about,imgThumb,docType,docOrigin,label,title,selectionContext,created,creator,content';
 
             var url = solrUrl + '/' + solrCollection + '/select?q=docType:' + docType;
 
@@ -275,6 +276,11 @@
 
             }
             return allFacetStats;
+        };
+
+        var getSummary = function (urn) {
+            var url = apiSummaryUrl + 'test';
+            return $http.get(url);
         };
 
         return {

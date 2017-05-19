@@ -19,7 +19,8 @@
             <h6 ng-show="result.created"><b>Created on: </b>{{ result.created | date }}</h6>
             <h6 ng-show="result.creator"><b>Authors: </b>{{ result.creator }}</h6>
             <br/>
-            <p ng-bind-html="result.selectionContext | hydroidTruncateTextPreview: query:facetsArray | hydroidQueryResultsFilter: query | hydroidFacetsResultsFilter: facetsArray | hydroidRelateHighlights: result.about:highlights | hydroidTrustedText"></p>
+            <p ng-bind-html="result.selectionContext | hydroidTruncateTextPreview: query:facetsArray | hydroidQueryResultsFilter: query | hydroidFacetsResultsFilter: facetsArray | hydroidRelateHighlights: result.about:highlights | hydroidContentFilter: result:this | hydroidTrustedText"></p>
+
         </div>
         <div class="col-sm-3 text-right cartBtnStyles">
             <button class="btn btn-primary" ng-click="downloadOriginal(result)" title="{{isUrl(result.docOrigin) ? 'Open Link' : 'Download File'}}"><span class="glyphicon glyphicon-folder-open"></span></button>
